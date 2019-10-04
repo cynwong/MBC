@@ -17,16 +17,7 @@ header{
     display:inline-block;
     width: 100%;
 }
-/* #header_container{
-    width:90%;
-    height:100%;
-}
- 
-#header_container > * {
-    float: left;
-    width:47%;
-    height:100%;
-} */
+
 header > * {
     float:left;
     height:100%;
@@ -78,7 +69,8 @@ h1, h2{
 }
 
 #sec_main{
-    margin: 0 auto -60px;
+    width: 70%;
+    margin: 25px auto;
     display:inline-block;
     background-color: #fff;
     border: 1px solid #ddd;
