@@ -7,6 +7,9 @@ body{
     font-size: 18px;
     color:#777;
     height:100%;
+    display:flex;
+    flex-direction: column;
+    height:100vh;
 }
 
 header{
@@ -20,12 +23,12 @@ header{
 
 header > * {
     float:left;
-    height:100%;
+    /* height:100%; */
 }
 #pagetitle{
     margin:0;
     margin-left:5%;
-    height:100%;
+    /* height:100%; */
     width: 60%;
 }
 
@@ -37,7 +40,7 @@ header > * {
     padding: 22px;
     min-width: 5em;
     width: fit-content;
-    height:  100%;
+    /* height:  100%; */
     font-size: 24px;
     
 }
@@ -76,6 +79,8 @@ h1, h2{
     border: 1px solid #ddd;
     text-align:left;
     padding: 15px 25px 50px;
+    /* min-height: calc(100vh -70px) */
+    flex:1 0 auto;
 
 }
 
@@ -84,7 +89,9 @@ footer{
     border-top: 8px solid #4aaaa5;
     bottom: 0;
     width:100%;
+    /* line-height: 50px; */
     height:50px;
+    flex-shrink:0;
 }
 
 /* Page specific */
