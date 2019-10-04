@@ -1,6 +1,8 @@
 /* common style */
 body{
-    background-color: rgba(212, 209, 209, 0.678);
+    /* background-color: rgba(212, 209, 209, 0.678); */
+    background-image: url(../images/full-bloom/full-bloom.png);
+    /* background-image: url(../images/email-pattern/email-pattern.png); */
     margin: 0 auto;
     font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
     text-align: center;
@@ -100,6 +102,13 @@ footer{
 #title{
     color:#4aaaa5;
     border-bottom: 2px solid rgb(213, 213, 213);
+
+}
+#info > img{
+    margin: 15px;
+    width:200px;
+    height:200px;
+    float: left;
 
 }
 
