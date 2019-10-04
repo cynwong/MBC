@@ -75,19 +75,16 @@ h1, h2{
     background-color: #fff;
     border: 1px solid #ddd;
     text-align:left;
-    padding: 15px 25px;
+    padding: 15px 25px 50px;
 
 }
 
 footer{
     background-color: #666;
-    border-top: 3px solid #4aaaa5;
-    /* position: absolute; */
+    border-top: 8px solid #4aaaa5;
     bottom: 0;
     width:100%;
-    line-height:50px;
-
-
+    height:50px;
 }
 
 /* Page specific */
@@ -98,6 +95,7 @@ footer{
     border-bottom: 2px solid rgb(213, 213, 213);
 
 }
+
 /* portfolio.html */
 
 /* contact.html */
