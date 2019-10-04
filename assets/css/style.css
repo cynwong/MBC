@@ -1,0 +1,68 @@
+/* common style */
+body{
+    background-color: rgb(169, 169, 169);
+    margin: 0 auto;
+    font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
+    text-align: center;
+    font-size: 18px;
+}
+
+header{
+    margin-top: 0;
+    border-bottom: 1px solid #555;
+    background-color: #fff;
+    border: 1px solid #ccc;
+}
+ 
+header > * {
+    float: left;
+    /* width: 50%; */
+    height: 100%;
+}
+#pagetitle{
+    width:70%;
+}
+
+#pagetitle > h1{
+    background-color: #4aaaa5;
+    color:white;
+    margin-left: 2rem;
+    height:100%;
+}
+
+#nav_main{
+    width:30%;
+}
+#nav_main > ul >li{
+    list-style: none;
+    float:left;
+    margin: 5px;
+}
+#nav_main > ul >li > a{
+    text-decoration: none;
+}
+#nav_main:after{
+    clear:both;
+    display:block;
+    content:"";
+}
+
+#sec_main{
+    margin: 5rem;
+    display:inline-block;
+    background-color: #fff;
+    border: 1px solid #ddd;
+}
+
+footer{
+    background-color: #666;
+    border-top: 3px solid #4aaaa5;
+}
+
+/* Page specific */
+/* index.html */
+
+
+/* portfolio.html */
+
+/* contact.html */
