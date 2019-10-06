@@ -2,6 +2,7 @@
 
 
 ##Description
+
 Portfolio project is created according to guidelines/instruction given. This project requires us to create a Portfolio website with three web pages: 
     * About 
     * Contact
