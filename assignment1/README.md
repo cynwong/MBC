@@ -3,9 +3,10 @@
 
 ##Description
 
-Portfolio project is created according to guidelines/instruction given. This project requires us to create a Portfolio website with three web pages: 
+Portfolio project is created as per guidelines/instruction given for assignment 1. We are tasked to create a Portfolio website with three web pages: 
+
     * About 
-    * Contact
-    * Gallery/Portfolio 
+    * Contact page with contact form
+    * Portfolio gallery
 
     
