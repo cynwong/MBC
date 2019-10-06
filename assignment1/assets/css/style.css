@@ -118,6 +118,36 @@ footer{
 /* portfolio.html */
 
 /* contact.html */
-#dv_form{
+#form_container{
     width:100%;
+}
+
+form > *{
+    font-family: inherit;
+    font-size: 100%;
+    width: 100%;
+    margin: 5px 0 ;
+    box-sizing: border-box;
+    display:block;
+}
+
+textarea{
+    line-height: 70px;
+}
+
+input[type=submit]{
+    background-color: #4aaaa5;
+    color: #fff;
+    width: 150px;
+    height: 50px; 
+    margin-top: 2em;
+}
+
+input[type=text], input[type=email]{
+    padding: 5px;
+    color: #ccc;
+}
+
+label{
+    margin-top:20px;
 }
