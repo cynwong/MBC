@@ -116,6 +116,38 @@ footer{
 }
 
 /* portfolio.html */
+.icon{
+    width:250px;
+    height:250px;
+    position: relative;
+    display: inline;
+    margin: 10px;
+    box-sizing: border-box;
+}
+
+.icon> img{
+    width:inherit;
+    height:inherit;
+    z-index: 1; 
+}
+
+.icon > p{
+    /* move the label */
+    z-index: 2;
+    position: absolute;
+    left: -10px;
+    bottom: 8px;
+    /* style the text */
+    color: #fff;
+    text-align: center;
+    background-color: #4aaaa5;
+    width: inherit;
+    height: 50px;
+    padding: 15px;
+    margin: 0 10px;
+    box-sizing: border-box;
+
+}
 
 /* contact.html */
 #form_container{
