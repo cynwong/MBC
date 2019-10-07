@@ -1,0 +1,42 @@
+.icon{
+    width:200px;
+    height:200px;
+    position: relative;
+    display: inline-block;
+    margin-top: 40px;
+    margin-left: 50px;
+}
+
+.icon:hover{
+    transform: scale(1.2);
+    top: 20px;
+    left: 20px; 
+    z-index: 4; /* zoomed must always on top of others */
+}
+
+.icon img{
+    width:200px;
+    height:200px;
+    z-index: 1; /* To make sure img is always under the text */
+    border-radius: 5px;
+}
+
+.icon > figcaption{
+    /* move the label */
+    z-index: 2; /* To make sure img is always under the text */
+    position: absolute;
+    left: -10px;
+    bottom: 10px;
+    /* style the text */
+    color: #fff;
+    text-align: center;
+    background-color: rgb(49, 17, 124);
+    width: inherit;
+    height: 50px;
+    padding: 15px;
+    margin: 0 10px;
+    box-sizing: border-box;
+
+}
+
+
