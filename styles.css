@@ -14,11 +14,15 @@
     z-index: 4; /* zoomed must always on top of others */
 }
 
+.icon:hover figcaption{
+    opacity: 1; 
+}
+
 .icon img{
-    width:200px;
-    height:200px;
+    width:inherit;
+    height:inherit;
     z-index: 1; /* To make sure img is always under the text */
-    border-radius: 5px;
+    border-radius: 25px;
 }
 
 .icon > figcaption{
@@ -26,7 +30,7 @@
     z-index: 2; /* To make sure img is always under the text */
     position: absolute;
     left: -10px;
-    bottom: 10px;
+    bottom: 50px;
     /* style the text */
     color: #fff;
     text-align: center;
@@ -36,6 +40,7 @@
     padding: 15px;
     margin: 0 10px;
     box-sizing: border-box;
+    opacity: 0;
 
 }
 
