@@ -13,41 +13,61 @@ body{
 }
 
 header{
-    margin-top: 0;
+    min-height:50px;
+    /* max-width:960px; */
+    margin: 0 auto;
+    /* margin-top: 0; */
     background-color: #fff;
     border-bottom: 1px solid #ccc;
     width: 100%;
+    box-sizing: border-box;
     
     /* for itself */
     flex-shrink: 0;
+    
+}
+#header_container{
+    width: 960px; 
+    padding: 0;
+    margin: 0 auto;
     /* to align the nav next to heading */
     display: flex;
     flex-direction: row;
 }
 
 #pagetitle{
-    margin: 0 auto 0 5%;
+    margin: 0 auto;
+    flex-grow: 1;
 }
 
 #pagetitle > h1{
     background-color: #4aaaa5;
     color:white;
-    margin-top:0;
-    margin-bottom: 0;
+    margin:0; 
     padding: 25px;
     min-width: 5em;
     width: fit-content;
+    height: 1.8rem;
     font-size: 24px;
 }
 
 h1, h2{
     font-family:Georgia, 'Times New Roman', Times, serif;
 }
+
+p{
+    margin: 1.2rem 1.1rem;
+    line-height:1.62;
+    text-align: left;
+
+}
 #nav_main{
     text-align:right;
     padding-left:5px;
     margin: 0 auto 0 5%;
     box-sizing: border-box;
+    width: 20%;
+    flex-grow: 1;
 }
 #nav_main > ul {
     /* for links display arrangement */
@@ -57,6 +77,10 @@ h1, h2{
     list-style: none;
     padding: 10px 15px;
     flex: 1 0 auto;
+}
+#nav_main li + li:before{
+    content: "|"; 
+    margin-right: 2.5em; 
 }
 
 #nav_main > ul >li > a{
@@ -70,11 +94,16 @@ main{
     display:inline-block;
     background-color: #fff;
     border: 1px solid #ddd;
+    box-shadow: none; 
     text-align:left;
     padding: 15px 25px 50px;
 
     /* for sticky footer */
     flex-grow: 1;
+}
+main > * {
+    margin: 10px; 
+    padding: 15px;
 }
 
 footer{
@@ -87,8 +116,15 @@ footer{
     flex-shrink: 0;
 }
 
+footer > p{
+    /* padding-bottom: 10px; */
+    text-align: center;
+    font-size: 0.8rem;
+}
+
 #title{
     color:#4aaaa5;
+    font-size: 1.6em;
     border-bottom: 2px solid rgb(213, 213, 213);
     padding: 5px 5px 25px 5px;
 
