@@ -24,7 +24,12 @@ header{
     width: 100%;
     margin-top: 0;
 
+    /* for parent */
     flex-shrink: 0;
+
+    /* for children*/
+    display: flex;
+    
 }
 
 main{
@@ -63,13 +68,14 @@ footer{
 
 /* styles for Elements in Header */
 header > img{
-    width: 80px;
-    height: 80px;
-    float:left;
+    width: 50px;
+    height: 50px;
+    margin: 14px 9px 10px 10px; 
 }
 
 header > h1{
     padding: 12px;
+    font-size: 3.4em;
 }
 
 nav > ol, nav >ul{
