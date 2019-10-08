@@ -76,6 +76,7 @@ header > img{
 header > h1{
     padding: 12px;
     font-size: 3.4em;
+    flex-grow: 1;
 }
 
 nav > ol, nav >ul{
