@@ -106,21 +106,23 @@ footer{
 
 /* --portfolio.html-- */
 .icon{
-    width:200px;
-    height:200px;
+    max-width:200px;
+    max-height:200px;
+    width:15rem;
+    height:15em;
     position: relative;
     display: inline-block;
-    margin: 15px;
+    margin: 20px 15px;
 }
 
 .icon:hover{
-    transform: scale(1.5);
+    transform: scale(1.3);
     z-index: 4; /* zoomed must always on top of others */
 }
 
 .icon> img{
-    width:inherit;
-    height:inherit;
+    width:100%;
+    height:100%;
     z-index: 1; /* To make sure img is always under the text */
     border-radius: 5px;
 }
@@ -135,7 +137,7 @@ footer{
     color: #fff;
     text-align: center;
     background-color: #4aaaa5;
-    width: inherit;
+    width: 100%;
     height: 50px;
     padding: 15px;
     margin: 0 10px;
