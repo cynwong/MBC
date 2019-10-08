@@ -51,7 +51,7 @@ footer{
     flex-shrink: 0;
 
     /* box style */
-    border-top: 5px solid rgb(3, 119, 119);
+    border-top: 5px solid rgb(84, 105, 105);
     height: 35px;
 
 
@@ -99,10 +99,11 @@ header > nav li > a{
 
 /* Styles for elements in Main */
 #main_content_title{
-    color: blueviolet;
+    color: rgb(63, 5, 117);
     font-size: 2em;
     line-height:2em;
-
+    margin: 10px 25px;
+    border-bottom: 2px solid rgb(173, 173, 173); 
 }
 /* Styles for elements in Footer */
 footer > * {
