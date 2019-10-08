@@ -127,7 +127,7 @@ footer{
     border-radius: 5px;
 }
 
-.icon > p{
+.icon > figcaption{
     /* move the label */
     z-index: 2; /* To make sure img is always under the text */
     position: absolute;
