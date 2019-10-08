@@ -25,7 +25,7 @@ About page contains avator image and a brief description (or rumbling) of the au
 Contact page showcase a HTML form which will later allow user to contact the site owner for contact. It is a simple, non-reponsive form for now. 
 
 <h4>-- Portfolio gallery - portfolio.html --</h4>
-Portfolio page created as a gallery. Hence, this pages only contains images and their labels.  This page is constructed with &lt;figure&gt;, containing &lt;img&gt; for photos, &lt;figcaption&gt; as labels. CSS is mainly used to achive similar look to the example given, especially &lt;figcaption&gt; elments. This page has a little surprise since it is too boring with a list of photos. Try hovering on the images. CSS is so cool!
+Portfolio page created as a gallery. Hence, this pages only contains images and their labels.  This page is constructed with &lt;figure&gt;, containing &lt;img&gt; for photos,and &lt;figcaption&gt; as labels. CSS is mainly used to achive similar look to the example given, especially &lt;figcaption&gt; elments. This page has a little surprise since it is too boring with a list of photos. Try hovering on the images. CSS is so cool!
 
 <em>Note: The same words from the examples are used here so the label may not be descriptive nor matched with its labelled photo.</em>
 
