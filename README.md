@@ -11,4 +11,6 @@ This repository contains all projects created for Bootcamp's homework. This repo
 
 Instruction
 ----
-To navigate to each homework project site, click on relevent image on the screen. 
+To navigate to each homework project site, click on relevent image on the screen on the webpage. 
+
+*Click [here](https://cynwong.github.io/assignments/) to visit published site.*
