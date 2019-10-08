@@ -15,6 +15,8 @@ We are tasked to create a Portfolio website with three webpages. Each page must 
     * About 
     * Contact 
     * Portfolio gallery
+    
+Each page has navigation links to all pages. 
 
 
 <h4>-- About Page - index.html --</h4>
