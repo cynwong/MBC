@@ -55,12 +55,7 @@ h1, h2{
     font-family:Georgia, 'Times New Roman', Times, serif;
 }
 
-p{
-    margin: 1.2rem 1.1rem;
-    line-height:1.62;
-    text-align: left;
 
-}
 #nav_main{
     text-align:right;
     padding-left:5px;
@@ -138,6 +133,12 @@ footer > p{
     width:200px;
     height:200px;
     float: left;
+}
+#content_container p{
+    margin: 1.2rem 1.1rem;
+    line-height:1.62;
+    text-align: left;
+
 }
 
 /* --portfolio.html-- */
