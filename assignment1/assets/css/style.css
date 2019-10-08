@@ -15,7 +15,7 @@ body{
 header{
     margin-top: 0;
     background-color: #fff;
-    border-bottom: 1px solid #555;
+    border-bottom: 1px solid #ccc;
     width: 100%;
     
     /* for itself */
@@ -27,7 +27,6 @@ header{
 
 #pagetitle{
     margin: 0 auto 0 5%;
-    /* width: 60%; */
 }
 
 #pagetitle > h1{
@@ -47,7 +46,6 @@ h1, h2{
 #nav_main{
     text-align:right;
     padding-left:5px;
-    /* width: 40%; */
     margin: 0 auto 0 5%;
     box-sizing: border-box;
 }
