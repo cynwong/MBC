@@ -1,5 +1,5 @@
 html{
-    font-size: 100%;
+    font-size: 16px;
     height: 100%;
     
 }
@@ -75,7 +75,7 @@ header > img{
 
 header > h1{
     padding: 12px;
-    font-size: 3.4em;
+    font-size: 3.4rem;
     flex-grow: 1;
 }
 
@@ -107,8 +107,8 @@ header > nav li > a{
 /* Styles for elements in Main */
 #main_content_title{
     color: rgb(63, 5, 117);
-    font-size: 2em;
-    line-height:2em;
+    font-size: 2rem;
+    line-height:2;
     margin: 10px 25px;
     border-bottom: 2px solid rgb(173, 173, 173); 
 }
@@ -137,7 +137,7 @@ h3{
 
 h4{
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    font-size:1.5rem;
+    font-size: 1.5rem;
     font-weight: 900;
 }
 h5{
