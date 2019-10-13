@@ -1,0 +1,24 @@
+
+/* For Extra Small Devices (<576px) */
+/* if screen size is xs, use whole screen to display contents. */
+@media only screen and (max-width:576px){
+    .container {
+        margin:0;
+    }
+    body {
+        padding:0;
+    }
+    .navbar{
+        margin:0;
+    }
+    .navbar *{
+        margin: 0;
+    }
+}
+
+/*  for all larger devices*/
+@media only screen and (min-width:576px) {
+    :root{
+        font-size: 20px; 
+    }
+}

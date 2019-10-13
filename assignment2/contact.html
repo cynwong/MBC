@@ -1,0 +1,82 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Contact</title>
+
+    <!-- Favicon Metadata -->
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicon//apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon//favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon//favicon-16x16.png">
+    <link rel="manifest" href="assets/images/favicon//site.webmanifest">
+    <link rel="mask-icon" href="assets/images/favicon//safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+
+    <!-- CSS files -->
+    <link href="https://fonts.googleapis.com/css?family=Aclonica|Chivo:900|Knewave|Mrs+Sheppards|Spicy+Rice&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/medias.css">
+</head>
+<body>
+    <!-- Header Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom w-100">
+        <span class="navbar-brand mb-0 h1 py-4  p-3" id="site-title">Cynthia Wong</span>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                <a class="nav-link" href="index.html">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="portfolio.html">Portfolio <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="contact.html">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <!--  main content -->
+    <main class="container border my-4 mx-auto">
+        <!-- content title container  -->
+        <div class="row">
+            <div class="col-12 border-bottom mt-3">
+                <span id="title" class="h1" >Contact</span>
+            </div>
+        </div>
+        <!-- content container -->
+        <div class="row p-3">
+            <form class="col-12">
+                <div class="form-group">
+                    <label for="txt_name">Name</label>
+                    <input type="text" class="form-control" id="txt_name" placeholder="John Smith">
+                </div>
+                <div class="form-group">
+                    <label for="txt_email">Email</label>
+                    <input type="email" class="form-control" id="txt_email" placeholder="john@example.com">
+                </div>
+                <div class="form-group">
+                    <label for="txt_message">Message</label>
+                    <textarea class="form-control" rows="5" id="txt_message"></textarea> 
+                </div>
+                <input class="btn btn-primary" type="submit" value="Submit">
+            </form>
+        </div>
+    </main>
+    <!-- Footer -->
+    <footer class="footer fixed-bottom p-2 border-top w-100 bg-secondary text-light">
+        <div class="container text-center">
+            <span>Copyright &copy;</span>
+        </div>
+        
+    </footer>
+    
+</body>
+</html>
