@@ -1,99 +1,28 @@
-
 /* 
+=====================
+   Style Guide
+=====================
+* Colors (**Pro Tip:** Use the [Eye Dropper](https://chrome.google.com/webstore/detail/eye-dropper/hmdcmlfkchdmnmnmheododdhjedfccka) Chrome extension to find the colors that are used on webpages.)
+   * Teal color (used for headings and backgrounds): `#4aaaa5`
+   * Regular font color (used for paragraphs and all text besides the headings): `#777777`
+   * Main header background color: `#ffffff`
+   * Main header border color: `#cccccc`
+   * Footer background color: `#666666`
+   * Main content background color: `#ffffff`
+   * Main content border color: `#dddddd`
 
-greys:
-hsl(0deg, 0%, 10%)
-hsl(0deg, 0%, 25%)
-hsl(0deg, 0%, 50%)
-hsl(0deg, 0%, 75%)
-hsl(0deg, 0%, 98%)
+* Fonts:
+   * For heading fonts use `font-family: 'Georgia', Times, 'Times New Roman', serif;`
+   * For all other fonts use `'Arial', 'Helvetica Neue', Helvetica, sans-serif;` 
+
 */
-
 
 html{
     font-size: 16px;
-    
+    /* variables for the project */
+    --color-teal: #4aaaa5;
+    --color-text: #777777;
 }
 
-/* bootstrap class style overwriting */
-body{
-    background-image: url(../images/full-bloom/full-bloom.png);
-    background-color: transparent;
-}
-.container{
-    background-color: hsl(0deg,0%,98%);
-}
-.img-thumbnail{
-    background-color: transparent;
-}
-/* specific elements's styles */
-/* change the color and font style of the  */
-#site-title{ 
-    background-color: #4aaaa5;
-    color:hsl(0deg,0%,95%);
-    text-shadow: 1px 1px 4px hsl(0deg, 0%, 10%);
-    /* font-family: 'Spicy Rice','Mrs Sheppards','Knewave', cursive; */
-    font-family: "Aclonica", "Chivo", "Ariel", sans-serif;
-    font-size: 1.33rem;
-}
-
-#title{
-    color:#4aaaa5;
-    font-size: 1.6rem;
-    text-shadow: 1px 1px 2px hsl(0deg,0%,25%);
-}
-
-.border-bottom-3{
-    border-width: 3rem;
-}
-
-input[type=submit]{
-    background-color: #4aaaa5;
-    color: hsl(0deg, 0%, 98%);
-    /* font-size:1.3rem; */
-}
-
-.img-container:hover{
-    transform: scale(1.3);
-    z-index: 4; /* zoomed must always on top of others */
-}
-
-.img200{
-    width:200px !important;
-    height:200px ;
-}
-.img-label{
-    /* move the label */
-    z-index: 2; /* To make sure img is always under the text */
-    /* position: absolute; */
-    /* left: -10px; */
-    width:100%;
-    bottom: 0;
-    /* style the text */
-    font-size: 0.8rem;
-    color: hsl(0deg, 0%, 98%);
-    text-align: center;
-    background-color: #4aaaa5;
-    line-height: 2;
-    /* width: 195%; */
-    /* height: 50px; */
-    /* padding: 15px;
-    margin: 0 10px;
-    box-sizing: border-box; */
-}
-
-
-/* 
-
-TODO
-1. fix the header bar's css
-3. check the requirement and follow the instruction
-4. nav bar links button(sm screen) not working. why?
-5. readjust the side of header and footer. size too big
-6. change the colors to the assignment requirements. 
-
-
-
-*/
 
 
