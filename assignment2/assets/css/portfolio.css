@@ -12,3 +12,8 @@
     width:250px;
     height:200px;
 }
+
+.img-container:hover, .img-container:focus{
+    transform: scale(1.2);
+    z-index: 4; /* zoomed must always on top of others */
+}
