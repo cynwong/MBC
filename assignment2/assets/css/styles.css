@@ -69,7 +69,14 @@ body{
 .nav-link:hover, .nav-link:focus{
    text-decoration: var(--color-teal);
    font-weight: 800;
-   transform: scale(1.5);
+   transform: scale(1.2);
+}
+.divider{
+   margin-top: .4rem;
+   display: block;
+   width: 1px;
+   height: 2rem;
+   background-color: #ccc;
 }
 
 .main-container{
