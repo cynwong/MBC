@@ -1,3 +1,5 @@
+/* Common styles */
+
 /* 
 =====================
    Style Guide
@@ -17,12 +19,66 @@
 
 */
 
+
+
 html{
-    font-size: 16px;
-    /* variables for the project */
-    --color-teal: #4aaaa5;
-    --color-text: #777777;
+   /* bootstrap default font-size: 14px; */
+   font-size: 16px;
 }
 
+body{
+   /* variables for the project */
+   --color-teal: #4aaaa5;
+   --color-text: #777777;
+   --color-header-bg: #ffffff;
+   --color-header-border:#cccccc;
+   --color-footer-bg:#666666;
+   --color-main-bg: #ffffff;
+   --color-main-border: #dddddd;
 
+   margin:0;
+   padding:0;
+   font-family: 'Arial', 'Helvetica Neue', Helvetica, sans-serif;
+   color: var(--color-text);
+   
+}
 
+.header{
+   /* using bg-white for the header. */
+   /* background-color: var(--color-header-bg);  */
+   border-bottom: 2px solid var(--color-header-border); 
+}
+
+.site-title-container{
+   background-color: var(--color-teal);
+   padding: 25px; 
+}
+.site-title{
+   text-shadow: 0px 0px 4px hsl(0deg, 0%, 10%);
+    /* font-family: 'Spicy Rice','Mrs Sheppards','Knewave', cursive; */
+   font-family: "Aclonica", "Chivo", "Ariel", sans-serif;
+   font-size: 1.5rem;
+   color: white;
+}
+
+.main-container{
+   background-image: url("../images/background-image/full-bloom.png");
+   /* for sticky footer */
+   min-height: calc(100vh - 120px);
+}
+.main-container .container{
+   background-color: var(--color-main-bg);
+   border-color: var(--color-main-border);
+}
+
+#title{
+   color:var(--color-teal);
+   font-size: 1.5rem;
+   font-weight: 900;
+}
+
+.hr{
+   display:block;
+   height: 2px; 
+   background-color: var(--color-header-border);
+}

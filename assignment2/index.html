@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Contact</title>
+    <title>About Me</title>
 
     <!-- Favicon Metadata -->
     <link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicon//apple-touch-icon.png">
@@ -16,45 +16,73 @@
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
 
-    <!-- CSS files -->
+    <!-- *** CSS files *** -->
+    <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Aclonica|Chivo:900|Knewave|Mrs+Sheppards|Spicy+Rice&display=swap" rel="stylesheet">
+    <!-- Bootstraps -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- Custom CSS -->
     <link rel="stylesheet" href="assets/css/styles.css">
     <link rel="stylesheet" href="assets/css/medias.css">
 </head>
 <body>
-    <!-- Header Bar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom w-100 p-0">
-        <span class="navbar-brand mb-0 h1 p-3 ml-sm-5" id="site-title">Cynthia Wong</span>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-            <ul class="navbar-nav ml-auto mr-4">
-                <li class="nav-item active px-4">
-                <a class="nav-link" href="index.html">About</a>
-                </li>
-                <li class="nav-item px-4">
-                    <a class="nav-link" href="portfolio.html">Portfolio <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item px-4">
-                    <a class="nav-link" href="contact.html">Contact</a>
-                </li>
-            </ul>
+    <!-- <header id="sec_header">
+        <div id="header_container">
+            <div id="pagetitle">
+                <h1>Cynthia Wong</h1>
+            </div>
+            <nav id="nav_main">
+                <ul>
+                    <li><a href="index.html">About</a></li>
+                    <li><a href="portfolio.html">Portfolio</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
         </div>
-    </nav>
+    </header> -->
+    <header class="container header navbar navbar-expand-sm navbar-light bg-white p-0" role="navigation">
+        <div class="row">
+            <div class="col-12 col-sm-3 site-title-container text-center">
+                <span class="site-title h1 w-100">Cynthia Wong</span>
+            </div>
+            <div class="col-sm-1"></div>
+            <div class="col-12 col-sm-4">
+                <ul class="nav justify-content-center">
+                    <li class="nav-item">
+                        <a class="nav-link text-secondary active" href="#">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-secondary" href="portfolio.html">Portfolio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-secondary" href="contact.html">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
     <!-- main content -->
-    <div class="main-container">
-        <main class="container border my-4 mx-auto">
+    <!-- <main>
+        <h2 id='title'>About Me</h2>
+        <div id="content_container">
+            <img src="assets/images/avator.png" alt="My Avatar">
+            <p>Hello. I am <em>Cynthia.</em></p>
+            <p>I am currently learning to code again. &nbsp;I love coding, especially seeing the fruit of my labour instantly. &nbsp;Coding is fun! &nbsp;Coding is like a magic, which I wish I can use. &nbsp;But, debugging can be a pain. &nbsp;Most of the time, I don't even know what I did to break things. &nbsp;My worst nightmares! &nbsp;Oh well, we can't have the cake and eat it too. </p>
+            <p>I am a doer. I understand and learn things way better and quicker by actually doing stuff. So, I will be doing and breaking many things along this course. So, please, please bear with me.</p>
+        </div>
+    </main> -->
+    <main class="main-container p-3">
+        <div class="container border p-3">
             <!-- content title container -->
             <div class="row">
-                <div class="col-12 border-bottom mt-3">
+                <div class="col-12 m-3">
                     <span id="title" class="h1" >About Me</span>
                 </div>
+                <div class="col hr mx-3 mb-1"></div>
             </div>
             <!-- content container -->
             <div class="row">
-                <div class="col-12 col-sm-3 mx-auto p-3 media">
+                <div class="col-12 col-sm-3 text-center">
                     <img class="img-thumbnail border-0" src="assets/images/avator.png" class="img-thumbnail border-0 rounded" alt="My Avator">
                 </div>
                 <div class="col-12 col-sm-9  media-body">
@@ -63,11 +91,14 @@
                     <p class="px-2">I am a doer. <span class="d-none">&nbsp;</span>I understand and learn things way better and quicker by actually doing stuff. <span class="d-none">&nbsp;</span> I will be doing and breaking many things along this course. <span class="d-none">&nbsp;</span>So, please, please bear with me.</p>
                 </div>
             </div>
-        </main>
-    </div>
+        </div>
+    </main>
     
     <!-- Footer -->
-    <footer id="sticky-footer" class="py-3 footer bg-dark text-white-50">
+    <!-- <footer id="sec_footer">
+        <p>Copyright &copy;</p>
+    </footer> -->
+    <footer class="py-3 footer bg-dark text-white-50">
         <div class="container text-center bg-dark">
             <small>Copyright &copy;</small>
         </div>
