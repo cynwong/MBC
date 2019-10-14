@@ -29,24 +29,35 @@
     </head>
     <body>
         <!-- Header Bar -->
-        <header class="container header navbar navbar-expand-sm navbar-light bg-white p-0" role="navigation">
+        <header class="container-fluid header bg-white mx-0 p-0 w-100" role="navigation">
             <div class="row">
-                <div class="col-12 col-sm-3 site-title-container text-center">
+                <div class="col-sm-1 col-xl-2 display-none display-sm-block">
+                    <!-- Empty column to push site title to the right. This will not show in Extra small screen. -->
+                </div>
+                <div class="col-sm-3 site-title-container text-center">
                     <span class="site-title h1 w-100">Cynthia Wong</span>
                 </div>
-                <div class="col-sm-1"></div>
-                <div class="col-12 col-sm-4">
-                    <ul class="nav justify-content-center">
+                <div class="col mt-3">
+                    <ul class="nav justify-content-center justify-content-sm-end">
                         <li class="nav-item">
                             <a class="nav-link text-secondary" href="index.html">About</a>
+                        </li>
+                        <li>
+                            <div class="divider" role="separator"></div>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-secondary active" href="#">Portfolio</a>
                         </li>
+                        <li>
+                            <div class="divider" role="separator"></div>
+                        </li>
                         <li class="nav-item">
-                            <a class="nav-link text-secondary" href="contact.html">Contact</a>
+                            <a class="nav-link text-secondary " href="contact.html">Contact</a>
                         </li>
                     </ul>
+                </div>
+                <div class="col-sm-1 col-xl-2 display-none display-sm-block">
+                    <!-- Empty column to push navbar to the left. This will not show in Extra small screen. -->
                 </div>
             </div>
         </header>
@@ -62,31 +73,31 @@
                 </div>
                 <!-- content container -->
                 <div class="row">
-                    <div class="col-12">
+                    <div class="col-sm-5">
                         <figure class='position-relative rounded img-container m-3'>
                             <img class="rounded w-100 h-100" src="assets/images/portfolio_images/artistic-blossom-bright-207962.jpg" alt="Hangman`">
                             <figcaption class="img-label text-light">Word Guess</figcaption>
                         </figure>
                     </div>
-                    <div class="col-12">
+                    <div class="col-sm-5">
                         <figure class='position-relative rounded img-container m-3'>
                             <img class="rounded w-100 h-100" src="assets/images/portfolio_images/auto-automobile-automotive-533685.jpg" alt="Hangman`">
                             <figcaption class="img-label text-light">PRG Game</figcaption>
                         </figure>
                     </div>
-                    <div class="col-12">
+                    <div class="col-sm-5">
                         <figure class='position-relative rounded img-container m-3'>
                             <img class="rounded w-100 h-100" src="assets/images/portfolio_images/beach-books-eyewear-513516.jpg" alt="Hangman`">
                             <figcaption class="img-label text-light">Trivia Game</figcaption>
                         </figure>
                     </div>
-                    <div class="col-12 col-sm-6 col-md-4 ">
+                    <div class="col-sm-5">
                         <figure class='position-relative rounded img-container m-3'>
                             <img class="rounded w-100 h-100" src="assets/images/portfolio_images/canine-daylight-dog-533079.jpg" alt="Hangman`">
                             <figcaption class="img-label text-light">Info Widget</figcaption>
                         </figure>
                     </div>
-                    <div class="col-12 col-sm-6 col-md-4 ">
+                    <div class="col-sm-5">
                         <figure class='position-relative rounded img-container m-3'>
                             <img class="rounded w-100 h-100" src="assets/images/portfolio_images/beverage-brown-caffeine-533180.jpg" alt="Hangman`">
                             <figcaption class="img-label text-light">Rock Paper Sissors</figcaption>
