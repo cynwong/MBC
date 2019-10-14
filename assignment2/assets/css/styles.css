@@ -31,7 +31,7 @@ body{
    --color-teal: #4aaaa5;
    --color-text: #777777;
    --color-header-bg: #ffffff;
-   --color-header-border:#cccccc;
+   --color-border:#cccccc;
    --color-footer-bg:#666666;
    --color-main-bg: #ffffff;
    --color-main-border: #dddddd;
@@ -46,7 +46,7 @@ body{
 .header{
    /* using bg-white for the header. */
    /* background-color: var(--color-header-bg);  */
-   border-bottom: 2px solid var(--color-header-border); 
+   border-bottom: 2px solid var(--color-border); 
 }
 
 .site-title-container{
@@ -80,5 +80,9 @@ body{
 .hr{
    display:block;
    height: 2px; 
-   background-color: var(--color-header-border);
+   background-color: var(--color-border);
+}
+
+footer{
+   border-top: 8px solid var(--color-teal)
 }
