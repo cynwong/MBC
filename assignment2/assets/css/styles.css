@@ -61,6 +61,11 @@ body{
    color: white;
 }
 
+.active{
+   font-weight: 900;
+
+}
+
 .main-container{
    background-image: url("../images/background-image/full-bloom.png");
    /* for sticky footer */
