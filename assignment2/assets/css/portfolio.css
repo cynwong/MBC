@@ -1,0 +1,14 @@
+.img-label{
+    text-align: center;
+    background-color: var(--color-teal);
+    position: absolute;
+    bottom: 6px;
+    right: 0;
+    left: 0;
+    padding: 8px;
+}
+
+.img-container{
+    width:250px;
+    height:200px;
+}
