@@ -17,6 +17,18 @@
    * For heading fonts use `font-family: 'Georgia', Times, 'Times New Roman', serif;`
    * For all other fonts use `'Arial', 'Helvetica Neue', Helvetica, sans-serif;` 
 
+
+=================
+   Bootstrap's grid breakpoints
+=================
+
+$grid-breakpoints: (
+  xs: 0,
+  sm: 480px,
+  md: 768px,
+  lg: 1024px
+);
+
 */
 
 
