@@ -7,7 +7,7 @@ Homework Repository
 
 Description
 -------
-This repository contains all projects created for Bootcamp's homework. This repository contains a web page with its own styles and resources. This webpage is created to act as a home page to all homework submission projects. 
+This project is for the homework repositiory's home page. This page contains links to all projects created for Bootcamp's homework. This site is the working progress. This site will be continuingly upgraded along with my evolution. Fun starts here. :)
 
 Instruction
 ----
