@@ -15,7 +15,7 @@ This project is the re-creation of "[Unit 01 HTML, CSS, and Git Homework: Portfo
     <li> <a href="https://cynwong.github.io/assignments/assignment2/contact.html" target="_blank">Contact</a> page</li>
 </ol>
 
-In this project, I have used the following items: 
+The following items are used in this project: 
 <ul>
     <li>
         <strong>Navbar</strong>, used in this project, is  not Bootstrap's default Navbar. Bootstrap's navbar is constucted with CSS Flexbox. Being a flexbox, it has very limited in moblie repsonsiveness. Therefore, for the sake of reponsiveness, a new Navbar is built using Bootstrap's Grid system and Navs components.
