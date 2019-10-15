@@ -118,7 +118,7 @@ body{
     font-size: 1.8rem;
     font-weight: 900;
     font-family: "Aclonica", "Chivo", "Ariel", sans-serif;
-    text-shadow: 2px 2px 2px var(--color-primary-5);
+    text-shadow: 2px 2px 2px var(--color-primary-1);
 }
 
 .hr{
