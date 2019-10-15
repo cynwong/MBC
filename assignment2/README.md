@@ -29,5 +29,6 @@ The following items are used in this project:
     </li>
     <li><strong>Sticky footer</strong> is used. Sticky footer is a footer that always stays at the bottom of screen, if content is short, or at the bottom of the page, if content is long.</li>
     <li><strong>Sub-grid</strong> is used in Portfolio page for the bonus activity. The code without sub-grid is commented out in the portfolio.html. They both react the same way except being constructed with or without sub-grid. </li>
+</ul>
 
 Same images from Unit 1 project are used. Credit [Pixel](https://www.pexels.com/).
