@@ -1,57 +1,165 @@
-.icon{
-    max-width:300px;
-    max-height:200px;
-    width:15rem;
-    position: relative;
-    display: inline-block;
-    margin-top: 40px;
-    margin-left: 50px;
+/* 
+=================
+Bootstrap's grid breakpoints
+=================
+
+$grid-breakpoints: (
+    xs: 0,
+    sm: 480px,
+    md: 768px,
+    lg: 1024px
+);
+$container-max-widths: (
+    sm: 420px,
+    md: 720px,
+    lg: 960px
+);
+=====================
+Style Guide
+=====================
+***** site color schemes *****
+primarycolour : light salmon
+hsl(20,100,90);
+hsl(20,100,83);
+hsl(20,100,78);
+hsl(20,100,57);
+hsl(20,100,25);
+
+
+secondary:  slategray hsl(157,17,46)
+hsl(157deg,17%,93%);
+hsl(157deg,17%,77%);
+hsl(157deg,17%,46%);
+hsl(157deg,17%,38%);
+hsl(157deg,17%,21%);
+
+grays:
+hsl(0,0,95);
+hsl(0,0,77);
+hsl(0,0,59);
+hsl(0,0,47);
+hsl(0,0,28);
+
+
+*/
+        
+        
+        
+html{
+    /* bootstrap default font-size: 14px; */
+    font-size: 16px;
 }
 
-.icon:hover{
-    transform: scale(1.1);
-    top: 20px;
-    left: 20px; 
+body{
+    /* variables for the project */
+    --color-primary-1:hsl(20deg,100%,90%);
+    --color-primary-2: hsl(20deg,100%,83%);
+    --color-primary-3: hsl(20deg,100%,78%);
+    --color-primary-4: hsl(20deg,100%,57%);
+    --color-primary-5: hsl(20deg,100%,25%);
+
+    --color-secondary-1:hsl(157deg,17%,93%);
+    --color-secondary-2:hsl(157deg,17%,77%);
+    --color-secondary-3:hsl(157deg,17%,46%);
+    --color-secondary-4:hsl(157deg,17%,38%);
+    --color-secondary-5:hsl(157deg,17%,21%);
+
+    --color-gray-1:hsl(0deg,0%,95%);
+    --color-gray-2:hsl(0deg,0%,77%);
+    --color-gray-3:hsl(0deg,0%,59%);
+    --color-gray-4:hsl(0deg,0%,47%);
+    --color-gray-5: hsl(0deg,0%,28%);
+    
+    margin:0;
+    padding:0;
+    font-family: 'Roboto',"Noto Sans",'Ariel', sans-serif;
+    color: var(--color-secondary-5);
+    
+}
+
+.header{
+    /* using bg-white for the header. */
+    border-bottom: 2px solid var(--color-gray-4); 
+    background-color: var(--color-primary-5);
+}
+
+
+
+.site-title-container{
+    
+    padding: 25px 5px;
+    min-width: fit-content; 
+}
+
+#site-title{
+    text-shadow: 0px 0px 4px var(--color-gray-3);
+    font-family: 'Knewave','Mrs Sheppards','Spicy Rice', cursive;
+    font-size: 2.3rem;
+    color: var(--color-primary-1);
+}
+
+
+.main-container{
+    /* background-image: url("../images/background-image/full-bloom.png"); */
+    /* for sticky footer */
+    min-height: calc(100vh - 150px);
+    background-color:var(--color-primary-1)
+}
+.main-container .container{
+    background-color: var(--color-primary-2);
+    border-color: var(--color-gray-3);
+    box-shadow: 0px 0px 8px var(--color-gray-2);
+}
+
+
+
+#title{
+    color:var(--color-secondary-3);
+    font-size: 1.8rem;
+    font-weight: 900;
+    font-family: "Aclonica", "Chivo", "Ariel", sans-serif;
+    text-shadow: 2px 2px 2px var(--color-primary-5);
+}
+
+.hr{
+    display:block;
+    height: 2px; 
+    background-color: var(--color-gray-3);
+}
+
+.img-label{
+    text-align: center;
+    background-color: var(--color-secondary-3);
+    color:var(--color-primary-2);
+    position: absolute;
+    bottom: 6px;
+    right: 0;
+    left: 0;
+    padding: 8px;
+}
+
+.img-container{
+    width:fit-content;
+}
+
+.img-container:hover, .img-container:focus{
+    transform: scale(1.2);
     z-index: 4; /* zoomed must always on top of others */
 }
 
-.icon:hover figcaption{
-    opacity: 1; 
-    color: #fff;
-    background-color: rgb(49, 17, 124);
-}
-
-.icon img{
-    width:100%;
-    height:100%;
-    z-index: 1; /* To make sure img is always under the text */
-    border-radius: 10px;
-}
-
-.icon > figcaption{
-    /* move the label */
-    z-index: 2; /* To make sure img is always under the text */
-    position: absolute;
-    left: -10px;
-    bottom: 20px;
-    /* style the text */
-    text-align: center;
-    color: rgb(100, 12, 93);
-    /* background-color: rgb(49, 17, 124); */
-    font-size: 1.5em;
-    font-weight:500;
-    width: 100%;
-    height: 50px;
-    padding: 15px;
-    margin: 0 10px;
-    box-sizing: border-box;
-    /* opacity: 0.2; */
-
-}
-
-main > p{
-    color: rgb(131, 29, 172);
-    margin: 20px 25px;  
+footer{
+    border-top: 8px solid var(--color-secondary-3);
+    background-color:var(--color-primary-5);
+    color: var(--color-secondary-1);
 }
 
 
+ /* If xs, main content should use the whole screen. */
+@media (max-width: 575.98px) {
+body{
+    padding: 0;
+}
+.main-container .container{
+    margin: 0;
+}
+}
