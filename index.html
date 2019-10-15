@@ -1,44 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Cynthia's Homeworks</title>
-    <!-- Favicon Metadata -->
-    <link rel="apple-touch-icon" sizes="180x180" href="resources/favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="resources/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="resources/favicon/favicon-16x16.png">
-    <link rel="manifest" href="resources/favicon/site.webmanifest">
-    <link rel="mask-icon" href="resources/favicon/safari-pinned-tab.svg" color="#5bbad5">
-    <meta name="msapplication-TileColor" content="#da532c">
-    <meta name="theme-color" content="#ffffff">
-    <!-- styles -->
-    <link rel="stylesheet" href="styles/reset.css">
-    <link rel="stylesheet" href="styles/default.css">
-    <link rel="stylesheet" href="styles/styles.css">
-</head>
-<body>
-    <header>
-        <img src="resources/logos/cw-logo.png" alt="Avatar">
-        <h1>Cynthia's</h1>
-        <nav>
-            
-        </nav> 
-    </header>
-    <main>
-        <h2 id="main_content_title">Homeworks</h2>
-        <p>Please click on relevant image to view the submitted homework project.</p>
-        <a href="assignment1/index.html" title="Homework 1">
-            <figure class='icon'>
-                <img src="resources/pages/assignment-1.png" alt="Homework 1">
-                <figcaption>Homework 1</figcaption>
-            </figure>
-        </a>
-    </main>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Portfolio</title>
 
-    <footer>
-        <p>Copyright &copy;</p>
-    </footer>
-</body>
+        <!-- Favicon Metadata -->
+        <link rel="apple-touch-icon" sizes="180x180" href="resources/favicon/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="resources/favicon/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="resources/favicon/favicon-16x16.png">
+        <link rel="manifest" href="resources/favicon/site.webmanifest">
+        <link rel="mask-icon" href="resources/favicon/safari-pinned-tab.svg" color="#5bbad5">
+        <meta name="msapplication-TileColor" content="#da532c">
+        <meta name="theme-color" content="#dddddd">
+
+        <!-- *** CSS files *** -->
+        <!-- Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Noto+Sans|Roboto&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Aclonica|Chivo:900|Knewave|Mrs+Sheppards|Spicy+Rice&display=swap" rel="stylesheet">
+        <!-- Bootstraps -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <!-- Common CSS -->
+        <link rel="stylesheet" href="styles/styles.css">
+    </head>
+    <body>
+        <!-- Header Bar -->
+        <header class="container-fluid header" role="navigation">
+            <div class="row align-items-center mx-md-5">
+                <div class="col-sm-2 site-title-container px-3 text-center">
+                    <span class="site-title h1">Cynthia Wong</span>
+                </div>
+            </div>
+        </header>
+        <!-- main content -->
+        <main class="main-container p-sm-5">
+            <div class="container border p-sm-4 pb-4">
+                <!-- content title container -->
+                <div class="row">
+                    <div class="col-12 mt-4 mb-3 ml-2">
+                        <span id="title" class="h1" >Homework Repository</span>
+                    </div>
+                    <div class="col hr mx-3 mb-4"></div>
+                </div>
+                <!-- content container -->
+                <div class="row justify-content-center justify-content-sm-start">
+                    <div class="col-sm-auto">
+                        <figure class='position-relative rounded img-container m-3'>
+                            <img class="img-fluid rounded" src="resources/pages/assignment-1.png" alt="Homework 1">
+                            <figcaption class="img-label text-light">Homework 1</figcaption>
+                        </figure>
+                    </div>
+                    <div class="col-sm-auto">
+                        <figure class='position-relative rounded img-container m-3'>
+                            <img class="img-fluid rounded" src="resources/pages/assignment-2.png" alt="Homework 2">
+                            <figcaption class="img-label text-light">Homework 2</figcaption>
+                        </figure>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <!-- Footer Bar -->
+        <footer class="py-3 footer bg-dark text-white-50">
+            <div class="container text-center bg-dark">
+                <small>Copyright &copy;</small>
+            </div>
+        </footer>
+        
+    </body>
 </html>
+
