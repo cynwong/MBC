@@ -122,3 +122,14 @@ body{
 footer{
    border-top: 8px solid var(--color-teal)
 }
+
+
+/* If xs, main content should use the whole screen. */
+@media (max-width: 575.98px) {
+   body{
+      padding: 0;
+   }
+   .main-container .container{
+      margin: 0;
+   }
+}
