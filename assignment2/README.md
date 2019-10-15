@@ -11,8 +11,8 @@ Description
 This project is the re-creation of "[Unit 01 HTML, CSS, and Git Homework: Portfolio](https://github.com/cynwong/assignments/tree/master/assignment1)" using [Bootstrap CSS Framework](https://getbootstrap.com). This also has 3 web pages, namely: 
 <ol>
     <li> [About](https://cynwong.github.io/assignments/assignment2/index.html) page</li>
-    <li>[Portfolio](https://cynwong.github.io/assignments/assignment2/portfolio.html) page</li>
-    <li>[Contact](https://cynwong.github.io/assignments/assignment2/contact.html) page</li>
+    <li> [Portfolio](https://cynwong.github.io/assignments/assignment2/portfolio.html) page</li>
+    <li> [Contact](https://cynwong.github.io/assignments/assignment2/contact.html) page</li>
 </ol>
 
 In this project, I have used the following items: 
