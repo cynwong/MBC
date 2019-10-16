@@ -25,7 +25,7 @@ The following items are used in this project:
     </li>
     <li>Bootstrap's style class named <code>.img-fluid</code> is used for Portfolio images to ensure <strong> image reponsiveness</strong></li>
     <li>
-        Only one <strong>media query</strong> is used for extra small screens' full-screen mode since Bootstrap handle most of the responsiveness. 
+        Bootstrap handle <strong>media queries</strong> and mobile repsonsivenesss. Therefore, no other media queries are added.  
     </li>
     <li><strong>Sticky footer</strong> is used. Sticky footer is a footer that always stays at the bottom of screen, if content is short, or at the bottom of the page, if content is long.</li>
     <li><strong>Sub-grid</strong> is used in Portfolio page for the bonus activity. The code without sub-grid is commented out in the portfolio.html. They both react the same way except being constructed with or without sub-grid. </li>
