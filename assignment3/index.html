@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Password Generator</title>
+    <meta name="author" content="Cynthia Wong">
+    <meta name="description" content="Password Generator will generate a password according to the user's choices.">
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -23,15 +25,12 @@
             </div>
         </header>
 
-
-
-        <!-- Modal -->
-        <section class="modal fade" backdrop="false" id="formContainer" tabindex="-1" role="dialog" aria-labelledby="madalLabel"
+        <div class="modal fade" id="modalSettingform" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
             aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered madal-sm" role="document">
+            <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="madalLabel">Modal title</h5>
+                        <h5 class="modal-title" id="ModalLabel">Password Generator Setting</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -39,43 +38,37 @@
                     <div class="modal-body">
                         <form>
                             <div class="form-group">
-                                <label for="pwdLength">Length <small>(must be between 8 and 128
-                                        characters)</small>:</label>
-                                <select id="pwdLength" name="pwdLength"></select>
+                                <label for="pwdLength" class="col-form-label">Lenght:</label>
+                                <select name="pwdLength" id="pwdLength"></select>
                             </div>
                             <div class="form-group">
-                                <label>Character type(s) to be included: </label>
                                 <div class="form-check">
-                                    <input type="checkbox" id="ckboxLowerCase" name="ckboxLowerCase"
-                                        value="lowercaseChars" />
-                                    <label for="ckboxLowerCase">Lowercase characters : </label>
+                                    <label for="ckb_lowercase" class="col-form-label">Lowercase Characters:</label>
+                                    <input type="checkbox" name="ckb_lowercase" id="ckb_lowercase" value="lowercase" checked>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" id="ckboxUpperCase" name="ckboxUpperCase"
-                                        value="uppercaseChars" />
-                                    <label for="ckboxUpperCase">Upper characters : </label>
+                                    <label for="ckb_uppercase" class="col-form-label">Uppercase Characters:</label>
+                                    <input type="checkbox" name="ckb_uppercase" id="ckb_uppercase" value="uppercase">
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" id="ckboxNumericChars" name="ckboxNumericChars"
-                                        value="numericChars" />
-                                    <label for="ckboxNumericChars">Numeric characters :</label>
+                                    <label for="ckb_numeric" class="col-form-label">Numeric Characters:</label>
+                                    <input type="checkbox" name="ckb_numeric" id="ckb_numeric" value="numeric">
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" id="ckboxSpecialCase" name="ckboxSpecialCase"
-                                        value="specialChars" />
-                                    <label for="ckboxSpecialCase">Special characters : </label>
+                                    <label for="ckb_special" class="col-form-label">Special Characters:</label>
+                                    <input type="checkbox" name="ckb_special" id="ckb_special" value="special">
                                 </div>
+                                
                             </div>
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <button class="button redButton">Generate</button>
+                        <button type="button" class="button redButton">Generate</button>
                         <button type="button" class="button grayButton" data-dismiss="modal">Close</button>
                     </div>
                 </div>
             </div>
-        </section>
-
+        </div>
 
         <main id="mainContainer" class="container">
             <div class="row">
@@ -93,9 +86,7 @@
                     </div>
                     <div class="row">
                         <div class="col">
-                            <span id="passwordDisplay">
-                                <!-- Generated password goes here. -->
-                            </span>
+                            <span id="passwordDisplay"><!-- Generated password goes here. --></span>
                         </div>
                     </div>
                 </div>
@@ -103,7 +94,7 @@
             <div class="separator"></div>
             <div class="row">
                 <div class="col offset-md-2">
-                    <button class="button redButton" data-toggle="modal" data-target="#formContainer">Generate
+                    <button class="button redButton" data-toggle="modal" data-target="#modalSettingform">Generate
                         Password</button>
                 </div>
                 <div class="col">
@@ -114,16 +105,25 @@
     </div>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-    crossorigin="anonymous"></script>
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-    crossorigin="anonymous"></script>
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-    crossorigin="anonymous"></script>
-    <script> 
-    
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+    <script>
+        window.onload = function(){
+            var option;
+            for(var i=8; i<=128;i++){
+                option = document.createElement("option");
+                option.value=i;
+                option.text = i;
+                document.getElementById("pwdLength").add(option);
+            }
+        }
     </script>
 </body>
 

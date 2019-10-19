@@ -40,6 +40,7 @@ body{
 
     padding: 2rem;
     border: 2px solid var(--color-gray);
+
 }
 
 #mainContainer{
@@ -58,7 +59,7 @@ body{
 
  #ContainerPasswordDisplay{
     border: 0.1rem dashed var(--color-dark-gray);
-    min-height: 7rem;
+    min-height: 10rem;
     min-width: 100%;
     text-align: center;
     padding: 0.6rem;
@@ -69,7 +70,7 @@ body{
  }
 
  #passwordDisplay{
-     font-size: 2.5rem;
+     font-size: 3rem;
      font-weight: 700;
  }
 
