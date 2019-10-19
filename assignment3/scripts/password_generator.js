@@ -34,7 +34,7 @@ document.getElementById("btn_generateNow").addEventListener("click", function ()
     //check the checkboxes for which charset to add to chosen charset variable
     if (document.getElementById("ckb_lowercase").checked) {
         // possibleCharSet += "abcdefghijklmnopqrstuvwxyz";
-        addToCharSet(95,122);
+        addToCharSet(97,122);
     }
     if (document.getElementById("ckb_uppercase").checked) {
         // possibleCharSet += "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -51,7 +51,7 @@ document.getElementById("btn_generateNow").addEventListener("click", function ()
         addToCharSet(91,96);
         addToCharSet(123,126);
     }
-    // console.log(possibleCharSet);
+    console.log(possibleCharSet);
     //use for loop and Math.random to grap the random chars and add to result var. 
     //note:use #pwdLenght for for-loop terminating condition.
 
