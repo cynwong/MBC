@@ -1,7 +1,7 @@
 window.onload = function () {
-    var option;
+    let option;
     //add values for password lenght form field
-    for (var i = 8; i <= 128; i++) {
+    for (let i = 8; i <= 128; i++) {
         option = document.createElement("option");
         option.value = i;
         option.text = i;
@@ -20,29 +20,42 @@ document.getElementById("btn_generateNow").addEventListener("click", function ()
     //if at least one char type is selected. we can proceed. 
 
     //create variable to hold chosen charset
-    var possibleCharSet = "";
+    let possibleCharSet = "";
     //declare a var to hold the result
-    var generatedPassword = "";
-    var length = parseInt(document.getElementById("pwdLength").value);
+    let generatedPassword = "";
+    let length = parseInt(document.getElementById("pwdLength").value);
+
+    function addToCharSet(min,max){
+        for(let i=min; i<=max; i++){
+            possibleCharSet += String.fromCharCode(i);
+        }
+    }
 
     //check the checkboxes for which charset to add to chosen charset variable
     if (document.getElementById("ckb_lowercase").checked) {
-        possibleCharSet += "abcdefghijklmnopqrstuvwxyz";
+        // possibleCharSet += "abcdefghijklmnopqrstuvwxyz";
+        addToCharSet(95,122);
     }
     if (document.getElementById("ckb_uppercase").checked) {
-        possibleCharSet += "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        // possibleCharSet += "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        addToCharSet(65,90);
     }
     if (document.getElementById("ckb_numeric").checked) {
-        possibleCharSet += "0123456789";
+        // possibleCharSet += "0123456789";
+        addToCharSet(48,57);
     }
     if (document.getElementById("ckb_special").checked) {
-        possibleCharSet += " !\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~";
+        // possibleCharSet += " !\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~";
+        addToCharSet(32,47);
+        addToCharSet(58,64);
+        addToCharSet(91,96);
+        addToCharSet(123,126);
     }
-
+    // console.log(possibleCharSet);
     //use for loop and Math.random to grap the random chars and add to result var. 
     //note:use #pwdLenght for for-loop terminating condition.
 
-    for (var i = 0, n = possibleCharSet.length; i < length; i++) {
+    for (let i = 0, n = possibleCharSet.length; i < length; i++) {
         generatedPassword += possibleCharSet.charAt(Math.floor(Math.random() * n));
     }
     //display result in passwordDisplay 
