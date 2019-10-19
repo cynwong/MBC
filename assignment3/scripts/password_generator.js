@@ -67,6 +67,11 @@ document.getElementById("btn_generateNow").addEventListener("click", function ()
 
 //"Copy to Clipboard action"
 document.getElementById("btnCopy2Clipboard").addEventListener("click", function () {
+    if(document.getElementById("passwordDisplay").innerHTML.trim().length === 0){
+        //if no password, there is nothing to copy. 
+        alert("Generate the password first"); //TODO Bootstrap?
+        return;
+    }
     //clear any current selection
     const selection = window.getSelection();
     selection.removeAllRanges();
