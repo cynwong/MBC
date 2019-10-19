@@ -38,7 +38,6 @@ body{
 
 #formContainer{
     background-color: var(--color-lightest-gray);
-
     padding: 2rem;
     border: 2px solid var(--color-gray);
 
@@ -68,11 +67,16 @@ body{
 
  #labelPasswordDisplay{
     color: var(--color-dark-gray);
+    margin-bottom: 1.5rem;
  }
 
  #passwordDisplay{
      font-size: 3rem;
      font-weight: 700;
+     text-shadow: 0px 0px 2px var(--color-dark-gray);
+     overflow-wrap: break-word;
+     word-wrap: break-word;
+     hyphens: none;
  }
 
  .button {
