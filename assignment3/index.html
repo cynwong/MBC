@@ -22,12 +22,62 @@
                 </div>
             </div>
         </header>
-        
-        <section>
-            
+
+
+
+        <!-- Modal -->
+        <section class="modal fade" backdrop="false" id="formContainer" tabindex="-1" role="dialog" aria-labelledby="madalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered madal-sm" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="madalLabel">Modal title</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <label for="pwdLength">Length <small>(must be between 8 and 128
+                                        characters)</small>:</label>
+                                <select id="pwdLength" name="pwdLength"></select>
+                            </div>
+                            <div class="form-group">
+                                <label>Character type(s) to be included: </label>
+                                <div class="form-check">
+                                    <input type="checkbox" id="ckboxLowerCase" name="ckboxLowerCase"
+                                        value="lowercaseChars" />
+                                    <label for="ckboxLowerCase">Lowercase characters : </label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="checkbox" id="ckboxUpperCase" name="ckboxUpperCase"
+                                        value="uppercaseChars" />
+                                    <label for="ckboxUpperCase">Upper characters : </label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="checkbox" id="ckboxNumericChars" name="ckboxNumericChars"
+                                        value="numericChars" />
+                                    <label for="ckboxNumericChars">Numeric characters :</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="checkbox" id="ckboxSpecialCase" name="ckboxSpecialCase"
+                                        value="specialChars" />
+                                    <label for="ckboxSpecialCase">Special characters : </label>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="button redButton">Generate</button>
+                        <button type="button" class="button grayButton" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
         </section>
-        
-        <main class="container">
+
+
+        <main id="mainContainer" class="container">
             <div class="row">
                 <div class="col">
                     <h2>Generate a Password</h2>
@@ -53,55 +103,28 @@
             <div class="separator"></div>
             <div class="row">
                 <div class="col offset-md-2">
-                    <button class="button redButton">Generate Password</button>
+                    <button class="button redButton" data-toggle="modal" data-target="#formContainer">Generate
+                        Password</button>
                 </div>
                 <div class="col">
                     <button class="button grayButton">Copy to Clipboard</button>
                 </div>
             </div>
         </main>
-        <!-- <div class="container-fluid">
-            <div class="row justify-content-center my-3">
-                <div id="header" class="col-auto">
-                    <h1>Password Generator</h1>
-                </div>
-                
-            </div>
-            <div class="row justify-content-center">
-                <div id="frm_get_password_info" class="col"> -->
-                    <!-- A form toß ask users to input all their requirement re: password -->
-                    <!-- https://getbootstrap.com/docs/4.0/components/modal/#vertically-centered -->
-                    <!-- https://getbootstrap.com/docs/4.0/components/modal/#varying-modal-content -->
-                    <!-- 
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col"> -->
-                        <!-- a section where a password is generated and displayed to the user with the option to copy to the clipboard. -->
-                        <!-- https://www.w3schools.com/howto/howto_css_pill_button.asp -->
-                        <!-- <div class="row border">
-                            <div class="col">
-                                <h2>Generate a Password</h2>
-                                <div class="col hr mx-3 mb-4"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div> -->
-                
-                
-            
-        </div>
-            
-            <script> </script>
-            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+    <script> 
+    
+    </script>
 </body>
 
 </html>

@@ -11,8 +11,9 @@ body{
     --color-darkest-gray:hsl(0deg,0%, 8%);
     --color-darker-gray:hsl(0deg,0%, 23%);
     --color-dark-gray:hsl(0deg,0%, 35%);
-    --color-gray:hsl(0deg,0%,50%);
-    --color-light-gray:hsl(0deg,0%,65%);
+    --color-gray1:hsl(0deg,0%,50%);
+    --color-gray2:hsl(0deg,0%,66%);
+    --color-light-gray:hsl(0deg,0%,77%);
     --color-lighter-gray:hsl(0deg,0%, 90%);
     --color-lightest-gray:hsl(0deg,0%, 95%);
     --color-red: hsl(0deg,82%,43%);
@@ -34,7 +35,14 @@ body{
     height:100%;
 }
 
-.container{
+#formContainer{
+    background-color: var(--color-lightest-gray);
+
+    padding: 2rem;
+    border: 2px solid var(--color-gray);
+}
+
+#mainContainer{
     background-color: var(--color-lightest-gray);
     width:90%;
     padding: 2rem;
@@ -44,7 +52,7 @@ body{
 .separator{
     display:block;
     height: 2px; 
-    background-color: var(--color-gray);
+    background-color: var(--color-light-gray);
     margin: 1rem auto 0.8rem;
  }
 
@@ -77,5 +85,5 @@ body{
     background-color: var(--color-red);
 }
 .grayButton{
-    background-color: var(--color-gray);
+    background-color: var(--color-gray1);
 }
