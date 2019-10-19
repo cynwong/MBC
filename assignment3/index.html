@@ -106,7 +106,7 @@
                         Password</button>
                 </div>
                 <div class="col">
-                    <button class="button grayButton">Copy to Clipboard</button>
+                    <button id="btnCopy2Clipboard" class="button grayButton">Copy to Clipboard</button>
                 </div>
             </div>
         </main>
@@ -177,9 +177,21 @@
             $("#modalSettingform").modal("hide");
         });
 
+        //"Copy to Clipboard action"
+        document.getElementById("btnCopy2Clipboard").addEventListener("click", function () {
+            //clear any current selection
+            const selection = window.getSelection();
+            selection.removeAllRanges();
 
-
-
+            //select the password
+            const range = document.createRange();
+            range.selectNodeContents(document.getElementById("passwordDisplay"));
+            selection.addRange(range);
+            
+            //copy
+            document.execCommand('copy');
+        });
+        
 
     </script>
 </body>
