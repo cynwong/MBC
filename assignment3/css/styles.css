@@ -23,7 +23,7 @@ body{
     color: var(--color-darkest-gray);
 
     width: 100%;
-    height: 100%;
+    height: 100vh;
     padding: 0;
     margin: 0;
 
@@ -31,8 +31,8 @@ body{
 }
 .pageContainer{
     background-color:var(--color-lighter-gray);
-    width: 100%;
-    height:100%;
+    width: 100vw;
+    height:100vh;
     padding:3rem;
 }
 
@@ -45,7 +45,8 @@ body{
 
 #mainContainer{
     background-color: var(--color-lightest-gray);
-    width:90%;
+    margin-left: auto;
+    margin-right: auto;
     padding: 2rem;
     border: 2px solid var(--color-gray);
 }
@@ -53,39 +54,42 @@ body{
 .separator{
     display:block;
     height: 2px; 
+    width: 100%;
     background-color: var(--color-light-gray);
     margin: 1rem auto 0.8rem;
- }
+}
 
- #ContainerPasswordDisplay{
+#ContainerPasswordDisplay{
     border: 0.1rem dashed var(--color-dark-gray);
     min-height: 10rem;
-    min-width: 100%;
+    margin-left:auto;
+    margin-right:auto;
     text-align: center;
     padding: 0.6rem;
- }
+}
 
- #labelPasswordDisplay{
+#labelPasswordDisplay{
     color: var(--color-dark-gray);
     margin-bottom: 1.5rem;
- }
+}
 
- #passwordDisplay{
-     font-size: 3rem;
-     font-weight: 700;
-     text-shadow: 0px 0px 2px var(--color-dark-gray);
-     overflow-wrap: break-word;
-     word-wrap: break-word;
-     hyphens: none;
- }
+#passwordDisplay{
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-shadow: 0px 0px 2px var(--color-dark-gray);
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    hyphens: none;
+}
 
- .button {
+.button {
     border: none;
     color: var(--color-lightest-gray);
-    padding: 0.8rem 2rem;
+    padding: 0.8rem 1.5rem;
     text-align: center;
     cursor: pointer;
-    border-radius: 1.5rem;
+    border-radius: 2rem;
+    margin: 1rem;
 }
 .redButton{
     background-color: var(--color-red);
@@ -93,3 +97,26 @@ body{
 .grayButton{
     background-color: var(--color-gray1);
 }
+
+/* Extra Small devices */
+@media (max-width: 576px) { 
+    html{
+        font-size: 10px;
+    }
+}
+
+ /* Small devices */
+@media (min-width: 576px and max-width: 768px) { .
+    html{
+        font-size: 14px;
+    }
+}
+
+ /* Medium devices */
+@media (min-width: 768px and max-width: 992px) { 
+    html{
+        font-size: 16px;
+    }
+}
+
+
