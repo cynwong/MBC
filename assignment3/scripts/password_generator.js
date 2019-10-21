@@ -8,9 +8,10 @@ window.onload = function () {
         document.getElementById("pwdLength").add(option);
     }
     //for popover
-    // $('[data-toggle="popover"]').popover({
-    //     container: 'body'
-    //   });
+    // $('[data-toggle="popover"]').popover();
+    // $('.popover-dismiss').popover({
+    //     trigger: 'focus'
+    // });
 }
 //create a function to call when the "Generate Password" button is clicked.
 document.getElementById("btn_generateNow").addEventListener("click", function () {
@@ -47,9 +48,7 @@ document.getElementById("btnCopy2Clipboard").addEventListener("click", function 
     document.execCommand('copy');
 });
 
-// $('.popover-dismiss').popover({
-//     trigger: 'focus'
-// })
+
 
 
 // function generateMethod3() {
