@@ -64,7 +64,7 @@
                                 <div class="form-check">
                                     <label for="ckb_numeric" class="col-form-label">
                                         Numeric Characters
-                                        <a href="#" role="button" data-toggle="popover" data-trigger="focus" title="Numeric character" data-content="A numeric character is a positive number from 0 to 9, i.e. 0123456789 ">?</a>
+                                        <!-- <a href="#" role="button" data-toggle="popover" data-trigger="focus" title="Numeric character" data-content="A numeric character is a positive number from 0 to 9, i.e. 0123456789 ">?</a> -->
                                         :
                                     </label>
                                     <input type="checkbox" name="ckb_numeric" id="ckb_numeric" value="numeric">
@@ -73,7 +73,9 @@
                                     
                                     <label for="ckb_special" class="col-form-label">
                                         Special Characters
-                                        <a href="#" role="button" data-toggle="popover" data-trigger="focus" title="Special character" data-content="A special character is a punctuation character. For example, ,./?$#@(){} ">?</a>
+                                        <a href="https://www.owasp.org/index.php/Password_special_characters" class="whatis" target="_blank">?</a>
+                                        <!-- bootstrap's popover does not work for safari. so not using them anymore.  -->
+                                        <!-- <a href="#" role="button" data-toggle="popover" data-trigger="focus" title="Special character" data-content="A special character is a punctuation character. For example, ,./?$#@(){} ">?</a> -->
                                         :
                                     </label>
                                     <input type="checkbox" name="ckb_special" id="ckb_special" value="special">
