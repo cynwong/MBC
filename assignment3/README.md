@@ -28,14 +28,14 @@ Password can have at least 8 characters and up to 128 characters. The users will
 
 Instructions
 --------------
-####Generate Password
+#### Generate Password
 * Click on "Generate Password" to start. This will open Password Generator's setting panel. 
 * In the prompt form, select password length value from 8 to 128 and desired character type(s).
 * Click "Generate" button to get the password.
 * Or Click "Close" button to quit the setting page.
 * The generated password will be shown in the password session.  
 
-####Copy password to Clipboard
+#### Copy password to Clipboard
 * Once the password is generated, clicking this button will copy the password to the Clipboard. 
 
 
