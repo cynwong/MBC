@@ -147,7 +147,9 @@ body{
 
 .img-container{
     width:fit-content;
-    border: 2px solid var(--color-primary-4);
+    border: 1px solid var(--color-primary-3);
+    border-radius: 5px;
+    box-shadow: 0px 0px 2px var(--color-gray-7);
 }
 
 .img-container:hover, .img-container:focus{
