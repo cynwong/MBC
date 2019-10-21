@@ -7,21 +7,22 @@ window.onload = function () {
         option.text = i;
         document.getElementById("pwdLength").add(option);
     }
+    //for popover
+    $('[data-toggle="popover"]').popover()
 }
 //create a function to call when the "Generate Password" button is clicked.
 document.getElementById("btn_generateNow").addEventListener("click", function () {
     //check at least one character type is selected. 
     if (!document.getElementById("ckb_lowercase").checked && !document.getElementById("ckb_uppercase").checked && !document.getElementById("ckb_numeric").checked && !document.getElementById("ckb_special").checked) {
-        //if not throw an error. and quit the function TODO make sure it goes back to modal
+        //if not throw an error. and quit the function
         document.getElementsByClassName("alert")[0].classList.remove("d-none");
         return;
     }
     //if at least one char type is selected. we can proceed. 
-    generateMethod3();
+    generator();
 
     //there is a password now. we can copy so remove the error message if there is
-    document.getElementById("alertNoPassword").classList.add("d-none")
-
+    document.getElementById("alertNoPassword").classList.add("d-none");
 });
 
 //"Copy to Clipboard action"
@@ -44,10 +45,16 @@ document.getElementById("btnCopy2Clipboard").addEventListener("click", function 
     document.execCommand('copy');
 });
 
+$('.popover-dismiss').popover({
+    trigger: 'focus'
+  })
 
-function generateMethod3() {
+
+// function generateMethod3() {
+function generator()
+{
     //declare a var to hold the result
-    let password = "";
+    let newPassword = "";
     let selectedChartype = [];
 
     //get which chartypes are selected. 
@@ -85,10 +92,10 @@ function generateMethod3() {
         return (String.fromCharCode(Math.floor(Math.random() * (rangeEnd - rangeStart) + rangeStart)));
     }
     for (var i = 0; i < parseInt(document.getElementById("pwdLength").value); i++) {
-        password += getRandomChar();
+        newPassword += getRandomChar();
     }
     //display result in passwordDisplay 
-    document.getElementById("passwordDisplay").innerHTML = password;
+    document.getElementById("passwordDisplay").innerHTML = newPassword;
 
     //hide the modal now to show the result
     $("#modalSettingform").modal("hide");

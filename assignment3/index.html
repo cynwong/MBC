@@ -2,16 +2,20 @@
 <html lang="en">
 
 <head>
+    <!-- Meta datas -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Password Generator</title>
     <meta name="author" content="Cynthia Wong">
     <meta name="description" content="Password Generator will generate a password according to the user's choices.">
-
+    
+    <!-- StyleSheets -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="css/styles.css" />
+
+    <!-- Site title -->
+    <title>Password Generator</title>
 </head>
 
 <body>
@@ -58,11 +62,20 @@
                                     <input type="checkbox" name="ckb_uppercase" id="ckb_uppercase" value="uppercase">
                                 </div>
                                 <div class="form-check">
-                                    <label for="ckb_numeric" class="col-form-label">Numeric Characters:</label>
+                                    <label for="ckb_numeric" class="col-form-label">
+                                        Numeric Characters
+                                        <a href="#" role="button" data-toggle="popover" data-trigger="focus" title="Numeric character" data-content="A numeric character is a positive number from 0 to 9, i.e. 0123456789 ">?</a>
+                                        :
+                                    </label>
                                     <input type="checkbox" name="ckb_numeric" id="ckb_numeric" value="numeric">
                                 </div>
                                 <div class="form-check">
-                                    <label for="ckb_special" class="col-form-label">Special Characters:</label>
+                                    
+                                    <label for="ckb_special" class="col-form-label">
+                                        Special Characters
+                                        <a href="#" role="button" data-toggle="popover" data-trigger="focus" title="Special character" data-content="A special character is a punctuation character. For example, ,./?$#@(){} ">?</a>
+                                        :
+                                    </label>
                                     <input type="checkbox" name="ckb_special" id="ckb_special" value="special">
                                 </div>
 
@@ -119,6 +132,7 @@
         </main>
     </div>
 
+    <!-- Bootstrap javascripts -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
@@ -128,7 +142,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
-
+    <!-- Password Generator Javascript -->
     <script src = "scripts/password_generator.js"></script>
 </body>
 
