@@ -45,46 +45,46 @@ document.getElementById("btnCopy2Clipboard").addEventListener("click", function 
 });
 
 
-function generateMethod3(){
-    //create variable to hold all charset
-    let ASCIIcodeRanges = {
-        lowercase : {start:97, end:122},
-        uppercase : {start:65, end:90},
-        numeric : {start:48, end: 57},
-        special : [{start:32, end:47}, 
-                    {start:58, end:64},
-                    {start:91, end:96},
-                    {start:123, end:126}],
-    };
+function generateMethod3() {
     //declare a var to hold the result
     let password = "";
-    let selectedChartype= [];
-    
+    let selectedChartype = [];
+
     //get which chartypes are selected. 
     let inputChartypes = document.getElementsByTagName("input");
-    for(var i=0; i<inputChartypes.length;i++){
-        if(inputChartypes[i].checked){
+    for (var i = 0; i < inputChartypes.length; i++) {
+        if (inputChartypes[i].checked) {
             //if checked/selected, then add to our queue
             selectedChartype.push(inputChartypes[i].value);
         }
     }
-    
-    function getRandomChar(){
-        let typeIndex = Math.floor(Math.random()*selectedChartype.length);
+
+    function getRandomChar() {
+        //create variable to hold all charset
+        let ASCIIcodeRanges = {
+            lowercase: { start: 97, end: 122 },
+            uppercase: { start: 65, end: 90 },
+            numeric: { start: 48, end: 57 },
+            special: [{ start: 32, end: 47 },
+            { start: 58, end: 64 },
+            { start: 91, end: 96 },
+            { start: 123, end: 126 }],
+        };
+        let typeIndex = Math.floor(Math.random() * selectedChartype.length);
         let rangeStart, rangeEnd;
         //first we need to decide the character range.
-        if(selectedChartype[typeIndex]==="special"){
+        if (selectedChartype[typeIndex] === "special") {
             //special characters has 4 ranges so we need to choose which range again
-            let i = Math.floor(Math.random()*ASCIIcodeRanges.special.length);
+            let i = Math.floor(Math.random() * ASCIIcodeRanges.special.length);
             rangeStart = ASCIIcodeRanges.special[i].start;
             rangeEnd = ASCIIcodeRanges.special[i].end;
-        }else{
+        } else {
             rangeStart = ASCIIcodeRanges[selectedChartype[typeIndex]].start;
             rangeEnd = ASCIIcodeRanges[selectedChartype[typeIndex]].end;
         }
-        return (String.fromCharCode(Math.floor( Math.random()*(rangeEnd-rangeStart) +rangeStart)));
+        return (String.fromCharCode(Math.floor(Math.random() * (rangeEnd - rangeStart) + rangeStart)));
     }
-    for(var i =0; i< parseInt(document.getElementById("pwdLength").value); i++){
+    for (var i = 0; i < parseInt(document.getElementById("pwdLength").value); i++) {
         password += getRandomChar();
     }
     //display result in passwordDisplay 
@@ -93,7 +93,7 @@ function generateMethod3(){
     //hide the modal now to show the result
     $("#modalSettingform").modal("hide");
 
-    
+
 }
 
 // function generateMethod1() {
