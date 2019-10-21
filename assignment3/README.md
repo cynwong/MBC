@@ -1,7 +1,7 @@
 Unit 03 JavaScript Homework: Password Generator
 =============================
 
-Click [here](./index.html) to view this application. 
+Click [here](https://cynwong.github.io/assignments/assignment3/index.html) to view this application. 
 
 
 Description
