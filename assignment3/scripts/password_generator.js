@@ -6,14 +6,25 @@ let hideAlert = function (alertId) {
     document.querySelector(`#${alertId}`).style.display = "none";
 }
 let closeButtonHandler = function (event) {
-    if (event.target.parentElement.matches("div") && event.target.parentElement.classList.contains("modal-footer")) {
-        //this is modal close button
-        // check lowercase characters checkbox again and remove the alert within the modal
-        document.querySelector("#ckb_lowercase").checked = true; 
+    let parentElement = event.target.parentElement;
+
+    let closeModal = function(){
+        // force check lowercase characters checkbox again and remove the alert within the modal
+        document.querySelector("#ckb_lowercase").checked = true;
         hideAlert("alertOneChartype");
+    }
+    if (parentElement.matches("div") && parentElement.classList.contains("modal-footer")) {
+        //close button in the modal, a.k.a. gray button
+        closeModal();
         return;
     }
-    hideAlert(event.target.parentElement.parentElement.attributes.id.nodeValue);
+    parentElement = parentElement.parentElement;
+    if (parentElement.matches("div") && parentElement.classList.contains("modal-header")) {
+        //modal's close button, i.e. "x" button
+        closeModal();
+        return;
+    }
+    hideAlert(parentElement.attributes.id.nodeValue);
 }
 
 //------------ Password generator ---------------------
@@ -114,12 +125,13 @@ document.querySelector("#btnCopy2Clipboard").addEventListener("click", copy2Clip
 
 
 //Alert close buttons
-document.querySelector("#alertNoPassword button").addEventListener("click", closeButtonHandler);
-document.querySelector("#alertNoPassword button").addEventListener("click", closeButtonHandler);
+document.querySelector("#alertOneChartype button").addEventListener("click", closeButtonHandler);
 document.querySelector(".modal-footer .grayButton").addEventListener("click", closeButtonHandler);
+document.querySelector("#modalSettingform button.close").addEventListener("click", closeButtonHandler);
+document.querySelector("#alertNoPassword button").addEventListener("click", closeButtonHandler);
 
 
-
+//onload function
 window.onload = function () {
     let option;
     //add values for password lenght form field
