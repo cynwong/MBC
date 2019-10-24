@@ -85,10 +85,10 @@ function generator()
             //special characters has 4 ranges so we need to choose which range again
             let i = Math.floor(Math.random() * ASCIIcodeRanges.special.length);
             rangeStart = ASCIIcodeRanges.special[i].start;
-            rangeEnd = ASCIIcodeRanges.special[i].end;
+            rangeEnd = ASCIIcodeRanges.special[i].end+1;
         } else {
             rangeStart = ASCIIcodeRanges[selectedChartype[typeIndex]].start;
-            rangeEnd = ASCIIcodeRanges[selectedChartype[typeIndex]].end;
+            rangeEnd = ASCIIcodeRanges[selectedChartype[typeIndex]].end+1;
         }
         return (String.fromCharCode(Math.floor(Math.random() * (rangeEnd - rangeStart) + rangeStart)));
     }
