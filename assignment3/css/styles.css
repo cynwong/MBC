@@ -57,6 +57,18 @@ body{
     margin-right: 1.5rem; /* To overwrite Bootstrap's .modal-footer>:not(:last-child) */
 }
 
+.alertMsg{
+    background-color: #e44141;
+    color: #f9f6f6;
+    padding: 1rem; 
+    margin: 0 auto 1rem;
+    display: none;
+
+}
+
+.alertMsg button{
+    margin: 0 0.4rem;
+}
 #mainContainer{
     background-color: var(--color-lightest-gray);
     margin-left: auto;

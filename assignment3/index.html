@@ -8,10 +8,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="author" content="Cynthia Wong">
     <meta name="description" content="Password Generator will generate a password according to the user's choices.">
-    
+
     <!-- StyleSheets -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="css/styles.css" />
 
     <!-- Site title -->
@@ -40,9 +40,9 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <div id="alertOneChartype" class="alert alert-danger alert-dismissible fade show d-none" role="alert">
-                            At least one type of charater type must be selected. 
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <div id="alertOneChartype" class="alertMsg" role="alert">
+                            At least one type of charater type must be selected.
+                            <button type="button" class="close" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
@@ -70,10 +70,11 @@
                                     <input type="checkbox" name="ckb_numeric" id="ckb_numeric" value="numeric">
                                 </div>
                                 <div class="form-check">
-                                    
+
                                     <label for="ckb_special" class="col-form-label">
                                         Special Characters
-                                        <a href="https://www.owasp.org/index.php/Password_special_characters" class="whatis" target="_blank">?</a>
+                                        <a href="https://www.owasp.org/index.php/Password_special_characters"
+                                            class="whatis" target="_blank">?</a>
                                         <!-- bootstrap's popover does not work for safari. so not using them anymore.  -->
                                         <!-- <a href="#" role="button" data-toggle="popover" data-trigger="focus" title="What is special character" data-content="A special character is a punctuation character. For example, ,./?$#@(){} ">?</a> -->
                                         :
@@ -100,9 +101,9 @@
             </div>
             <div class="separator"></div>
             <div class="row">
-                <div id="alertNoPassword" class="alert alert-danger alert-dismissible fade show d-none" role="alert">
-                    No password detected. Generate password first.  
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <div id="alertNoPassword" class="alertMsg" role="alert">
+                    No password detected. Generate password first.
+                    <button type="button" class="close" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
@@ -145,7 +146,7 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
     <!-- Password Generator Javascript -->
-    <script src = "scripts/password_generator.js"></script>
+    <script src="scripts/password_generator.js"></script>
 </body>
 
 </html>
