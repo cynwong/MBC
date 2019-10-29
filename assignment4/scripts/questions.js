@@ -63,6 +63,7 @@ const questions = [
       title: 'What is the correct way to write a JavaScript array?',
       choices: ['var colors = ["red", "green", "blue"]','var colors = (1:"red", 2:"green", 3:"blue")','var colors = 1 = ("red"), 2 = ("green"), 3 = ("blue")','var colors = "red", "green", "blue"'],
       answer: 'var colors = ["red", "green", "blue"]',
+    },
     {
       title: 'How do you round the number 7.25, to the nearest integer?',
       choices: ['Math.round(7.25)','Math.rnd(7.25)','round(7.25)','rnd(7.25)'],
