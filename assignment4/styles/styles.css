@@ -1,0 +1,41 @@
+body{
+    /* site default colors */
+    --color-white: #eee;
+    --color-indigo: #5d099a;
+    
+    background-color: var(--color-white);
+}
+header{
+    clear:both;
+    display: block;
+}
+header div{
+    display:inline-block;
+    margin: 0 8px;
+
+}
+#highScores{
+    color:var(--color-indigo);
+}
+
+#timeContainer{
+    float:right;
+}
+
+.landingPage{
+    text-align: center;
+    margin: 1rem auto;
+    width: 80%;
+    background-color: var(--color-white);
+}
+
+.landingPage p{
+    width: 80%;
+    margin: 1rem auto;
+}
+
+.quizButton{
+    background-color: var(--color-indigo);
+    color: var(--color-white);
+    padding: 0.1rem 0.8rem;
+}
