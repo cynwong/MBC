@@ -104,6 +104,21 @@ header div{
     text-align: center; 
     padding: 2rem;
 }
+
+#answerChoices{
+    margin-top: 2rem;
+    counter-reset: count;
+}
+.choice::before{
+    counter-increment: count;
+    content: counter(count) ".  "
+}
+.choice{
+    display:block;
+    width: fit-content;
+    margin: 0;
+    margin-top: 0.5rem;
+}
 #quizFeedbackViewContainer{
     color: var(--color-light-grey);
 }
