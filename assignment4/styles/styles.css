@@ -1,21 +1,60 @@
 body{
     /* site default colors */
     --color-white: #eee;
-    --color-indigo: #5d099a;
+    --color-indigo: hsl(266deg, 94%, 42%);
+    --color-ripple: rgba(93, 6, 207, 0.62);
+    --color-black : #222222;
     
     background-color: var(--color-white);
 }
 header{
     clear:both;
     display: block;
+    margin-top: 0.5rem;
+    
 }
 header div{
     display:inline-block;
     margin: 0 8px;
-
+}
+#highscoreContainer{
+    position:relative;
 }
 #highScores{
     color:var(--color-indigo);
+    padding: 5px;
+    
+}
+
+#highScores::after{
+    position: absolute;
+    top: 1.7rem;
+    left:0;
+    width: 100%;
+    height: 3px;
+    background-color:  var(--color-indigo);
+    content: '';
+
+    opacity: 0;
+    transition: transform 0.3s, opacity 0.3s;
+    transform-origin: 100% 0;
+    transform: rotate(0deg) translateX(50%);
+    transform: translateY(-10px);
+    box-sizing: border-box;
+}
+
+#highScores:hover{
+    outline: 1px solid transparent;
+    /* background-color: var(--color-indigo);
+    color: white; */
+    border-radius: 5px;
+    font-weight:bold;
+    text-decoration: none;
+}
+
+#highScores:hover::after{
+    opacity: 1;
+    transform: translateY(0px);
 }
 
 #timeContainer{
@@ -35,7 +74,28 @@ header div{
 }
 
 .quizButton{
-    background-color: var(--color-indigo);
     color: var(--color-white);
     padding: 0.1rem 0.8rem;
+    box-shadow: 0 0 4px var(--color-black);
+    text-decoration: none;
 }
+.quizButton:hover{
+    background-color: var(--color-indigo);
+    color: var(--color-white);
+    text-decoration: none;
+    outline: 1px solid transparent;
+    transform: rotateX(25deg);
+    transform-style: preserve-3d;
+}
+
+.ripple{
+    background-color: var(--color-indigo);
+    transition: background 0.6s;
+}
+.ripple:active{
+    background: var(--color-ripple);
+    transition: background 0s;
+}
+
+
+
