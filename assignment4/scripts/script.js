@@ -9,7 +9,7 @@
 
 // for quiz challenge
 const NO_OF_QUESTIONS_PER_SESSION = 2;//5;
-const TIME_LIMIT_FOR_EACH_QUESTION =  5;//15; //seconds
+const TIME_LIMIT_FOR_EACH_QUESTION = 5;//15; //seconds
 const SESSION_TIME_LIMIT = NO_OF_QUESTIONS_PER_SESSION * TIME_LIMIT_FOR_EACH_QUESTION;
 const PENALTY_FOR_INCORRECT_ANSWER = 15; //seconds.
 
@@ -25,6 +25,15 @@ let sessionTimer, questionTimer;
 let highscores = [];
 const LOCALSTORAGE_KEY = "highscores";
 
+
+// DOM
+const HEADER = "header";
+const LANDING_VIEW = "landingViewContainer";
+const QUIZ_VIEW = "quizViewContainer";
+const RESULT_VIEW = "resultViewContainer";
+const FEEDBACK_VIEW = "quizFeedbackViewContainer";
+const HIGHSCORE_VIEW = "highscoresViewContainer";
+const DOM_CONTAINER_LIST = [HEADER, LANDING_VIEW, QUIZ_VIEW, RESULT_VIEW, FEEDBACK_VIEW, HIGHSCORE_VIEW];
 // -----------------------------
 //    functions declarations 
 // -----------------------------
@@ -57,9 +66,24 @@ let hideContainer = function (id) {
 // return null
 let showContainer = function (id) {
     let container = getContainer(id);
-    container.classList.remove("hidden");
+    if (container) {
+        if (container.classList.contains("hidden")) {
+            container.classList.remove("hidden");
+        }
+    }
 };
 
+//hide all containers except the names given. 
+//parameter except : array
+let closeOthers = function (exceptions) {
+    console.log("closeOThers",exceptions)
+    DOM_CONTAINER_LIST.forEach(function (id) {
+        hideContainer(id);
+    });
+    for (e of exceptions) {
+        showContainer(e);
+    }
+}
 // ----- Local Storage  -----
 
 // load highscores from localStorage
@@ -100,10 +124,9 @@ let clearHighscores = function () {
         b. reduce timeRemaining by 1 for each second and update displaytime
         c. if user chose an answer or every 15 second clear the interval
         d. clear the interval 
-            1. when user chose an answer
+            1. when user chose an answer, change to new question and when user answers all questions if questionCount === NO_OF_QUESTIONS_PER_SESSION 
             2. after every 15 second (TIME_LIMIT_FOR_EACH_QUESTION)
             3. when timeRemaining is 0
-            4. when user answers all questions if questionCount === NO_OF_QUESTIONS_PER_SESSION 
     4. create a fucntion to render Quiz
         a. get questions
         b. use Math.random to choose which question to use
@@ -131,56 +154,44 @@ let startQuiz = function () {
     console.log("startQuiz");
     //make sure time limit is always SESSION_TIME_LIMIT
     sessionTimeRemaining = SESSION_TIME_LIMIT;
+    questionTimeRemaining = TIME_LIMIT_FOR_EACH_QUESTION;
 
     //TODO this need to be render but how. 
-    renderQuiz();
-
+    renderQuestion();
+    closeOthers([HEADER, QUIZ_VIEW]);
     sessionTimer = setInterval(function () {
         //update time limit with this new limit on the page. 
         updateDisplayTimeRemaining();
-        console.log("sessionTimer")
-
         if (sessionTimeRemaining === 0) {
-            clearSessionTimer();
-            hideContainer("quizViewContainer");
-            renderResult();
+            endSession();
         }
-
+        if (questionTimeRemaining === 0) {
+            endQuestion();
+            renderQuestion();
+            
+        }
+        questionTimeRemaining--;
         sessionTimeRemaining--;
     }, 1000);
-
-
-
 };
 
-let clearSessionTimer = function () {
-    clearQuestionTimer();
+let endSession = function () {
+    endQuestion();
     clearInterval(sessionTimer);
+    renderResult();
 }
-let clearQuestionTimer = function () {
+let endQuestion = function () {
     clearInterval(questionTimer);
 }
 
 // ----- Renderers  -----
-
-let renderQuiz = function () {
-    //restart question time remaining
-    questionTimeRemaining = TIME_LIMIT_FOR_EACH_QUESTION;
-    console.log("renderQuiz", questionTimeRemaining)
-    renderQuestion();
-    questionTimer = setInterval(function () {
-        if (questionTimeRemaining === 0) {
-            clearQuestionTimer();
-            renderQuiz();
-            return false;
-        }
-        questionTimeRemaining--;
-    }, 1000);
-    //load quiz page
-    showContainer("quizViewContainer");
-};
-
 let renderQuestion = function () {
+    if (questionCount === NO_OF_QUESTIONS_PER_SESSION) {
+        endSession();
+        return false;
+    }
+    //reset questionTime countdown
+    questionTimeRemaining = TIME_LIMIT_FOR_EACH_QUESTION;
     //get the question to ask
     let question = questions[Math.floor(Math.random() * questions.length)];
     let answerContainer = document.getElementById("answerChoices");
@@ -195,13 +206,12 @@ let renderQuestion = function () {
         choiceElement.classList.add("choice");
         answerContainer.appendChild(choiceElement);
     })
+    //increase questionCount
+    questionCount++;
 
-    
 }
 let renderResult = function () {
-    console.log("render Result")
-
-    showContainer("resultViewContainer");
+    closeOthers([HEADER, RESULT_VIEW]);
 
 }
 let renderhighscores = function () {
@@ -226,23 +236,17 @@ document.getElementById("highscores").addEventListener("click", function (event)
     //prevent the page from reloading.
     event.preventDefault();
 
-    //hide header and landingPageContainer
-    hideContainer("header");
-    hideContainer("landingViewContainer");
-
     //construct the highscores Page
     renderhighscores();
 
+    //hide header and landingPageContainer and
     //show highScorepage
-    showContainer("highscoresViewContainer");
+    closeOthers([HEADER, HIGHSCORE_VIEW]);
 });
 
 document.getElementById("btnStart").addEventListener("click", function (event) {
     //prevent the page from reloading.
     event.preventDefault();
-
-    //  hide loading page
-    hideContainer("landingViewContainer");
 
     //render quiz page
     startQuiz();
@@ -263,13 +267,12 @@ document.getElementById("answerChoices").addEventListener("click", function (eve
     clearInterval(questionTimer);
 
     let answer = event.target.textContent;
-    console.log(answer);
     let question = questions.filter(obj => { return obj.title === document.getElementById("quizQuestion").textContent });
-    console.log(question);
-    if (answer.trim() !== question.answer.trim()) {
+    if (answer.trim() !== question[0].answer.trim()) {
         //wrong, so increase the worng count
         incorrectAnswerCount++;
     }
+    renderQuestion();
 });
 
 // ----- #highscoresViewContainer -----
@@ -277,11 +280,9 @@ document.getElementById("answerChoices").addEventListener("click", function (eve
 document.getElementById("btnBack").addEventListener("click", function (event) {
     //prevent the page from reloading.
     event.preventDefault();
-    //hide highscores Page
-    hideContainer("highscoresViewContainer");
-    //show header and landing page. 
-    showContainer("header");
-    showContainer("landingViewContainer");
+
+    //hide highscores Page and show header and landing page. 
+    closeOthers([HEADER, LANDING_VIEW]);
 });
 
 document.getElementById("btnClear").addEventListener("click", function () {
