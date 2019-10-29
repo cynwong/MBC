@@ -13,12 +13,14 @@ const TIME_LIMIT_FOR_EACH_QUESTION = 5;//15; //seconds
 const SESSION_TIME_LIMIT = NO_OF_QUESTIONS_PER_SESSION * TIME_LIMIT_FOR_EACH_QUESTION;
 const PENALTY_FOR_INCORRECT_ANSWER = 15; //seconds.
 
+const FEEDBACK_FOR_INCORRECT = 'Wrong!';
+const FEEDBACK_FOR_CORRECT = 'Correct!';
+
 let sessionTimeRemaining, questionTimeRemaining;
 let questionCount = 0;
 let incorrectAnswerCount = 0;
 
-let sessionTimer, questionTimer;
-
+let sessionTimer;
 
 
 //high scores 
@@ -56,7 +58,7 @@ let getContainer = function (id) {
 // hide the container by the id given
 // parameter id: string
 // return null
-let hideContainer = function (id) {
+let hide = function (id) {
     let container = getContainer(id);
     container.classList.add("hidden");
 };
@@ -64,7 +66,7 @@ let hideContainer = function (id) {
 // display the container by the id given
 // parameter id: string
 // return null
-let showContainer = function (id) {
+let show = function (id) {
     let container = getContainer(id);
     if (container) {
         if (container.classList.contains("hidden")) {
@@ -78,10 +80,10 @@ let showContainer = function (id) {
 let closeOthers = function (exceptions) {
     console.log("closeOThers",exceptions)
     DOM_CONTAINER_LIST.forEach(function (id) {
-        hideContainer(id);
+        hide(id);
     });
     for (e of exceptions) {
-        showContainer(e);
+        show(e);
     }
 }
 // ----- Local Storage  -----
@@ -151,7 +153,6 @@ let updateDisplayTimeRemaining = function () {
 }
 
 let startQuiz = function () {
-    console.log("startQuiz");
     //make sure time limit is always SESSION_TIME_LIMIT
     sessionTimeRemaining = SESSION_TIME_LIMIT;
     questionTimeRemaining = TIME_LIMIT_FOR_EACH_QUESTION;
@@ -160,33 +161,38 @@ let startQuiz = function () {
     renderQuestion();
     closeOthers([HEADER, QUIZ_VIEW]);
     sessionTimer = setInterval(function () {
-        //update time limit with this new limit on the page. 
-        updateDisplayTimeRemaining();
         if (sessionTimeRemaining === 0) {
+            //session time has run out so end session.
             endSession();
         }
         if (questionTimeRemaining === 0) {
+            //time up for answering a question. so change to next one. 
             endQuestion();
             renderQuestion();
-            
         }
+        //update time limit with this new limit on the page. 
+        updateDisplayTimeRemaining();
+        //clock countdowns 
         questionTimeRemaining--;
         sessionTimeRemaining--;
     }, 1000);
 };
 
+// end of a quiz session. so show the result
 let endSession = function () {
-    endQuestion();
     clearInterval(sessionTimer);
     renderResult();
 }
-let endQuestion = function () {
-    clearInterval(questionTimer);
-}
 
+
+let calculateScore = function(){
+    return sessionTimeRemaining - (incorrectAnswerCount * PENALTY_FOR_INCORRECT_ANSWER);
+}
 // ----- Renderers  -----
 let renderQuestion = function () {
+    //check if the user has reached the max number of questions. 
     if (questionCount === NO_OF_QUESTIONS_PER_SESSION) {
+        //if yes, then it is time to end this quiz session.
         endSession();
         return false;
     }
@@ -196,6 +202,7 @@ let renderQuestion = function () {
     let question = questions[Math.floor(Math.random() * questions.length)];
     let answerContainer = document.getElementById("answerChoices");
     let choiceElement;
+    //display the question
     document.getElementById("quizQuestion").textContent = question.title;
     answerContainer.textContent = "";
     question.choices.forEach(function (choice) {
@@ -211,7 +218,9 @@ let renderQuestion = function () {
 
 }
 let renderResult = function () {
-    closeOthers([HEADER, RESULT_VIEW]);
+    document.getElementById("scoreResult").textContent = calculateScore();
+    document.getElementById("timeRemaining").textContent = 0;
+    closeOthers([HEADER, RESULT_VIEW,FEEDBACK_VIEW]);
 
 }
 let renderhighscores = function () {
@@ -241,7 +250,7 @@ document.getElementById("highscores").addEventListener("click", function (event)
 
     //hide header and landingPageContainer and
     //show highScorepage
-    closeOthers([HEADER, HIGHSCORE_VIEW]);
+    closeOthers([HIGHSCORE_VIEW]);
 });
 
 document.getElementById("btnStart").addEventListener("click", function (event) {
@@ -264,16 +273,24 @@ document.getElementById("answerChoices").addEventListener("click", function (eve
     //prevent the page from reloading.
     event.preventDefault();
 
-    clearInterval(questionTimer);
 
     let answer = event.target.textContent;
     let question = questions.filter(obj => { return obj.title === document.getElementById("quizQuestion").textContent });
+
     if (answer.trim() !== question[0].answer.trim()) {
         //wrong, so increase the worng count
         incorrectAnswerCount++;
+        document.getElementById("feedback").textContent = FEEDBACK_FOR_INCORRECT;
+    }else{
+        document.getElementById("feedback").textContent = FEEDBACK_FOR_CORRECT;
     }
+    show(FEEDBACK_VIEW);
+    let feedbackTimer = setTimeout(function(){
+        hide(FEEDBACK_VIEW);
+    },3000);
     renderQuestion();
 });
+
 
 // ----- #highscoresViewContainer -----
 
