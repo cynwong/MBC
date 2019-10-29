@@ -7,6 +7,13 @@
 //    Variables declarations 
 // -----------------------------
 
+// for quiz challenge
+const NO_OF_QUESTIONS_PER_SESSION = 5;
+const TIME_LIMIT_FOR_EACH_QUESTION = 15; //seconds
+const SESSION_TIME_LIMIT = NO_OF_QUESTIONS_PER_SESSION * TIME_LIMIT_FOR_EACH_QUESTION;
+const PENALTY_FOR_INCORRECT_ANSWER = 10; //seconds.
+
+//high scores 
 let highscores = [];
 const LOCALSTORAGE_KEY = "highscores";
 
@@ -74,9 +81,25 @@ let clearHighscores = function(){
 }
 
 
+// ----- Quiz -----
+let startQuiz = function(){
+    console.log("startQuiz");
+    
+}
+
+
 // ----- Renderers  -----
 
+let renderQuiz = function(){
+    console.log("renderQuiz");
+    console.log(questions);
+
+}
+
 let renderhighscores = function(){
+    //get the results from localstorage
+    loadHighscores();
+
     let listElement = document.getElementById("highscoreList");
     let li;
     highscores.forEach(function(highscore,index){
@@ -89,6 +112,8 @@ let renderhighscores = function(){
 // -----------------------------
 //       Event Listeners 
 // -----------------------------
+
+// -----  #landingViewContainer -----
 document.getElementById("highscores").addEventListener("click",function(event){
     //prevent the page from reloading.
     event.preventDefault();
@@ -97,21 +122,35 @@ document.getElementById("highscores").addEventListener("click",function(event){
     hideContainer("header");
     hideContainer("landingViewContainer");
 
-    //get the results from localstorage
-    loadHighscores();
-    //construct the highscorePage
+    //construct the highscores Page
     renderhighscores();
+
     //show highScorepage
     showContainer("highscoresViewContainer");
 });
 
 document.getElementById("btnStart").addEventListener("click",function(event){
+    //prevent the page from reloading.
+    event.preventDefault();
+    
+    //  hide loading page
+    hideContainer("landingViewContainer");
+
+    //render quiz page
+    startQuiz(); 
+
+    //load quiz page
+    showContainer("quizViewContainer");
 
 });
 
 
 
+// ----- #highscoresViewContainer -----
+
 document.getElementById("btnBack").addEventListener("click",function(event){
+    //prevent the page from reloading.
+     event.preventDefault();
     //hide highscores Page
     hideContainer("highscoresViewContainer");
     //show header and landing page. 
@@ -120,6 +159,9 @@ document.getElementById("btnBack").addEventListener("click",function(event){
 });
 
 document.getElementById("btnClear").addEventListener("click",function(){
+    //prevent the page from reloading.
+     event.preventDefault();
+     console.log("btnClear clicked")
     //TODO ** dummy for now. later test this with actual data. 
     clearHighscores();
 
