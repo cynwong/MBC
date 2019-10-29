@@ -71,6 +71,7 @@ header div{
 
 .sectionContainer{
     margin: 1rem auto;
+    width: 50%;
     background-color: var(--color-white);
     display:block;
 }
@@ -108,8 +109,32 @@ header div{
     display:none;
 }
 
-@media (max-width: 575.98px) { 
+
+/* Medium devices (tablets, less than 992px) */
+@media (max-width: 991.98px) { 
+    .sectionContainer{
+        width:70%;
+    }
+}
+
+/* Small devices (landscape phones, less than 768px) */
+@media (max-width: 768px) { 
+    :root{
+        font-size: 14px;
+    }
+    .sectionContainer{
+        width:80%;
+    }
+}
+/* Extra small devices (portrait phones, less than 576px) */
+@media (max-width: 576px) { 
     :root{
         font-size: 12px;
+    }
+    .sectionContainer{
+        width:90%;
+    }
+    .button{
+        margin:auto;
     }
 }
