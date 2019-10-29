@@ -1,11 +1,19 @@
-body{
+/* TODO translate to  */
+
+:root{
     /* site default colors */
     --color-white: #eee;
-    --color-indigo: hsl(266deg, 94%, 42%);
-    --color-ripple: rgba(93, 6, 207, 0.62);
+    --color-light-grey: hsl(0deg, 0%,80%);
+    --color-indigo: hsl(266deg, 97%, 35%);
+    --color-ripple: hsl(266deg, 97%, 35%, 0.62);
+    --color-dark-purple: hsl(266deg, 93%, 15%);
     --color-black : #222222;
     
+    font-size: 16px;
+}
+body{
     background-color: var(--color-white);
+
 }
 header{
     clear:both;
@@ -61,25 +69,23 @@ header div{
     float:right;
 }
 
-.landingPage{
-    text-align: center;
+.sectionContainer{
     margin: 1rem auto;
-    width: 80%;
     background-color: var(--color-white);
+    display:block;
 }
 
-.landingPage p{
-    width: 80%;
-    margin: 1rem auto;
-}
-
-.quizButton{
-    color: var(--color-white);
-    padding: 0.1rem 0.8rem;
-    box-shadow: 0 0 4px var(--color-black);
+.button{
+    background-color: var(--color-indigo);
+    color: var(--color-light-grey);
     text-decoration: none;
+    margin: 2rem;
+    padding: 0.1rem 0.5rem;
+    border-radius: 0.3rem;
+    box-shadow: 0 0 10px var(--color-dark-purple);
+    transition: background 0.6s;
 }
-.quizButton:hover{
+.button:hover{
     background-color: var(--color-indigo);
     color: var(--color-white);
     text-decoration: none;
@@ -88,14 +94,22 @@ header div{
     transform-style: preserve-3d;
 }
 
-.ripple{
-    background-color: var(--color-indigo);
-    transition: background 0.6s;
-}
-.ripple:active{
+.button:active{
     background: var(--color-ripple);
     transition: background 0s;
 }
 
+#landingViewContainer{
+    text-align: center; 
+    padding: 2rem;
+}
 
+.hidden{
+    display:none;
+}
 
+@media (max-width: 575.98px) { 
+    :root{
+        font-size: 12px;
+    }
+}
