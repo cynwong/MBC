@@ -104,6 +104,14 @@ header div{
     text-align: center; 
     padding: 2rem;
 }
+#quizFeedbackViewContainer{
+    color: var(--color-light-grey);
+}
+
+.separator{
+    height: 2px;
+    width: 100%;
+}
 
 .hidden{
     display:none;
