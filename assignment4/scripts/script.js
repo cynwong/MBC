@@ -1,17 +1,16 @@
-//time limit for each question: 15sec
-//max questions: 5
-//max time limit : maxquestion * timeLimit (75sec)
-// penaltyForIncorrectAnswer: 10 sec
-
 // -----------------------------
 //    Variables declarations 
 // -----------------------------
 
-// for quiz challenge
+// ----- Quiz -----
+//time limit for each question: 15sec
+//max questions: 5
+//max time limit : maxquestion * timeLimit (75sec)
+// penaltyForIncorrectAnswer: 10 sec
 const NO_OF_QUESTIONS_PER_SESSION = 2;//5;
 const TIME_LIMIT_FOR_EACH_QUESTION = 5;//15; //seconds
 const SESSION_TIME_LIMIT = NO_OF_QUESTIONS_PER_SESSION * TIME_LIMIT_FOR_EACH_QUESTION;
-const PENALTY_FOR_INCORRECT_ANSWER = 15; //seconds.
+const PENALTY_FOR_INCORRECT_ANSWER = 10; //seconds.
 
 const MESSAGES_FOR_USER = {
     feedbackForIncorrectAnswer: "Wrong!",
@@ -26,12 +25,12 @@ let incorrectAnswerCount = 0;
 let sessionTimer;
 
 
-//high scores 
+// ----- high scores -----
 let highscores = [];
 const LOCALSTORAGE_KEY = "highscores";
 
 
-// DOM
+// ----- DOM -----
 const HEADER = "header";
 const LANDING_VIEW = "landingViewContainer";
 const QUIZ_VIEW = "quizViewContainer";
@@ -39,6 +38,7 @@ const RESULT_VIEW = "resultViewContainer";
 const FEEDBACK_VIEW = "quizFeedbackViewContainer";
 const HIGHSCORE_VIEW = "highscoresViewContainer";
 const DOM_CONTAINER_LIST = [HEADER, LANDING_VIEW, QUIZ_VIEW, RESULT_VIEW, FEEDBACK_VIEW, HIGHSCORE_VIEW];
+
 // -----------------------------
 //    functions declarations 
 // -----------------------------
@@ -81,7 +81,6 @@ let show = function (id) {
 //hide all containers except the names given. 
 //parameter except : array
 let closeOthers = function (exceptions) {
-    console.log("closeOThers", exceptions)
     DOM_CONTAINER_LIST.forEach(function (id) {
         hide(id);
     });
@@ -130,7 +129,6 @@ let saveScore = function (user, score) {
     loadHighscores();
     highscores.push(highscore);
     saveHighscores();
-    console.log("saved.")
 }
 
 // ----- Quiz -----
@@ -301,6 +299,7 @@ document.getElementById("answerChoices").addEventListener("click", function (eve
         document.getElementById("feedback").textContent = MESSAGES_FOR_USER.feedbackForCorrectAnswer;
     }
     show(FEEDBACK_VIEW);
+    //setup timer to hide the result
     let feedbackTimer = setTimeout(function () {
         hide(FEEDBACK_VIEW);
     }, 3000);
@@ -309,9 +308,8 @@ document.getElementById("answerChoices").addEventListener("click", function (eve
 
 // ----- #resultViewContainer -----
 document.getElementById("btnSubmit").addEventListener("click", function (event) {
-    console.log("submit");
     let user = document.getElementById("txtUserInitials").value;
-    console.log(user);
+    let score = document.getElementById("scoreResult").textContent;
     if (!user) {
         //if user initials are not given, the result cannot be saved. 
         //so alert user and quit the process
@@ -321,8 +319,9 @@ document.getElementById("btnSubmit").addEventListener("click", function (event) 
         document.getElementById("resultViewContainer").insertBefore(divAlert, document.getElementsByTagName("fieldset")[0])
         return false;
     }
-    let score = document.getElementById("scoreResult").textContent;
+    //save the score
     saveScore(user, score);
+    //go to highscore view
     renderhighscores();
 });
 
@@ -331,6 +330,7 @@ document.getElementById("btnSubmit").addEventListener("click", function (event) 
 document.getElementById("btnBack").addEventListener("click", function (event) {
     //prevent the page from reloading.
     event.preventDefault();
+    
     //hide highscores Page and show header and landing page. 
     closeOthers([HEADER, LANDING_VIEW]);
 });
@@ -338,7 +338,8 @@ document.getElementById("btnBack").addEventListener("click", function (event) {
 document.getElementById("btnClear").addEventListener("click", function () {
     //prevent the page from reloading.
     event.preventDefault();
-    //TODO ** dummy for now. later test this with actual data. 
+    
+    //remove all saved highscores
     clearHighscores();
 
     //re-render the page
