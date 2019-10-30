@@ -136,6 +136,10 @@ header div{
     background-color: var(--color-light-grey);
 }
 
+#highscoresViewContainer{
+    margin-top: 3rem;
+}
+
 .hidden{
     display:none;
 }
