@@ -167,7 +167,6 @@ let startQuiz = function () {
         }
         if (questionTimeRemaining === 0) {
             //time up for answering a question. so change to next one. 
-            endQuestion();
             renderQuestion();
         }
         //update time limit with this new limit on the page. 
@@ -259,29 +258,25 @@ document.getElementById("btnStart").addEventListener("click", function (event) {
 
     //render quiz page
     startQuiz();
-
-
-
 });
 
 // ----- #quizViewContainer -----
 
-function getQuestionObject(question) {
-
-}
 document.getElementById("answerChoices").addEventListener("click", function (event) {
     //prevent the page from reloading.
     event.preventDefault();
-
-
+    //get user answer
     let answer = event.target.textContent;
+    //get which question to check the answer
     let question = questions.filter(obj => { return obj.title === document.getElementById("quizQuestion").textContent });
 
+    //check the answer
     if (answer.trim() !== question[0].answer.trim()) {
-        //wrong, so increase the worng count
+        //wrong answer, so increase the wrong answer count
         incorrectAnswerCount++;
         document.getElementById("feedback").textContent = FEEDBACK_FOR_INCORRECT;
     }else{
+        //if correct,
         document.getElementById("feedback").textContent = FEEDBACK_FOR_CORRECT;
     }
     show(FEEDBACK_VIEW);
