@@ -169,16 +169,23 @@ let saveScore = function (user, score) {
 */
 
 let updateDisplayTimeRemaining = function () {
+    if(sessionTimeRemaining < 0){
+        //make sure session time is not less than 0
+        sessionTimeRemaining = 0;
+    }
     document.getElementById("timeRemaining").textContent = sessionTimeRemaining;
 }
 
 let startQuiz = function () {
-    //make sure time limit is always SESSION_TIME_LIMIT
+    //reset the counters
     sessionTimeRemaining = SESSION_TIME_LIMIT;
     questionTimeRemaining = TIME_LIMIT_FOR_EACH_QUESTION;
-
-    //TODO this need to be render but how. 
+    questionCount = 0;
+    
+    //load first question
     renderQuestion();
+    updateDisplayTimeRemaining();
+    //close the other but show Header and Quiz View
     closeOthers([HEADER, QUIZ_VIEW]);
     sessionTimer = setInterval(function () {
         if (sessionTimeRemaining === 0) {
@@ -189,11 +196,11 @@ let startQuiz = function () {
             //time up for answering a question. so change to next one. 
             renderQuestion();
         }
-        //update time limit with this new limit on the page. 
-        updateDisplayTimeRemaining();
         //clock countdowns 
         questionTimeRemaining--;
         sessionTimeRemaining--;
+        //update time limit with this new limit on the page. 
+        updateDisplayTimeRemaining();
     }, 1000);
 };
 
