@@ -13,8 +13,11 @@ const TIME_LIMIT_FOR_EACH_QUESTION = 5;//15; //seconds
 const SESSION_TIME_LIMIT = NO_OF_QUESTIONS_PER_SESSION * TIME_LIMIT_FOR_EACH_QUESTION;
 const PENALTY_FOR_INCORRECT_ANSWER = 15; //seconds.
 
-const FEEDBACK_FOR_INCORRECT = 'Wrong!';
-const FEEDBACK_FOR_CORRECT = 'Correct!';
+const MESSAGES_FOR_USER = {
+    feedbackForIncorrectAnswer: "Wrong!",
+    feedbackForCorrectAnswer: "Correct!",
+    askForInitials: "Initials are required",
+}
 
 let sessionTimeRemaining, questionTimeRemaining;
 let questionCount = 0;
@@ -78,7 +81,7 @@ let show = function (id) {
 //hide all containers except the names given. 
 //parameter except : array
 let closeOthers = function (exceptions) {
-    console.log("closeOThers",exceptions)
+    console.log("closeOThers", exceptions)
     DOM_CONTAINER_LIST.forEach(function (id) {
         hide(id);
     });
@@ -114,10 +117,25 @@ let clearHighscores = function () {
     }
 };
 
+// ----- Score -----
+let calculateScore = function () {
+    return sessionTimeRemaining - (incorrectAnswerCount * PENALTY_FOR_INCORRECT_ANSWER);
+};
+
+let saveScore = function (user, score) {
+    let highscore = {
+        userInitials: user,
+        score: score,
+    };
+    loadHighscores();
+    highscores.push(highscore);
+    saveHighscores();
+    console.log("saved.")
+}
 
 // ----- Quiz -----
 /*
-    Start quiz - steps
+   ---- Start quiz - steps ----
     when User click "start quiz" button,....
     1. hide landing page
     2. set display time from 0 to Session_time
@@ -143,6 +161,10 @@ let clearHighscores = function () {
     5. when time is run out or user complete all questions,
         a. calculate score = timeRemaining - (incorrectAnswerCount * PENALTY_FOR_INCORRECT_ANSWER)
         b. present the user with the score. resultViewContainer
+    6. In result page, when user click submit button
+        a. check if initials are given. 
+        b. if no, then show the error message
+        c. 
 
 
 
@@ -183,10 +205,6 @@ let endSession = function () {
     renderResult();
 }
 
-
-let calculateScore = function(){
-    return sessionTimeRemaining - (incorrectAnswerCount * PENALTY_FOR_INCORRECT_ANSWER);
-}
 // ----- Renderers  -----
 let renderQuestion = function () {
     //check if the user has reached the max number of questions. 
@@ -219,20 +237,23 @@ let renderQuestion = function () {
 let renderResult = function () {
     document.getElementById("scoreResult").textContent = calculateScore();
     document.getElementById("timeRemaining").textContent = 0;
-    closeOthers([HEADER, RESULT_VIEW,FEEDBACK_VIEW]);
+    closeOthers([HEADER, RESULT_VIEW, FEEDBACK_VIEW]);
+};
 
-}
 let renderhighscores = function () {
     //get the results from localstorage
     loadHighscores();
-
     let listElement = document.getElementById("highscoreList");
     let li;
-    highscores.forEach(function (highscore, index) {
+    //clean the displayed list
+    listElement.innerHTML = "";
+    //populate the list
+    highscores.forEach(function (highscore) {
         li = document.createElement("li");
-        //TODO**** insert li contents
+        li.textContent = highscore.userInitials + "  -  " + highscore.score;
         listElement.appendChild(li);
     });
+    closeOthers([HIGHSCORE_VIEW]);
 };
 
 // -----------------------------
@@ -274,25 +295,42 @@ document.getElementById("answerChoices").addEventListener("click", function (eve
     if (answer.trim() !== question[0].answer.trim()) {
         //wrong answer, so increase the wrong answer count
         incorrectAnswerCount++;
-        document.getElementById("feedback").textContent = FEEDBACK_FOR_INCORRECT;
-    }else{
+        document.getElementById("feedback").textContent = MESSAGES_FOR_USER.feedbackForIncorrectAnswer;
+    } else {
         //if correct,
-        document.getElementById("feedback").textContent = FEEDBACK_FOR_CORRECT;
+        document.getElementById("feedback").textContent = MESSAGES_FOR_USER.feedbackForCorrectAnswer;
     }
     show(FEEDBACK_VIEW);
-    let feedbackTimer = setTimeout(function(){
+    let feedbackTimer = setTimeout(function () {
         hide(FEEDBACK_VIEW);
-    },3000);
+    }, 3000);
     renderQuestion();
 });
 
+// ----- #resultViewContainer -----
+document.getElementById("btnSubmit").addEventListener("click", function (event) {
+    console.log("submit");
+    let user = document.getElementById("txtUserInitials").value;
+    console.log(user);
+    if (!user) {
+        //if user initials are not given, the result cannot be saved. 
+        //so alert user and quit the process
+        let divAlert = document.createElement("div");
+        divAlert.classList.add("alert");
+        divAlert.textContent = MESSAGES_FOR_USER.askForInitials;
+        document.getElementById("resultViewContainer").insertBefore(divAlert, document.getElementsByTagName("fieldset")[0])
+        return false;
+    }
+    let score = document.getElementById("scoreResult").textContent;
+    saveScore(user, score);
+    renderhighscores();
+});
 
 // ----- #highscoresViewContainer -----
 
 document.getElementById("btnBack").addEventListener("click", function (event) {
     //prevent the page from reloading.
     event.preventDefault();
-
     //hide highscores Page and show header and landing page. 
     closeOthers([HEADER, LANDING_VIEW]);
 });
@@ -300,7 +338,6 @@ document.getElementById("btnBack").addEventListener("click", function (event) {
 document.getElementById("btnClear").addEventListener("click", function () {
     //prevent the page from reloading.
     event.preventDefault();
-    console.log("btnClear clicked")
     //TODO ** dummy for now. later test this with actual data. 
     clearHighscores();
 

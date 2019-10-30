@@ -1,5 +1,6 @@
 /* TODO translate to  */
 
+/*  Defaults */
 :root{
     /* site default colors */
     --color-white: #eee;
@@ -9,13 +10,15 @@
     --color-ripple: hsl(266deg, 97%, 35%, 0.62);
     --color-dark-purple: hsl(266deg, 93%, 15%);
     --color-black : #222222;
+    --color-alert: hsl(0deg, 100%,47%);
     
     font-size: 16px;
 }
 body{
     background-color: var(--color-white);
-
 }
+
+/* Header section */
 header{
     clear:both;
     display: block;
@@ -70,6 +73,7 @@ header div{
     float:right;
 }
 
+/* Main Contents */
 .sectionContainer{
     margin: 1rem auto 0.5rem;
     width: 50%;
@@ -134,6 +138,11 @@ header div{
 
 .hidden{
     display:none;
+}
+
+.alert{
+    background-color: var(--color-alert);
+    color: var(--color-white);
 }
 
 
