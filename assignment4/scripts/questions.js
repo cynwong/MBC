@@ -21,8 +21,13 @@ const questions = [
     },
     {
       title: 'What is the correct syntax for referring to an external script called "xxx.js"?',
-      choices: ['<script src="xxx.js">','<script name="xxx.js">','<script href="xxx.js">'],
+      choices: ['<script src="xxx.js">','<script name="xxx.js">','<script href="xxx.js">', '<script ref="xxx.js">'],
       answer: '<script src="xxx.js">',
+    },
+    {
+      title: 'The external JavaScript file must contain <script> tag. True or False?',
+      choices: ['True', 'False'],
+      answer: 'False',
     },
     {
       title: 'How do you write "Hello World" in an alert box?',
