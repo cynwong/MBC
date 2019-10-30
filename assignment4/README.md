@@ -21,5 +21,6 @@ published at [project site](https://cynwong.github.io/assignments/assignment4/in
 
 ## Credit
 
-Questions for this quiz code app are from
+* Questions for this quiz code app are from
 [W3School](https://www.w3schools.com/quiztest/default.asp).
+* Buzz sound is from [SoundBible.com](http://soundbible.com/).
