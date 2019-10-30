@@ -17,7 +17,7 @@ const MESSAGES_FOR_USER = {
     feedbackForCorrectAnswer: "Correct!",
     askForInitials: "Initials are required",
 }
-const buzzSound = new Audio("./sound/buzzSound.mp3");
+const BUZZ_SOUND = new Audio("./sound/buzzSound.mp3");
 
 let sessionTimeRemaining, questionTimeRemaining;
 let questionCount = 0;
@@ -299,7 +299,7 @@ document.getElementById("answerChoices").addEventListener("click", function (eve
     //check the answer
     if (answer.trim() !== question[0].answer.trim()) {
         //wrong answer, so increase the wrong answer count
-        buzzSound.play();
+        BUZZ_SOUND.play();
         incorrectAnswerCount++;
         document.getElementById("feedback").textContent = MESSAGES_FOR_USER.feedbackForIncorrectAnswer;
     } else {
