@@ -4,6 +4,7 @@
     /* site default colors */
     --color-white: #eee;
     --color-light-grey: hsl(0deg, 0%,80%);
+    --color-grey: hsl(0deg, 0%,55%);
     --color-indigo: hsl(266deg, 97%, 35%);
     --color-ripple: hsl(266deg, 97%, 35%, 0.62);
     --color-dark-purple: hsl(266deg, 93%, 15%);
@@ -70,10 +71,11 @@ header div{
 }
 
 .sectionContainer{
-    margin: 1rem auto;
+    margin: 1rem auto 0.5rem;
     width: 50%;
     background-color: var(--color-white);
     display:block;
+    padding: 1rem 1.5rem;
 }
 
 .button{
@@ -119,13 +121,15 @@ header div{
     margin: 0;
     margin-top: 0.5rem;
 }
+
 #quizFeedbackViewContainer{
-    color: var(--color-light-grey);
+    color: var(--color-grey);
 }
 
 .separator{
     height: 2px;
     width: 100%;
+    background-color: var(--color-light-grey);
 }
 
 .hidden{
