@@ -7,8 +7,8 @@
 //max questions: 5
 //max time limit : maxquestion * timeLimit (75sec)
 // penaltyForIncorrectAnswer: 10 sec
-const NO_OF_QUESTIONS_PER_SESSION = 2;//5;
-const TIME_LIMIT_FOR_EACH_QUESTION = 5;//15; //seconds
+const NO_OF_QUESTIONS_PER_SESSION = 5;
+const TIME_LIMIT_FOR_EACH_QUESTION = 15; //seconds
 const SESSION_TIME_LIMIT = NO_OF_QUESTIONS_PER_SESSION * TIME_LIMIT_FOR_EACH_QUESTION;
 const PENALTY_FOR_INCORRECT_ANSWER = 10; //seconds.
 
@@ -21,7 +21,7 @@ const MESSAGES_FOR_USER = {
 let sessionTimeRemaining, questionTimeRemaining;
 let questionCount = 0;
 let incorrectAnswerCount = 0;
-
+let score; // save this score here? or get it from the page? TODO::
 let sessionTimer;
 
 
@@ -82,11 +82,13 @@ let show = function (id) {
 //parameter except : array
 let closeOthers = function (exceptions) {
     DOM_CONTAINER_LIST.forEach(function (id) {
-        hide(id);
+        if(exceptions.includes(id)){
+            //this container needs to be displayed. 
+            show(id);
+        }else{
+            hide(id);
+        }
     });
-    for (e of exceptions) {
-        show(e);
-    }
 }
 // ----- Local Storage  -----
 
@@ -162,10 +164,6 @@ let saveScore = function (user, score) {
     6. In result page, when user click submit button
         a. check if initials are given. 
         b. if no, then show the error message
-        c. 
-
-
-
 */
 
 let updateDisplayTimeRemaining = function () {
@@ -181,6 +179,7 @@ let startQuiz = function () {
     sessionTimeRemaining = SESSION_TIME_LIMIT;
     questionTimeRemaining = TIME_LIMIT_FOR_EACH_QUESTION;
     questionCount = 0;
+    incorrectAnswerCount = 0;
     
     //load first question
     renderQuestion();
