@@ -16,8 +16,10 @@ This project is for the homework repositiory's home page. This page contains lin
 Instruction
 ----
 To navigate to each homework project site, click on relevent image on the screen on the webpage. Included projects are:
-  1. [Homework 1](https://cynwong.github.io/assignments/assignment1/)
-  2. [Homework 2](https://cynwong.github.io/assignments/assignment2/)
-  3. [Homework 3](https://cynwong.github.io/assignments/assignment3/)
+  1. [Homework 1](https://cynwong.github.io/assignments/assignment1/) - HTML and CSS
+  2. [Homework 2](https://cynwong.github.io/assignments/assignment2/) - CSS and Bootstrap
+  3. [Homework 3](https://cynwong.github.io/assignments/assignment3/) - Password Generator
+  4. [Homework 4](https://cynwong.github.io/assignments/assignment4/) - Code Quiz
+
 
 
