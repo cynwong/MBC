@@ -1,5 +1,5 @@
 const quizConfig = {
-    questionsPerSession : 5,
+    maxQuestionsPerSession : 5,
     questionTimeLimit : 15,  //seconds
     penaltyForIncorrectAnswer : 10, //seconds
     awardForCorrectAnswer : 10,
@@ -11,6 +11,10 @@ const quizConfig = {
     askForInitials: "Initials are required",
 
     //sound
-    buzzSound = new Audio("./sound/buzzSound.mp3"),
-}
+    buzzSoundURL : "./sound/buzzSound.mp3",
+
+    //localStorage
+    localStorageKey : "highscores",
+};
+
 
