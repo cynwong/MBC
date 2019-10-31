@@ -92,7 +92,7 @@ header div{
     box-shadow: 0 0 6px var(--color-dark-purple);
     transition: background 0.1s;
 }
-.button:hover{
+.ripple:hover{
     background-color: var(--color-indigo);
     color: var(--color-white);
     text-decoration: none;
@@ -126,8 +126,9 @@ header div{
     margin-top: 0.5rem;
 }
 
-#quizFeedbackViewContainer{
+#quizFooter{
     color: var(--color-grey);
+    margin-top: 2rem;
 }
 
 .separator{
