@@ -2,152 +2,22 @@
 //    Variables declarations 
 // -----------------------------
 
+// ----- DOM -----
+const HEADER = "header";
+const LANDING_VIEW = "landingViewContainer";
+const QUIZ_VIEW = "quizViewContainer";
+const RESULT_VIEW = "resultViewContainer";
+const HIGHSCORE_VIEW = "highscoresViewContainer";
+const DOM_CONTAINER_LIST = [HEADER, LANDING_VIEW, QUIZ_VIEW, RESULT_VIEW, HIGHSCORE_VIEW];
+const FEEDBACK_VIEW = "quizFooter";
+
 // ----- Quiz -----
 //time limit for each question: 15sec
 //max questions: 5
 //max time limit : maxquestion * timeLimit (75sec)
 // penaltyForIncorrectAnswer: 10 sec
 
-let quiz = {
-    config: quizConfig,
 
-    //   timer 
-    sessionTimer: null,
-    sessionTimeRemaining: 0, 
-    questionTimeRemaining: 0,
-
-    // question
-    questionCount: 0,
-    incorrectAnswerCount: 0,
-    correctAnswerCount: 0,
-    totalScore: 0,
-
-    reset: function(){
-        this.sessionTimer = null;
-        this.sessionTimeRemaining = 0;
-        this.questionTimeRemaining = 0;
-
-        this.questionCount = 0;
-        this.incorrectAnswerCount = 0;
-        this.correctAnswerCount = 0;
-        this.totalScore = 0;
-    },
-
-    calculateScore: function(){
-        
-    }
-
-
-}
-
-// let calculateScore = function () {
-//     return sessionTimeRemaining - (incorrectAnswerCount * PENALTY_FOR_INCORRECT_ANSWER);
-// };
-
-// let saveScore = function (user, score) {
-//     let highscore = {
-//         userInitials: user,
-//         score: score,
-//     };
-//     loadHighscores();
-//     highscores.push(highscore);
-//     saveHighscores();
-// }
-
-
-// // ----- high scores -----
-// let highscores = [];
-// const LOCALSTORAGE_KEY = "highscores";
-
-
-// // ----- DOM -----
-// const HEADER = "header";
-// const LANDING_VIEW = "landingViewContainer";
-// const QUIZ_VIEW = "quizViewContainer";
-// const RESULT_VIEW = "resultViewContainer";
-// const FEEDBACK_VIEW = "quizFeedbackViewContainer";
-// const HIGHSCORE_VIEW = "highscoresViewContainer";
-// const DOM_CONTAINER_LIST = [HEADER, LANDING_VIEW, QUIZ_VIEW, RESULT_VIEW, FEEDBACK_VIEW, HIGHSCORE_VIEW];
-
-// // -----------------------------
-// //    functions declarations 
-// // -----------------------------
-
-// // ------ DOM  ------
-
-// // select DOM element by id pass
-// // parameter id: string
-// // return DOM element
-// let getContainer = function (id) {
-//     let container;
-//     if (id === "header") {
-//         container = document.querySelector("header");
-//     } else {
-//         container = document.getElementById(id);
-//     }
-//     return container;
-// };
-
-// // hide the container by the id given
-// let hide = function (id) {
-//     let container = getContainer(id);
-//     container.classList.add("hidden");
-// };
-
-// // display the container by the id given
-// let show = function (id) {
-//     let container = getContainer(id);
-//     if (container) {
-//         if (container.classList.contains("hidden")) {
-//             container.classList.remove("hidden");
-//         }
-//     }
-// };
-
-// //hide all containers except the names given. 
-// //parameter except : array
-// let closeOthers = function (exceptions) {
-//     DOM_CONTAINER_LIST.forEach(function (id) {
-//         if(exceptions.includes(id)){
-//             //this container needs to be displayed. 
-//             show(id);
-//         }else{
-//             hide(id);
-//         }
-//     });
-// }
-// // ----- Local Storage  -----
-
-// // load highscores from localStorage
-// let loadHighscores = function () {
-//     if (localStorage[LOCALSTORAGE_KEY]) {
-//         highscores = JSON.parse(localStorage[LOCALSTORAGE_KEY]);
-//     }
-// };
-
-// // store highscores in localStorage
-// let saveHighscores = function () {
-//     if (highscores.length !== 0) {
-//         //only save if highscores is not empty
-//         localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(highscores));
-//     } else if (highscores.length === 0) {
-//         //if empty, clear the localStorage.
-//         clearHighscores();
-//     }
-// };
-// let clearHighscores = function () {
-//     highscores = [];
-//     if (localStorage[LOCALSTORAGE_KEY]) {
-//         //if stored in localStorage 
-//         //clear the localStorage
-//         localStorage.removeItem(LOCALSTORAGE_KEY);
-//     }
-// };
-
-// // ----- Score -----
-
-// // ----- Quiz -----
-// /*
 //    ---- Start quiz - steps ----
 //     when User click "start quiz" button,....
 //     1. hide landing page
@@ -155,11 +25,10 @@ let quiz = {
 //     3. create a count-down timer 
 //         a. with 1 sec interval 
 //         b. reduce timeRemaining by 1 for each second and update displaytime
-//         c. if user chose an answer or every 15 second clear the interval
+//         c. if user chose an answer or every [15 second] change the question
 //         d. clear the interval 
-//             1. when user chose an answer, change to new question and when user answers all questions if questionCount === NO_OF_QUESTIONS_PER_SESSION 
-//             2. after every 15 second (TIME_LIMIT_FOR_EACH_QUESTION)
-//             3. when timeRemaining is 0
+//             1. when user answers all questions if questionCount === NO_OF_QUESTIONS_PER_SESSION 
+//             2. when timeRemaining is 0
 //     4. create a fucntion to render Quiz
 //         a. get questions
 //         b. use Math.random to choose which question to use
@@ -177,154 +46,336 @@ let quiz = {
 //     6. In result page, when user click submit button
 //         a. check if initials are given. 
 //         b. if no, then show the error message
-// */
+let quiz = {
+    // --- settings ---
+    config: quizConfig,
+    buzzSound: null,
 
-// let updateDisplayTimeRemaining = function () {
-//     if(sessionTimeRemaining < 0){
-//         //make sure session time is not less than 0
-//         sessionTimeRemaining = 0;
-//     }
-//     document.getElementById("timeRemaining").textContent = sessionTimeRemaining;
-// }
+    // --- Timer ---
+    sessionTimer: null,
+    sessionTimeRemaining: 0, 
+    questionTimeRemaining: 0,
 
-// let startQuiz = function () {
-//     //reset the counters
-//     sessionTimeRemaining = NO_OF_QUESTIONS_PER_SESSION * TIME_LIMIT_FOR_EACH_QUESTION;;
-//     questionTimeRemaining = TIME_LIMIT_FOR_EACH_QUESTION;
-//     questionCount = 0;
-//     incorrectAnswerCount = 0;
+    // --- Question ---
+    maxQuestionsPerSession : 0,
+    questionCount: 0,
+    incorrectAnswerCount: 0, //TODO. Do we need this?
+    correctAnswerCount: 0,  // TODO, DO we need this?
+    totalScore: 0,
+
+    // --- Highscores ---
+    highscores: [],  // if we allow user to set number of question per session how are we going to do this. 
+
+    // --- Reset Quiz Data ---
+    reset: function() {
+        this.maxQuestionsPerSession = this.config.maxQuestionsPerSession;
+        this.questionCount = 0;
+        this.incorrectAnswerCount = 0;
+        this.correctAnswerCount = 0;
+        this.totalScore = 0;
+
+        this.sessionTimer = null;
+        this.sessionTimeRemaining = this.config.questionTimeLimit * this.maxQuestionsPerSession;
+        this.questionTimeRemaining = this.config.questionTimeLimit;
+
+        this.buzzSound = new Audio(this.config.buzzSoundURL);
+
+        this.loadHighscores();
+    },
+
+    // --- get Function ----
+    getSessionTimeRemaining: function () {
+        if( this.sessionTimeRemaining < 0 ){
+            //make sure session time is always 0 and larger
+            this.sessionTimeRemaining = 0;
+        }
+        return this.sessionTimeRemaining;
+    },
+
+    getQuestion: function (title = "") {
+        if ( !title ){
+            // if no title is given, then return random question
+            return questions[Math.floor(Math.random() * questions.length)];
+        }
+        //if title is given, find the question.
+        return questions.filter(obj => { return obj.title === title })[0];
+    },
+
+    // --- save Data Functions ---
+    setQuestionPerSession: function(number){
+        this.questionsPerSession = number
+    },
+
+    // --- Highscores / localStorage Functions ---
+    // load highscores from localStorage
+    loadHighscores: function() {
+        if(localStorage[this.config.localStorageKey]){
+            // if there is data in localStorage
+            this.highscores = JSON.parse(localStorage[this.config.localStorageKey]);
+        }
+    },
+
+    saveHighscores: function() {
+        if(this.highscores.length !== 0){
+            // save only if there are some highscores saved.
+            localStorage.setItem(this.config.localStorageKey, JSON.stringify(this.highscores));
+        } else if(localStorage[this.config.localStorageKey]){
+            // if no highscores saved, clear the localstorage data
+            localStorage.removeItem(localStorage[this.config.localStorageKey]);
+        }
+    },
+
+    clearHighscores: function(){
+        this.highscores = [];
+        this.saveHighscores();
+    },
+
+    // --- Quiz Activities ---
+    // quiz start
+    start: function() {
+        // new game so reset all data
+        this.reset();
+        updateDisplayTimeRemaining(quiz.getSessionTimeRemaining());
+        this.nextQuestion();
+        this.sessionTimer = setInterval( function () {
+            if ( quiz.sessionTimeRemaining === 0 ) {
+                //session time has run out, so end session
+                quiz.end();
+            }
+            if ( quiz.questionTimeLimit === 0 ) {
+                //time up for answering a question. So change to next one.
+                quiz.nextQuestion();
+            }
+            // time countdowns
+            quiz.sessionTimeRemaining--;
+            quiz.questionTimeRemaining--;
+            updateDisplayTimeRemaining(quiz.getSessionTimeRemaining());
+        }, 1000);
+    },
+
+    nextQuestion: function () {
+        //check if user has reached the max number of question.
+        if( this.questionCount === this.questionsPerSession ) {
+            //if yes, end this session. 
+            this.end();
+            return false;
+        }
+        this.questionTimeRemaining = this.config.questionTimeLimit;
+        //increase questionCount
+        this.questionCount++;
+        renderQuestion(this.getQuestion());
+    },
+
+    markAnswer: function ( questionTitle, userAnswer ) {
+        let question = this.getQuestion(questionTitle.trim());
+        if( question.answer.trim() === userAnswer.trim() ) {
+            // if answer is correct, 
+            this.totalScore += this.config.awardForCorrectAnswer + ( this.questionTimeLimit - this.questionTimeRemaining );
+            return true;
+        } else {
+            //if wrong, 
+            this.totalScore -= this.config.penaltyForIncorrectAnswer;
+            return false;
+        }
+    },
     
-//     //load first question
-//     renderQuestion();
-//     updateDisplayTimeRemaining();
-//     //close the other but show Header and Quiz View
-//     closeOthers([HEADER, QUIZ_VIEW]);
-//     sessionTimer = setInterval(function () {
-//         if (sessionTimeRemaining === 0) {
-//             //session time has run out so end session.
-//             endSession();
-//         }
-//         if (questionTimeRemaining === 0) {
-//             //time up for answering a question. so change to next one. 
-//             renderQuestion();
-//         }
-//         //clock countdowns 
-//         questionTimeRemaining--;
-//         sessionTimeRemaining--;
-//         //update time limit with this new limit on the page. 
-//         updateDisplayTimeRemaining();
-//     }, 1000);
-// };
+    // end of quiz
+    end: function () {
+        //clear timer
+        // calcuate final score
+        // reset displayTimeremaining
+        //call renderResult to display the result. 
+    },
+    
+    buzz: function () {
+        this.buzzSound.play();
+    },
 
-// // end of a quiz session. so show the result
-// let endSession = function () {
-//     clearInterval(sessionTimer);
-//     renderResult();
-// }
 
-// // ----- Renderers  -----
-// let renderQuestion = function () {
-//     //check if the user has reached the max number of questions. 
-//     if (questionCount === NO_OF_QUESTIONS_PER_SESSION) {
-//         //if yes, then it is time to end this quiz session.
-//         endSession();
-//         return false;
-//     }
-//     //reset questionTime countdown
-//     questionTimeRemaining = TIME_LIMIT_FOR_EACH_QUESTION;
-//     //get the question to ask
-//     let question = questions[Math.floor(Math.random() * questions.length)];
-//     let answerContainer = document.getElementById("answerChoices");
-//     let choiceElement;
-//     //display the question
-//     document.getElementById("quizQuestion").textContent = question.title;
-//     answerContainer.textContent = "";
-//     question.choices.forEach(function (choice) {
-//         choiceElement = document.createElement("a");
-//         choiceElement.href = "#";
-//         choiceElement.textContent = choice;
-//         choiceElement.classList.add("button");
-//         choiceElement.classList.add("choice");
-//         answerContainer.appendChild(choiceElement);
-//     })
-//     //increase questionCount
-//     questionCount++;
+};
 
-// }
+// ----- Renderers  -----
+function renderQuestion (question) {
+    let answerContainer = document.getElementById("answerChoices");
+    let choiceElement;
+    //display the question
+    document.getElementById("quizQuestion").textContent = question.title;
+    //display the choices
+    answerContainer.textContent = "";
+    question.choices.forEach(function (choice) {
+        choiceElement = document.createElement("button");
+        // choiceElement.href = "#";
+        choiceElement.textContent = choice;
+        choiceElement.classList.add("button");
+        choiceElement.classList.add("choice");
+        answerContainer.appendChild(choiceElement);
+    });
+    //hide feedback area
+    hide(FEEDBACK_VIEW);
+}
+
+function updateDisplayTimeRemaining (time) {
+    document.getElementById("timeRemaining").textContent = time;
+}
+
+// construct the display content for user alert. 
+// and add as first content in ParentElement given.
+function alertUser(message, parentElement){
+    let alertDiv = document.createElement("div");
+    alertDiv.classList.add("alert");
+    alertDiv.textContent = message;
+    parentElement.insertBefore ( alertDiv, parentElement.childNodes[0] );
+}
+
 // let renderResult = function () {
 //     document.getElementById("scoreResult").textContent = calculateScore();
 //     document.getElementById("timeRemaining").textContent = 0;
 //     closeOthers([HEADER, RESULT_VIEW, FEEDBACK_VIEW]);
 // };
-
-// let renderhighscores = function () {
-//     //get the results from localstorage
-//     loadHighscores();
-//     let listElement = document.getElementById("highscoreList");
-//     let li;
-//     //clean the displayed list
-//     listElement.innerHTML = "";
-//     //populate the list
-//     highscores.forEach(function (highscore) {
-//         li = document.createElement("li");
-//         li.textContent = highscore.userInitials + "  -  " + highscore.score;
-//         listElement.appendChild(li);
-//     });
-//     closeOthers([HIGHSCORE_VIEW]);
+// let calculateScore = function () {
+//     return sessionTimeRemaining - (incorrectAnswerCount * PENALTY_FOR_INCORRECT_ANSWER);
 // };
 
-// // -----------------------------
-// //       Event Listeners 
-// // -----------------------------
+// let saveScore = function (user, score) {
+//     let highscore = {
+//         userInitials: user,
+//         score: score,
+//     };
+//     loadHighscores();
+//     highscores.push(highscore);
+//     saveHighscores();
+// }
 
-// // -----  #landingViewContainer -----
-// document.getElementById("highscores").addEventListener("click", function (event) {
-//     //prevent the page from reloading.
-//     event.preventDefault();
+// ------ DOM  ------
 
-//     //construct the highscores Page
-//     renderhighscores();
+// select DOM element by id pass
+let getContainer = function (id) {
+    let container;
+    if (id === "header") {
+        container = document.querySelector("header");
+    } else {
+        container = document.getElementById(id);
+    }
+    return container;
+};
 
-//     //hide header and landingPageContainer and
-//     //show highScorepage
-//     closeOthers([HIGHSCORE_VIEW]);
-// });
+// hide the container by the id given
+let hide = function (id) {
+    let container = getContainer(id);
+    container.classList.add("hidden");
+};
 
-// document.getElementById("btnStart").addEventListener("click", function (event) {
-//     //prevent the page from reloading.
-//     event.preventDefault();
+// display the container by the id given
+let show = function (id) {
+    let container = getContainer(id);
+    if (container) {
+        if (container.classList.contains("hidden")) {
+            container.classList.remove("hidden");
+        }
+    }
+};
 
-//     //render quiz page
-//     startQuiz();
-// });
+//hide all containers except the names given. 
+//parameter exceptions : array
+let closeOthers = function (exceptions) {
+    DOM_CONTAINER_LIST.forEach(function (id) {
+        if(exceptions.includes(id)){
+            //this container needs to be displayed. 
+            show(id);
+        }else{
+            hide(id);
+        }
+    });
+}
 
-// // ----- #quizViewContainer -----
+let renderhighscores = function () {
+    // quiz data is loaded when page is being renderd. So assume we have the data now. 
+    let listElement = document.getElementById("highscoreList");
+    let li;
+    //clean the displayed list
+    listElement.innerHTML = "";
+    //populate the list
+    quiz.highscores.forEach(function (highscore) {
+        li = document.createElement("li");
+        li.textContent = highscore.userInitials + "  -  " + highscore.score;
+        listElement.appendChild(li);
+    });
+    closeOthers([HIGHSCORE_VIEW]);
+};
 
-// document.getElementById("answerChoices").addEventListener("click", function (event) {
-//     //prevent the page from reloading.
-//     event.preventDefault();
-//     //get user answer
-//     let answer = event.target.textContent;
-//     //get which question to check the answer
-//     let question = questions.filter(obj => { return obj.title === document.getElementById("quizQuestion").textContent });
 
-//     //check the answer
-//     if (answer.trim() !== question[0].answer.trim()) {
-//         //wrong answer, so increase the wrong answer count
-//         BUZZ_SOUND.play();
-//         incorrectAnswerCount++;
-//         document.getElementById("feedback").textContent = MESSAGES_FOR_USER.feedbackForIncorrectAnswer;
-//     } else {
-//         //if correct,
-//         document.getElementById("feedback").textContent = MESSAGES_FOR_USER.feedbackForCorrectAnswer;
-//     }
-//     show(FEEDBACK_VIEW);
-//     //setup timer to hide the result
-//     let feedbackTimer = setTimeout(function () {
-//         hide(FEEDBACK_VIEW);
-//     }, 3000);
-//     renderQuestion();
-// });
+// -----------------------------
+//       Event Listeners 
+// -----------------------------
+
+// ----- header -----
+document.getElementById("highscores").addEventListener("click", function (event) {
+    //prevent the page from reloading.
+    event.preventDefault();
+
+    //construct the highscores Page
+    renderhighscores();
+    
+    //hide header and landingPageContainer and
+    //show highScorepage
+    closeOthers([HIGHSCORE_VIEW]);
+});
+
+// -----  #landingViewContainer -----
+document.getElementById("btnStart").addEventListener("click", function (event) {
+    //prevent the page from reloading.
+    event.preventDefault();
+
+    //render quiz page
+    quiz.start();
+
+    //switch to quiz view
+    closeOthers([HEADER, QUIZ_VIEW]);
+});
+
+// ----- #quizViewContainer -----
+
+
+document.getElementById("answerChoices").addEventListener("click", function (event) {
+    //prevent the page from reloading.
+    event.preventDefault();
+
+    //disabled the buttons.
+    event.target.classList.add("chosen");
+    for ( choiceBtn of document.querySelectorAll("#answerChoices button") ){
+        choiceBtn.setAttribute("disable", "");
+        choiceBtn.classList.remove("ripple");
+        choiceBtn.classList.add("disabled")
+    }
+
+    //get user answer
+    let answer = event.target.textContent;
+    let question = document.getElementById("quizQuestion").textContent;
+    
+    
+    if ( !answer ) {
+        //if no answer, we cannot check. 
+        alertUser ( "Error: Answer text missing. Cannot validate the answer. ", document.getElementById(QUIZ_VIEW) );
+        return false; 
+    }
+    if ( !question ) {
+        //if no answer, we cannot check. 
+        alertUser ( "Error: Question text missing. Cannot validate the answer. " , document.getElementById(QUIZ_VIEW) );
+        return false; 
+    }
+
+    let isCorrect = quiz.markAnswer( question, answer );
+    //check the answer
+    if ( isCorrect ) {
+        //if correct,
+        document.getElementById("feedback").textContent = quiz.config.feedbackForCorrectAnswer;
+    } else {
+        //wrong answer, so increase the wrong answer count
+        quiz.buzz();
+        document.getElementById("feedback").textContent = quiz.config.feedbackForIncorrectAnswer;
+    }
+    show(FEEDBACK_VIEW);
+});
 
 // // ----- #resultViewContainer -----
 // document.getElementById("btnSubmit").addEventListener("click", function (event) {
@@ -345,25 +396,29 @@ let quiz = {
 //     renderhighscores();
 // });
 
-// // ----- #highscoresViewContainer -----
+// ----- #highscoresViewContainer -----
 
-// document.getElementById("btnBack").addEventListener("click", function (event) {
-//     //prevent the page from reloading.
-//     event.preventDefault();
+document.getElementById("btnBack").addEventListener("click", function (event) {
+    //prevent the page from reloading.
+    event.preventDefault();
     
-//     //hide highscores Page and show header and landing page. 
-//     closeOthers([HEADER, LANDING_VIEW]);
-// });
+    //hide highscores Page and show header and landing page. 
+    closeOthers([HEADER, LANDING_VIEW]);
+});
 
-// document.getElementById("btnClear").addEventListener("click", function () {
-//     //prevent the page from reloading.
-//     event.preventDefault();
+document.getElementById("btnClear").addEventListener("click", function () {
+    //prevent the page from reloading.
+    event.preventDefault();
     
-//     //remove all saved highscores
-//     clearHighscores();
+    //remove all saved highscores
+    quiz.clearHighscores();
 
-//     //re-render the page
-//     renderhighscores();
-// });
+    //re-render the page
+    renderhighscores();
+});
 
 
+// -----------------------------
+//  Actions when loading the page
+// -----------------------------
+quiz.reset();
