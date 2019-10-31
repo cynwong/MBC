@@ -33,6 +33,13 @@
     <section id="quizViewContainer" class="jumbotron sectionContainer hidden">
         <h3 id="quizQuestion"></h3>
         <div id="answerChoices"></div>
+        <div id="quizFooter" class="clearfix text-center text-sm-left">
+            <div class="separator"></div>
+            <div id="feedback"></div>
+            <div class="float-sm-right">
+                <a href="#" class="button buttonNext">Next</a>
+            </div>
+        </div>
     </section>
     
     <section id="resultViewContainer" class="jumbotron sectionContainer hidden">
@@ -47,10 +54,6 @@
         </fieldset>
     </section>
     
-    <section id="quizFeedbackViewContainer" class="sectionContainer hidden">
-        <div class="separator"></div>
-        <p id="feedback"></p>
-    </section>
     <section id="highscoresViewContainer" class="jumbotron sectionContainer hidden">
         <h3>Highscores</h3>
         <ol id="highscoreList">
@@ -71,7 +74,7 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
     <script src="./scripts/questions.js"></script>
-    <script src="./scripts/quizConfig.js"></script>
+    <script src="./scripts/quiz_default_settings.js"></script>
     <script src="./scripts/newScript.js"></script>
 </body>
 
