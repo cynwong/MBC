@@ -207,8 +207,18 @@ let quiz = {
         this.buzzSound.play();
     },
 
+    saveScore: function (username) {
+        let newHighscore = {
+            userInitials: username,
+            score: this.totalScore,
+        };
+        this.highscores.push(newHighscore);
+        this.saveHighscores();
+    }
+
 
 };
+
 
 // ----- Renderers  -----
 function renderQuestion (question) {
@@ -251,15 +261,6 @@ function displayResult () {
 }
 
 
-// let saveScore = function (user, score) {
-//     let highscore = {
-//         userInitials: user,
-//         score: score,
-//     };
-//     loadHighscores();
-//     highscores.push(highscore);
-//     saveHighscores();
-// }
 
 // ------ DOM  ------
 
@@ -396,24 +397,24 @@ document.querySelector(".buttonNext").addEventListener( "click", function () {
     quiz.nextQuestion();
 });
 
-// // ----- #resultViewContainer -----
-// document.getElementById("btnSubmit").addEventListener("click", function (event) {
-//     let user = document.getElementById("txtUserInitials").value;
-//     let score = document.getElementById("scoreResult").textContent;
-//     if (!user) {
-//         //if user initials are not given, the result cannot be saved. 
-//         //so alert user and quit the process
-//         let divAlert = document.createElement("div");
-//         divAlert.classList.add("alert");
-//         divAlert.textContent = MESSAGES_FOR_USER.askForInitials;
-//         document.getElementById("resultViewContainer").insertBefore(divAlert, document.getElementsByTagName("fieldset")[0])
-//         return false;
-//     }
-//     //save the score
-//     saveScore(user, score);
-//     //go to highscore view
-//     renderhighscores();
-// });
+// ----- #resultViewContainer -----
+document.getElementById("btnSubmit").addEventListener("click", function (event) {
+    let user = document.getElementById("txtUserInitials").value;
+    let score = document.getElementById("scoreResult").textContent;
+    if (!user) {
+        //if user initials are not given, the result cannot be saved. 
+        //so alert user and quit the process
+        let divAlert = document.createElement("div");
+        divAlert.classList.add("alert");
+        divAlert.textContent = MESSAGES_FOR_USER.askForInitials;
+        document.getElementById("resultViewContainer").insertBefore(divAlert, document.getElementsByTagName("fieldset")[0])
+        return false;
+    }
+    //save the score
+    quiz.saveScore(user);
+    //go to highscore view
+    renderhighscores();
+});
 
 // ----- #highscoresViewContainer -----
 
