@@ -15,6 +15,7 @@
     --color-indigo: hsl(266deg, 97%, 35%);
     --color-indigo-ripple: hsl(266deg, 97%, 35%, 0.33);
     --color-dark-purple: hsl(266deg, 93%, 15%);
+    --color-dark-purple-ripple: hsl(266deg, 93%, 15%,0.33);
     
     /* red */
     --color-alert: hsl(0deg, 100%,47%);
@@ -118,12 +119,14 @@ header div{
     padding: 2rem;
 }
 
+#quizViewContainer{
+    padding: 0;
+}
 #quizQuestion{
     background-color: var(--color-dark-purple);
     color: var(--color-white);
     margin: 0;
     padding: 1.5rem;
-
 }
 
 #answerChoices{
@@ -165,12 +168,18 @@ header div{
 }
 .choice.disabled.chosen{
     border:2px solid var(--color-dark-purple);
+    background-color: var(--color-pale-pink);
 }
 
 
-#quizFooter {
+.footer {
     color: var(--color-grey);
-    margin-top: 2rem;
+    margin-top: 1rem;
+    margin-left: 20px;
+    margin-right: auto;
+    border-top: 2px solid var(--color-gray);
+    min-height: 80px;
+    padding: 2rem;
 }
 
 .separator{
@@ -194,6 +203,19 @@ header div{
 
 .buttonNext {
     background-color: var(--color-dark-purple);
+    transition: background 1s, color 1s;
+}
+
+.buttonNext:active {
+    background-color: var(--color-dark-purple-ripple);
+    color: var(--color-dark-purple);
+    transition: background 0s;
+}
+
+
+
+.highscoreFooter {
+    margin-top: 2rem;
 }
 
 /* Medium devices (tablets, less than 992px) */
