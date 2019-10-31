@@ -158,7 +158,7 @@ let quiz = {
 
     nextQuestion: function () {
         //check if user has reached the max number of question.
-        if( this.questionCount === this.questionsPerSession ) {
+        if( this.questionCount === this.maxQuestionsPerSession ) {
             //if yes, end this session. 
             this.end();
             return false;
@@ -173,7 +173,7 @@ let quiz = {
         let question = this.getQuestion(questionTitle.trim());
         if( question.answer.trim() === userAnswer.trim() ) {
             // if answer is correct, 
-            this.totalScore += this.config.awardForCorrectAnswer + ( this.questionTimeLimit - this.questionTimeRemaining );
+            this.totalScore += this.config.awardForCorrectAnswer + this.questionTimeRemaining;
             return true;
         } else {
             //if wrong, 
@@ -183,9 +183,9 @@ let quiz = {
     },
     
     calcutateFinalScore: function () {
-        if(this.questionCount < this.questionsPerSession) {
+        if(this.questionCount < this.maxQuestionsPerSession) {
             //any unanswer question is counted as none
-            this.totalScore -= (this.questionsPerSession - this.questionCount) * this.config.penaltyForIncorrectAnswer;
+            this.totalScore -= (this.maxQuestionsPerSession - this.questionCount) * this.config.penaltyForIncorrectAnswer;
         }
 
         if(this.totalScore < 0) {
@@ -200,7 +200,7 @@ let quiz = {
         // calcuate final score in case there are some unanswered questions. 
         this.calcutateFinalScore();
         //call renderResult to display the result. 
-        
+        displayResult();
     },
     
     buzz: function () {
@@ -243,14 +243,13 @@ function alertUser(message, parentElement){
     parentElement.insertBefore ( alertDiv, parentElement.childNodes[0] );
 }
 
-// let renderResult = function () {
-//     document.getElementById("scoreResult").textContent = calculateScore();
-//     document.getElementById("timeRemaining").textContent = 0;
-//     closeOthers([HEADER, RESULT_VIEW, FEEDBACK_VIEW]);
-// };
-// let calculateScore = function () {
-//     return sessionTimeRemaining - (incorrectAnswerCount * PENALTY_FOR_INCORRECT_ANSWER);
-// };
+// render the Result view for the user
+function displayResult () {
+    document.getElementById("scoreResult").textContent = quiz.totalScore;
+    document.getElementById("timeRemaining").textContent = 0;
+    closeOthers([HEADER, RESULT_VIEW, FEEDBACK_VIEW]);
+}
+
 
 // let saveScore = function (user, score) {
 //     let highscore = {
