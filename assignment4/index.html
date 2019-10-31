@@ -26,7 +26,8 @@
 
     <section id="landingViewContainer" class="jumbotron sectionContainer">
         <h3>Coding Quiz Challenge</h3>
-        <p>Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your scoretime by ten seconds!</p>
+        <p>Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers
+            will penalize your scoretime by ten seconds!</p>
         <a href="#" class="button" id="btnStart" href="#" role="button">Start Quiz</a>
     </section>
 
@@ -36,12 +37,10 @@
         <div id="quizFooter" class="footer text-center text-sm-left">
             <div class="separator"></div>
             <div id="feedback"></div>
-            <!-- <div> -->
-                <a href="#" class="button buttonNext fa fa-arrow-right">Next</a>
-            <!-- </div> -->
+            <a href="#" class="button buttonNext fa fa-arrow-right">Next</a>
         </div>
     </section>
-    
+
     <section id="resultViewContainer" class="jumbotron sectionContainer hidden">
         <h3>All done!</h3>
         <p>Your final score is <span id="scoreResult">0</span>.</p>
@@ -53,14 +52,16 @@
             <a href="#" id="btnSubmit" class="button">Submit</a>
         </fieldset>
     </section>
-    
+
     <section id="highscoresViewContainer" class="jumbotron sectionContainer hidden">
         <h3>Highscores</h3>
         <ol id="highscoreList">
-            
+
         </ol>
-        <a class="button" id="btnBack" href="#" role="button">Go Back</a>
-        <a class="button" id="btnClear" href="#" role="button">Clear Highscores</a>
+        <div class="footer">
+            <a class="button" id="btnBack" href="#" role="button">Go Back</a>
+            <a class="button" id="btnClear" href="#" role="button">Clear Highscores</a>
+        </div>
     </section>
 
     <!-- Scripts -->
