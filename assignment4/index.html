@@ -17,12 +17,11 @@
 <body>
 
     <header>
-        <!-- <div id="siteTitle">
-            <h1>Code Quiz</h1>
-        </div> -->
-        <div id="highscoreContainer"><a href="#" id="highscores">View Highscores</a></div>
-        <div id="timeContainer">Time: <span id="timeRemaining">0</span></div>
+        <div><a href="#" id="highscores" class="link">View Highscores</a></div>
+        <div><a href="#" id="quizSettings" class="link">Quiz Settings</a></div>
     </header>
+
+    <header id="time" class="hidden">Time: <span id="timeRemaining">0</span></header>
 
     <section id="landingViewContainer" class="jumbotron sectionContainer">
         <h3>Coding Quiz Challenge</h3>
@@ -61,6 +60,17 @@
         <div class="footer">
             <a class="button" id="btnBack" href="#" role="button">Go Back</a>
             <a class="button" id="btnClear" href="#" role="button">Clear Highscores</a>
+        </div>
+    </section>
+
+    <section id="quizSettingViewContainer" class="jumbotron sectionContainer hidden">
+        <h3>Quiz Settings</h3>
+        <div class="settings">
+            <!-- TODO populate the form -->
+        </div>
+        <div class="footer">
+            <a class="button" id="btnCloseSettings" href="#" role="button">Close</a>
+            <a class="button" id="btnSaveSetttings" href="#" role="button">Save</a>
         </div>
     </section>
 

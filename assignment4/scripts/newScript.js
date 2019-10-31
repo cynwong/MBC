@@ -4,11 +4,13 @@
 
 // ----- DOM -----
 const HEADER = "header";
+const QUIZ_HEADER = "time";
 const LANDING_VIEW = "landingViewContainer";
 const QUIZ_VIEW = "quizViewContainer";
 const RESULT_VIEW = "resultViewContainer";
 const HIGHSCORE_VIEW = "highscoresViewContainer";
-const DOM_CONTAINER_LIST = [HEADER, LANDING_VIEW, QUIZ_VIEW, RESULT_VIEW, HIGHSCORE_VIEW];
+const QUIZ_SETTING_VIEW = "quizSettingViewContainer";
+const DOM_CONTAINER_LIST = [HEADER, LANDING_VIEW, QUIZ_HEADER, QUIZ_VIEW, RESULT_VIEW, HIGHSCORE_VIEW, QUIZ_SETTING_VIEW];
 const FEEDBACK_VIEW = "quizFooter";
 
 // ----- Quiz -----
@@ -276,6 +278,11 @@ function renderhighscores () {
     closeOthers([HIGHSCORE_VIEW]);
 };
 
+//render settings view
+function displaySettings () {
+    //TODO
+}
+
 
 // ------ DOM  ------
 
@@ -345,6 +352,15 @@ document.getElementById("highscores").addEventListener("click", function (event)
     closeOthers([HIGHSCORE_VIEW]);
 });
 
+document.getElementById("quizSettings").addEventListener( "click", function( event ) {
+    //prevent the page from reloading.
+    event.preventDefault();
+
+    displaySettings();
+
+    closeOthers([HEADER, QUIZ_SETTING_VIEW]);
+});
+
 // -----  #landingViewContainer -----
 document.getElementById("btnStart").addEventListener("click", function (event) {
     //prevent the page from reloading.
@@ -354,7 +370,7 @@ document.getElementById("btnStart").addEventListener("click", function (event) {
     quiz.start();
 
     //switch to quiz view
-    closeOthers([HEADER, QUIZ_VIEW]);
+    closeOthers([QUIZ_HEADER, QUIZ_VIEW]);
 });
 
 // ----- #quizViewContainer -----
@@ -414,7 +430,7 @@ document.getElementById("btnSubmit").addEventListener("click", function (event) 
         //so alert user and quit the process
         let divAlert = document.createElement("div");
         divAlert.classList.add("alert");
-        divAlert.textContent = MESSAGES_FOR_USER.askForInitials;
+        divAlert.textContent = quiz.config.askForInitials;
         document.getElementById("resultViewContainer").insertBefore(divAlert, document.getElementsByTagName("fieldset")[0])
         return false;
     }
@@ -444,6 +460,27 @@ document.getElementById("btnClear").addEventListener("click", function () {
     //re-render the page
     renderhighscores();
 });
+
+
+// ----- #quizSettingViewContainer -----
+document.getElementById("btnCloseSettings").addEventListener( "click", function () {
+    //prevent the page from reloading.
+    event.preventDefault();
+    
+    // go back to landing page
+    closeOthers([HEADER, LANDING_VIEW]);
+});
+
+document.getElementById("btnSaveSetttings").addEventListener( "click", function () {
+    //prevent the page from reloading.
+    event.preventDefault();
+    
+    //DO SOME ACTIONs TODO
+
+    // go back to landing page
+    closeOthers([HEADER, LANDING_VIEW]);
+});
+
 
 
 // -----------------------------
