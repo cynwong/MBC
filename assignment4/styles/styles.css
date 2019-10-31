@@ -175,18 +175,35 @@ header div{
 .footer {
     color: var(--color-grey);
     margin-top: 1rem;
-    margin-left: 20px;
-    margin-right: auto;
     border-top: 2px solid var(--color-gray);
     min-height: 80px;
-    padding: 2rem;
+    width: 100%;
+    position: relative;
 }
 
 .separator{
     height: 2px;
     width: 100%;
-    background-color: var(--color-light-grey);
+    background-color: hsla(0, 0%, 76%, 1);
 }
+
+#feedback {
+    margin-top: 1.5rem;
+    margin-left: 2rem;
+    display: inline-block;
+    margin-right: 21rem;
+}
+.buttonNext {
+    background-color: var(--color-dark-purple);
+    transition: background 1s, color 1s;
+}
+
+.buttonNext:active {
+    background-color: var(--color-dark-purple-ripple);
+    color: var(--color-dark-purple);
+    transition: background 0s;
+}
+
 
 #highscoresViewContainer{
     margin-top: 3rem;
@@ -201,16 +218,7 @@ header div{
     color: var(--color-white);
 }
 
-.buttonNext {
-    background-color: var(--color-dark-purple);
-    transition: background 1s, color 1s;
-}
 
-.buttonNext:active {
-    background-color: var(--color-dark-purple-ripple);
-    color: var(--color-dark-purple);
-    transition: background 0s;
-}
 
 
 
@@ -245,5 +253,8 @@ header div{
     .button{
         margin-left:auto;
         margin-right:auto;
+    }
+    #feedback {
+        margin-right: 169px;
     }
 }
