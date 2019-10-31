@@ -116,12 +116,12 @@ let quiz = {
     },
 
     saveHighscores: function() {
-        if(this.highscores.length !== 0){
+        if ( this.highscores.length !== 0 ) {
             // save only if there are some highscores saved.
             localStorage.setItem(this.config.localStorageKey, JSON.stringify(this.highscores));
-        } else if(localStorage[this.config.localStorageKey]){
+        } else if ( localStorage[this.config.localStorageKey] ) {
             // if no highscores saved, clear the localstorage data
-            localStorage.removeItem(localStorage[this.config.localStorageKey]);
+            localStorage.removeItem(this.config.localStorageKey);
         }
     },
 
@@ -260,6 +260,21 @@ function displayResult () {
     closeOthers([HEADER, RESULT_VIEW, FEEDBACK_VIEW]);
 }
 
+//render highscore view
+function renderhighscores () {
+    // quiz data is loaded when page is being renderd. So assume we have the data now. 
+    let listElement = document.getElementById("highscoreList");
+    let li;
+    //clean the displayed list
+    listElement.innerHTML = "";
+    //populate the list
+    quiz.highscores.forEach(function (highscore) {
+        li = document.createElement("li");
+        li.textContent = highscore.userInitials + "  -  " + highscore.score;
+        listElement.appendChild(li);
+    });
+    closeOthers([HIGHSCORE_VIEW]);
+};
 
 
 // ------ DOM  ------
@@ -304,20 +319,7 @@ let closeOthers = function (exceptions) {
     });
 }
 
-let renderhighscores = function () {
-    // quiz data is loaded when page is being renderd. So assume we have the data now. 
-    let listElement = document.getElementById("highscoreList");
-    let li;
-    //clean the displayed list
-    listElement.innerHTML = "";
-    //populate the list
-    quiz.highscores.forEach(function (highscore) {
-        li = document.createElement("li");
-        li.textContent = highscore.userInitials + "  -  " + highscore.score;
-        listElement.appendChild(li);
-    });
-    closeOthers([HIGHSCORE_VIEW]);
-};
+
 
 
 // -----------------------------
@@ -328,6 +330,12 @@ let renderhighscores = function () {
 document.getElementById("highscores").addEventListener("click", function (event) {
     //prevent the page from reloading.
     event.preventDefault();
+
+    //in case the user is in the middle of the Quiz
+    //if click, during quiz, end the quiz
+    if(quiz.sessionTimer){
+        quiz.end();
+    }
 
     //construct the highscores Page
     renderhighscores();
