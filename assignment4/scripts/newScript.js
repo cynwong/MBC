@@ -143,7 +143,10 @@ let quiz = {
                 quiz.end();
             }
             if ( quiz.questionTimeLimit === 0 ) {
-                //time up for answering a question. So change to next one.
+                //time up for answering a question.
+                //unanswer question is counted as incorrect. 
+                this.totalScore -= this.config.penaltyForIncorrectAnswer;
+                // So change to next one.
                 quiz.nextQuestion();
             }
             // time countdowns
@@ -179,12 +182,25 @@ let quiz = {
         }
     },
     
+    calcutateFinalScore: function () {
+        if(this.questionCount < this.questionsPerSession) {
+            //any unanswer question is counted as none
+            this.totalScore -= (this.questionsPerSession - this.questionCount) * this.config.penaltyForIncorrectAnswer;
+        }
+
+        if(this.totalScore < 0) {
+            //force min score to 0
+            this.totalScore = 0;
+        }
+    },
     // end of quiz
     end: function () {
         //clear timer
-        // calcuate final score
-        // reset displayTimeremaining
+        clearInterval(this.sessionTimer);
+        // calcuate final score in case there are some unanswered questions. 
+        this.calcutateFinalScore();
         //call renderResult to display the result. 
+        
     },
     
     buzz: function () {
@@ -206,7 +222,7 @@ function renderQuestion (question) {
         choiceElement = document.createElement("button");
         // choiceElement.href = "#";
         choiceElement.textContent = choice;
-        choiceElement.classList.add("button");
+        // choiceElement.classList.add("button");
         choiceElement.classList.add("choice");
         answerContainer.appendChild(choiceElement);
     });
@@ -340,10 +356,10 @@ document.getElementById("answerChoices").addEventListener("click", function (eve
     //prevent the page from reloading.
     event.preventDefault();
 
-    //disabled the buttons.
+    //disabled the buttons. TODO. style the disabled buttons
     event.target.classList.add("chosen");
     for ( choiceBtn of document.querySelectorAll("#answerChoices button") ){
-        choiceBtn.setAttribute("disable", "");
+        choiceBtn.setAttribute("disabled", "");
         choiceBtn.classList.remove("ripple");
         choiceBtn.classList.add("disabled")
     }
@@ -375,6 +391,10 @@ document.getElementById("answerChoices").addEventListener("click", function (eve
         document.getElementById("feedback").textContent = quiz.config.feedbackForIncorrectAnswer;
     }
     show(FEEDBACK_VIEW);
+});
+
+document.querySelector(".buttonNext").addEventListener( "click", function () {
+    quiz.nextQuestion();
 });
 
 // // ----- #resultViewContainer -----
