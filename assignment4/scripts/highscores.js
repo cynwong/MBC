@@ -1,4 +1,8 @@
 
+/**
+ *  class Highscores handle highscores records of the Quiz Game.
+ */
+
 class Highscores {
     constructor(storageKey) {
         this._storageKey = storageKey;
