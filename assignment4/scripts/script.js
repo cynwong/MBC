@@ -82,6 +82,9 @@ function renderResult(score) {
     if (alerts.lenght !== 0) {
         alerts.forEach(alert => { alert.remove(); });
     }
+    //reset intial input box
+    document.getElementById("txtUserInitials").value = "";
+    document.getElementById("txtUserInitials").setAttribute("placeholder", "your initials")
     // insert the total score for display
     document.getElementById("scoreResult").textContent = score;
     //load result view 
@@ -111,11 +114,37 @@ function saveResult() {
     if (!user) {
         //if user initials are not given, the result cannot be saved. 
         //so alert user and quit the process
-        alertUser(quizConfig.askForInitials, document.getElementsByTagName("fieldset"));
+        alertUser(quizConfig.askForInitials, document.getElementById("resultViewContainer").getElementsByTagName("fieldset")[0]);
         return false;
     }
     //save the score
     highscoreRecord.saveScore(user, myQuiz.result);
+    return true;
+}
+
+// check user answer
+function markUserAnswer(answer) {
+    let question = document.getElementById("quizQuestion").textContent;
+
+    if (!answer) {
+        //with no answer content, result cannot be checked
+        alertUser("Error: Answer text missing. Cannot validate the answer. ", document.getElementById(QUIZ_VIEW));
+        return false;
+    }
+    if (!question) {
+        //if no answer, we cannot check. 
+        alertUser("Error: Question text missing. Cannot validate the answer. ", document.getElementById(QUIZ_VIEW));
+        return false;
+    }
+    let isCorrect = myQuiz.markAnswer(question, answer);
+    if (isCorrect === true) {
+        //if correct,
+        document.getElementById("feedback").textContent = quizConfig.feedbackForCorrectAnswer;
+    } else {
+        //wrong answer, so increase the wrong answer count
+        quiz.buzz();
+        document.getElementById("feedback").textContent = quizConfig.feedbackForIncorrectAnswer;
+    }
 }
 
 // -----------------------------
@@ -163,9 +192,13 @@ document.getElementById("answerChoices").addEventListener("click", function (eve
     //diabled the choices
     diableChoices(event.target);
 
-    //get user answer
+
+    //check user answer
     let answer = event.target.textContent;
-    let question = document.getElementById("quizQuestion").textContent;
+    markUserAnswer(answer);
+    
+    //display feedback to user
+    show(FEEDBACK_VIEW);
 
 });
 
@@ -175,7 +208,10 @@ document.getElementById("btnSubmit").addEventListener("click", function (event) 
     event.preventDefault();
 
     //save the score 
-    saveResult();
+    if (!saveResult()) {
+        //if there is a error in saveResult function. stay on this view
+        return false;
+    }
 
     //go to highscore view
     renderhighscores();
