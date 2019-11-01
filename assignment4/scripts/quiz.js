@@ -7,7 +7,7 @@
  */
 
 class Quiz {
-    constructor(questions){
+    constructor(){
         this.questions = questions;
     }
  
