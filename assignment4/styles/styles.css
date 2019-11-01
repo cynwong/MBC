@@ -233,9 +233,9 @@ header div {
 }
 
 .btn.changeMode{
-    background: var(--color-indigo);
+    background: var(--color-dark-purple);
     color: var(--color-white);
-    transition: background 6s;
+    transition: background 1s;
     
 }
 
@@ -249,19 +249,19 @@ header div {
 }
 
 .changeMode:hover:enabled{
-    background-color: var(--color-dark-purple);
+    background-color: var(--color-indigo);
     cursor:pointer;
     font-weight: 600;
 }
 
 .changeMode:active:enabled{
     transition: background 0s;
-    background-color: var(--color-dark-purple-ripple);
+    background-color: var(--color-indigo-ripple);
 }
 
 .changeMode.chosen{
     z-index: 2;
-    background-color: var(--color-dark-purple)
+    background-color: var(--color-indigo)
 
 }
 
