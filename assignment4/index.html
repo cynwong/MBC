@@ -67,12 +67,31 @@
         <h3>Quiz Settings</h3>
         <div class="settings">
             <div>
-                
+                <div class="label">Quiz Mode:</div>
+                <div id="quizModeSettings" class="btn-group" role="group">
+                    <button type="button" class="btn changeMode chosen left" disabled>Short</button>
+                    <button type="button" class="btn changeMode">Medium</button>
+                    <button type="button" class="btn changeMode right">Long</button>
+                </div>
             </div>
+            <div>
+                <div class="label">Buzz Sound:</div>
+                <div id="soundSettings" class="btn-group" role="group">
+                    <button type="button" class="btn changeMode chosen left" disabled>On</button>
+                    <button type="button" class="btn changeMode">Mute</button>
+                    <div class="dropdown">
+                        <button class="btn changeMode right dropdown-toggle" type="button" data-toggle="dropdown"></button>
+                        <div class="dropdown-menu" id="soundFileSettings">
+                            <a class="dropdown-item" href="#"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         </div>
         <div class="footer">
             <a class="button" id="btnCloseSettings" href="#" role="button">Close</a>
-            <a class="button" id="btnSaveSetttings" href="#" role="button">Save</a>
+            <!-- <a class="button" id="btnSaveSetttings" href="#" role="button">Save</a> -->
         </div>
     </section>
 

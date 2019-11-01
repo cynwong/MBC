@@ -219,15 +219,57 @@ header div {
     margin-top: 3rem;
 }
 
-.hidden {
-    display: none;
+.settings > div {
+    display: block;
+    margin: 1rem auto;
 }
+.label {
+    padding: 0.375rem 0.75rem; 
+    display:inline-block;
+}
+
+.btn.changeMode{
+    background: var(--color-indigo);
+    color: var(--color-white);
+    transition: background 6s;
+    
+}
+
+.btn.changeMode.left{
+    border-bottom-left-radius: 8px;
+    border-top-left-radius: 8px;
+}
+.btn.changeMode.right{
+    border-bottom-right-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.changeMode:hover:enabled{
+    background-color: var(--color-dark-purple);
+    cursor:pointer;
+    font-weight: 600;
+}
+
+.changeMode:active:enabled{
+    transition: background 0s;
+    background-color: var(--color-dark-purple-ripple);
+}
+
+.changeMode.chosen{
+    z-index: 2;
+    background-color: var(--color-dark-purple)
+
+}
+
 
 .alert {
     background-color: var(--color-alert);
     color           : var(--color-white);
 }
 
+.hidden {
+    display: none;
+}
 
 
 
