@@ -6,7 +6,7 @@ class Game {
         this._board = {
             question: "quizQuestion",
             answers: "answerChoices",
-            time: "time",
+            time: "timeRemaining",
         }
     }
 
@@ -71,10 +71,15 @@ class Game {
                 // time up to answer a question
                 // unanswer question is counted as incorrect 
                 // so calculate the score
-
+                this.calculateScore(false);
                 // so change to next one
+                this.next();
             }
-        });
+            //time countdown
+            this._questionTimeRemaining--;
+            this._sessionTimeRemaining--;
+            this.updateTime();
+        }, 1000);
     }
 
     renderQuiz(quiz) {
