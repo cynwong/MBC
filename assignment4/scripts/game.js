@@ -1,71 +1,49 @@
-const quizConfig = {
-    maxQuestionsPerSession : 5,
-    questionTimeLimit : 15,  //seconds
-    penaltyForIncorrectAnswer : 10, //seconds
-    awardForCorrectAnswer : 10,
-
-
-    //output message for user
-    feedbackForIncorrectAnswer: "Wrong!",
-    feedbackForCorrectAnswer: "Correct!",
-    askForInitials: "Initials are required",
-
-    //sound
-    defaultSound: "Buzz Sound",
-    sounds: [ {
-            name: "Buzz Sound",
-            url: "./sound/buzzSound.mp3",
-        },
-        {
-            name: "Buzz Fade Out",
-            url: "./sound/buzz_fade_out.mp3/"
-        },
-    ],
-
-    //localStorage
-    localStorageKey : "highscores",
-};
 
 class Game {
 
     constructor( config ) {
-        this.config = config;
-        this.reset(config);
+        this._config = config;
+        this.reset(this._config);
+    }
+
+    // --- set/get properties ---
+    get sessionTimeRemaining () {
+        if ( this._sessionTimeRemaining < 0 ) {
+            this.sessionTimeRemaining(0);
+        }
+        return this._sessionTimeRemaining;
+    }
+
+    set sessionTimeRemaining ( time ) {
+        this.sessionTimeRemaining = time;
     }
 
     // --- Set up ---
     reset () {
-        this.maxQuestionsPerSession = this.config.maxQuestionsPerSession;
-        this.questionCount = 0;
-        this.totalScore = 0;
+        this._maxQuestionsPerSession = this._config.maxQuestionsPerSession;
+        this._questionCount = 0;
+        this._totalScore = 0;
 
-        this.sessionTimer = null;
-        this.questionTimeRemaining = this.config.questionTimeLimit;
-        this.sessionTimeRemaining = this.questionTimeRemaining * this.maxQuestionsPerSession;
+        this._sessionTimer = null;
+        this._questionTimeRemaining = this._config.questionTimeLimit;
+        this._sessionTimeRemaining = this._questionTimeRemaining * this._maxQuestionsPerSession;
 
         this.setSoundSystem();
-        // this.loadHighscores();
     }
 
     // set up Buzz sound 
     setSoundSystem ( name = "" ) {
-        let url, sound;
+        let sound;
 
-        if( !name || this.config.sounds.some( sound => sound.name !== name)) {
+        if( !name || this._config.sounds.some( sound => sound.name !== name)) {
             //if no name is given or name is not in the list, use default
-            name = this.config.defaultSound;
+            name = this._config.defaultSound;
         }
-        sound = this.config.sounds.filter(sound => sound.name === name)[0];
-        // this.buzzSound = new Audio(sound.url); //TODO not working with commandline to test it with browser
+        sound = this._config.sounds.filter(sound => sound.name === name)[0];
+        // this._buzzSound = new Audio(sound.url); //TODO not working with commandline to test it with browser
     }
 
-    // --- data storage ---
-    loadHighscores () {
-        this.highscores = [];
-        if( localStorage[this.config.localStorageKey] ) {
-            this.highscores = JSON.parse( localStorage[this.config.localStorageKey] );
-        }
-    }
+    
 }
 
 myQuiz = new Game(quizConfig);
