@@ -1,4 +1,5 @@
 
+// TODO test sound. 
 class Game {
 
     constructor() {
@@ -50,8 +51,8 @@ class Game {
         this._questionTimeRemaining = this._config.questionTimeLimit;
         this._sessionTimeRemaining = this._questionTimeRemaining * this._config.maxQuestionsPerSession;
 
+        if (this._config.isSoundOn) { this.setSoundSystem(); } //check if user turn on the quiz sound
 
-        this.setSoundSystem();
     }
 
     // set up Buzz sound 
@@ -90,7 +91,7 @@ class Game {
         }
     }
     toggleSound(isOn) {
-        if (typeof (isOn) === "boolean") {
+        if (typeof (isOn) === "boolean" && this._config.isSoundOn !== isOn) {
             this._config.isSoundOn = isOn;
             this.saveConfig();
         }
@@ -207,11 +208,11 @@ class Game {
     }
 
     buzz() {
-        this._buzz.play();
+        if (this._buzz) {
+            this._buzz.play();
+        }
     }
 }
-
-myQuiz = new Game(quizConfig);
 
 
 // ----- Quiz -----
