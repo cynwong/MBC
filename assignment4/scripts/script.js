@@ -111,6 +111,34 @@ function renderhighscores() {
     closeOthers([HIGHSCORE_VIEW]);
 };
 
+
+function promote (element) {
+    element.setAttribute("disabled", "");
+    element.classList.add("chosen");
+}
+
+function demote (element) {
+    element.removeAttribute("disabled");
+    element.classList.remove("chosen");
+}
+
+function renderQuizSettings() {
+    // set chosen status according to myQuiz settings
+    promote(document.getElementById("quizModeSettings").querySelector(`[data-info="${myQuiz.activeSpeedMode}"]`));
+    promote(document.getElementById("soundSettings").querySelector(`[data-info="${myQuiz.isSoundOn}"]`));
+    let a;
+    for(let sound of myQuiz.soundNames){
+        a = document.createElement("a");
+        a.classList.add("dropdown-item");
+        a.setAttribute("href", "#");
+        a.textContent = sound;
+        document.getElementById("soundFileSettings").appendChild(a);
+    }
+    //TODO add chosen class to soundnames and event listener. 
+
+
+}
+
 // ----- Others ----- 
 // save the user's score to highscore records. 
 function saveResult() {
@@ -173,7 +201,7 @@ document.getElementById("quizSettings").addEventListener("click", function (even
     //prevent the page from reloading.
     event.preventDefault();
 
-    // displaySettings();
+    renderQuizSettings();
 
     closeOthers([HEADER, QUIZ_SETTING_VIEW]);
 });
@@ -201,7 +229,7 @@ document.getElementById("answerChoices").addEventListener("click", function (eve
     //check user answer
     let answer = event.target.textContent;
     markUserAnswer(answer);
-    
+
     //display feedback to user
     show(FEEDBACK_VIEW);
 
@@ -246,25 +274,42 @@ document.getElementById("btnClear").addEventListener("click", function () {
 });
 
 // ----- Quiz Setting View - #quizSettingViewContainer -----
-document.getElementById("btnCloseSettings").addEventListener("click", function () {
+
+document.getElementById("quizModeSettings").addEventListener("click", function (event) {
+    //prevent the page from reloading.
+    event.preventDefault();
+
+    let mode = event.target.textContent;
+    //save the change
+    myQuiz.changeSpeed(mode);
+
+    //first remove chosen status from target's sibling
+    demote(this.querySelector(".chosen"));
+    // prevChosenElement.removeAttribute("disabled");
+    // prevChosenElement.classList.remove("chosen");
+
+    //Now add chosen status to the target
+    promote(event.target);
+    // event.target.classList.add("chosen");
+    // event.target.setAttribute("disabled", "");
+});
+
+document.getElementById("soundSettings").addEventListener("click", function () {
+    //prevent the page from reloading.
+    event.preventDefault();
+
+    if (event.target.classList.contains("dropdown-toggle") === true) {
+        //if down
+    }
+});
+
+document.getElementById("btnCloseSettings").addEventListener("click", function (event) {
     //prevent the page from reloading.
     event.preventDefault();
 
     // go back to landing page
     closeOthers([HEADER, LANDING_VIEW]);
 });
-
-document.getElementById("btnSaveSetttings").addEventListener("click", function () {
-    //prevent the page from reloading.
-    event.preventDefault();
-
-    //DO SOME ACTIONs TODO
-
-    // go back to landing page
-    closeOthers([HEADER, LANDING_VIEW]);
-});
-
-
 
 // -----------------------------------
 //   Action when the page is loaded 

@@ -2,6 +2,8 @@
 class Game {
 
     constructor() {
+        this.configKey = "quizConfig";
+
         this.reset();
         this._board = {
             question: "quizQuestion",
@@ -27,9 +29,17 @@ class Game {
     }
 
     // --- Set up ---
-    reset() {
+    loadConfig() {
+        if (localStorage[this.configKey]) {
+            this._config = JSON.parse(localStorage[this.configKey]);
+        } else {
+            //if no local storage, use the default from the file
+            this._config = quizConfig;
+        }
+    }
 
-        this._config = quizConfig;
+    reset() {
+        this.loadConfig();
 
         this._quiz = new Quiz();
 
@@ -45,22 +55,55 @@ class Game {
     }
 
     // set up Buzz sound 
-    setSoundSystem(name = "") {
-        let sound;
-
-        if (!name || this._config.sounds.some(sound => sound.name !== name)) {
-            //if no name is given or name is not in the list, use default
-            name = this._config.defaultSound;
-        }
-        sound = this._config.sounds.filter(sound => sound.name === name)[0];
+    setSoundSystem() {
+        let sound = this._config.sounds.filter(sound => sound.name === this._config.activeSound)[0];
         this._buzz = new Audio(sound.url);
     }
 
-    //
+    // config
+    get soundNames() {
+        return this._config.sounds.map(sound => sound.name);
+    }
+    get activeSpeedMode() {
+        return Object.keys(this._config.modes).find(key => this._config.modes[key] === this._config.questionTimeLimit);
+    }
+    get isSoundOn() {
+        return this._config.isSoundOn;
+    }
+
+    changeSpeed(mode) {
+        mode = mode.toLowerCase();
+        if (mode === "slow" || mode === "normal" || mode === "fast") {
+            this._config.questionTimeLimit = this._config.modes[mode];
+            this.saveConfig();
+        }
+    }
+
+
+
+    changeSound(name) {
+        if (this.soundNames.includes[name]) {
+            //if quiz has sound file
+            //change the activesound to this name
+            this._config.activeSound = name;
+            this.saveConfig();
+        }
+    }
+    toggleSound(isOn) {
+        if (typeof (isOn) === "boolean") {
+            this._config.isSoundOn = isOn;
+            this.saveConfig();
+        }
+    }
+
+    saveConfig() {
+        localStorage.setItem(this.configKey, JSON.stringify(this._config));
+    }
+
+    // game activities
     checkIfMaxQuestion() {
         return this._questionCount === this._config.maxQuestionsPerSession;
     }
-    // game activities
     start() {
         this.reset();
         this.next();
