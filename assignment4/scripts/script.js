@@ -20,7 +20,7 @@ const FEEDBACK_VIEW = "quizFooter";
 // ------ DOM  ------
 
 // select DOM element by id pass
-function getContainer ( id ) {
+function getContainer(id) {
     let container;
     if (id === "header") {
         container = document.querySelector("header");
@@ -31,13 +31,13 @@ function getContainer ( id ) {
 }
 
 // hide the container by the id given
-function hide ( id ) {
+function hide(id) {
     let container = getContainer(id);
     container.classList.add("hidden");
 }
 
 // display the container by the id given
-function show ( id ) {
+function show(id) {
     let container = getContainer(id);
     if (container) {
         if (container.classList.contains("hidden")) {
@@ -48,12 +48,12 @@ function show ( id ) {
 
 //hide all containers except the names given. 
 //parameter exceptions : array
-function closeOthers (exceptions) {
+function closeOthers(exceptions) {
     DOM_CONTAINER_LIST.forEach(function (id) {
-        if(exceptions.includes(id)){
+        if (exceptions.includes(id)) {
             //this container needs to be displayed. 
             show(id);
-        }else{
+        } else {
             hide(id);
         }
     });
@@ -61,8 +61,35 @@ function closeOthers (exceptions) {
 
 // ----- Renderers  -----
 
+function alertUser(content, parentElement) {
+    let divAlert = document.createElement("div");
+    divAlert.classList.add("alert");
+    divAlert.textContent = content;
+    parentElement.insertBefore(divAlert, parentElement.children[0]);
+}
+function diableChoices(chosen) {
+    chosen.classList.add("chosen");
+    for (choiceBtn of document.querySelectorAll("#answerChoices button")) {
+        choiceBtn.setAttribute("disabled", "");
+        choiceBtn.classList.remove("ripple");
+        choiceBtn.classList.add("disabled")
+    }
+}
+
+function renderResult(score) {
+    // in case there is an alert
+    alerts = document.querySelectorAll(".alert");
+    if (alerts.lenght !== 0) {
+        alerts.forEach(alert => { alert.remove(); });
+    }
+    // insert the total score for display
+    document.getElementById("scoreResult").textContent = score;
+    //load result view 
+    closeOthers([HEADER, RESULT_VIEW]);
+}
+
 //render highscore view
-function renderhighscores () {
+function renderhighscores() {
     // quiz data is loaded when page is being renderd. So assume we have the data now. 
     let listElement = document.getElementById("highscoreList");
     let li;
@@ -71,12 +98,25 @@ function renderhighscores () {
     //populate the list
     highscoreRecord.highscores.forEach(function (highscore) {
         li = document.createElement("li");
-        li.textContent = highscore.userInitials + "  -  " + highscore.score;
+        li.textContent = highscore.initials + "  -  " + highscore.score;
         listElement.appendChild(li);
     });
     closeOthers([HIGHSCORE_VIEW]);
 };
 
+// ----- Others ----- 
+function saveResult() {
+    let user = document.getElementById("txtUserInitials").value;
+    let score = document.getElementById("scoreResult").textContent;
+    if (!user) {
+        //if user initials are not given, the result cannot be saved. 
+        //so alert user and quit the process
+        alertUser(quizConfig.askForInitials, document.getElementsByTagName("fieldset"));
+        return false;
+    }
+    //save the score
+    highscoreRecord.saveScore(user, myQuiz.result);
+}
 
 // -----------------------------
 //       Event Listeners 
@@ -87,21 +127,15 @@ document.getElementById("highscores").addEventListener("click", function (event)
     //prevent the page from reloading.
     event.preventDefault();
 
-    //in case the user is in the middle of the Quiz
-    //if click, during quiz, end the quiz
-    // if(quiz.sessionTimer){
-    //     quiz.end();
-    // }
-
     //construct the highscores Page
     renderhighscores();
-    
+
     //hide header and landingPageContainer and
     //show highScorepage
-    closeOthers([HIGHSCORE_VIEW]);
+    closeOthers([HEADER, HIGHSCORE_VIEW]);
 });
 
-document.getElementById("quizSettings").addEventListener( "click", function( event ) {
+document.getElementById("quizSettings").addEventListener("click", function (event) {
     //prevent the page from reloading.
     event.preventDefault();
 
@@ -121,14 +155,38 @@ document.getElementById("btnStart").addEventListener("click", function (event) {
     closeOthers([QUIZ_HEADER, QUIZ_VIEW]);
 });
 
+// ----- #quizViewContainer -----
+document.getElementById("answerChoices").addEventListener("click", function (event) {
+    //prevent the page from reloading.
+    event.preventDefault();
 
+    //diabled the choices
+    diableChoices(event.target);
+
+    //get user answer
+    let answer = event.target.textContent;
+    let question = document.getElementById("quizQuestion").textContent;
+
+});
+
+// ----- #resultViewContainer -----
+document.getElementById("btnSubmit").addEventListener("click", function (event) {
+    //prevent the page from reloading.
+    event.preventDefault();
+
+    //save the score 
+    saveResult();
+
+    //go to highscore view
+    renderhighscores();
+});
 
 // ----- #highscoresViewContainer -----
 
 document.getElementById("btnBack").addEventListener("click", function (event) {
     //prevent the page from reloading.
     event.preventDefault();
-    
+
     //hide highscores Page and show header and landing page. 
     closeOthers([HEADER, LANDING_VIEW]);
 });
@@ -138,7 +196,7 @@ document.getElementById("btnClear").addEventListener("click", function () {
     event.preventDefault();
 
     //TODO test this
-    
+
     //remove all saved highscores
     highscoreRecord.clear();
 
@@ -147,18 +205,18 @@ document.getElementById("btnClear").addEventListener("click", function () {
 });
 
 // ----- #quizSettingViewContainer -----
-document.getElementById("btnCloseSettings").addEventListener( "click", function () {
+document.getElementById("btnCloseSettings").addEventListener("click", function () {
     //prevent the page from reloading.
     event.preventDefault();
-    
+
     // go back to landing page
     closeOthers([HEADER, LANDING_VIEW]);
 });
 
-document.getElementById("btnSaveSetttings").addEventListener( "click", function () {
+document.getElementById("btnSaveSetttings").addEventListener("click", function () {
     //prevent the page from reloading.
     event.preventDefault();
-    
+
     //DO SOME ACTIONs TODO
 
     // go back to landing page
