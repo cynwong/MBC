@@ -61,12 +61,15 @@ function closeOthers(exceptions) {
 
 // ----- Renderers  -----
 
+// display alert message to user
 function alertUser(content, parentElement) {
     let divAlert = document.createElement("div");
     divAlert.classList.add("alert");
     divAlert.textContent = content;
     parentElement.insertBefore(divAlert, parentElement.children[0]);
 }
+
+// disabled the choice buttons
 function diableChoices(chosen) {
     chosen.classList.add("chosen");
     for (choiceBtn of document.querySelectorAll("#answerChoices button")) {
@@ -76,6 +79,7 @@ function diableChoices(chosen) {
     }
 }
 
+// render Result view
 function renderResult(score) {
     // in case there is an alert
     alerts = document.querySelectorAll(".alert");
@@ -108,6 +112,7 @@ function renderhighscores() {
 };
 
 // ----- Others ----- 
+// save the user's score to highscore records. 
 function saveResult() {
     let user = document.getElementById("txtUserInitials").value;
     let score = document.getElementById("scoreResult").textContent;
@@ -122,7 +127,7 @@ function saveResult() {
     return true;
 }
 
-// check user answer
+// check user answer after user makes their choice. 
 function markUserAnswer(answer) {
     let question = document.getElementById("quizQuestion").textContent;
 
@@ -142,7 +147,7 @@ function markUserAnswer(answer) {
         document.getElementById("feedback").textContent = quizConfig.feedbackForCorrectAnswer;
     } else {
         //wrong answer, so increase the wrong answer count
-        quiz.buzz();
+        myQuiz.buzz();
         document.getElementById("feedback").textContent = quizConfig.feedbackForIncorrectAnswer;
     }
 }
@@ -151,7 +156,7 @@ function markUserAnswer(answer) {
 //       Event Listeners 
 // -----------------------------
 
-// ----- header -----
+// ----- header section -----
 document.getElementById("highscores").addEventListener("click", function (event) {
     //prevent the page from reloading.
     event.preventDefault();
@@ -173,7 +178,7 @@ document.getElementById("quizSettings").addEventListener("click", function (even
     closeOthers([HEADER, QUIZ_SETTING_VIEW]);
 });
 
-// -----  #landingViewContainer -----
+// ----- Landing View - #landingViewContainer -----
 document.getElementById("btnStart").addEventListener("click", function (event) {
     //prevent the page from reloading.
     event.preventDefault();
@@ -184,7 +189,7 @@ document.getElementById("btnStart").addEventListener("click", function (event) {
     closeOthers([QUIZ_HEADER, QUIZ_VIEW]);
 });
 
-// ----- #quizViewContainer -----
+// ----- Quiz View - #quizViewContainer -----
 document.getElementById("answerChoices").addEventListener("click", function (event) {
     //prevent the page from reloading.
     event.preventDefault();
@@ -202,7 +207,7 @@ document.getElementById("answerChoices").addEventListener("click", function (eve
 
 });
 
-// ----- #resultViewContainer -----
+// ----- Result View - #resultViewContainer -----
 document.getElementById("btnSubmit").addEventListener("click", function (event) {
     //prevent the page from reloading.
     event.preventDefault();
@@ -217,7 +222,7 @@ document.getElementById("btnSubmit").addEventListener("click", function (event) 
     renderhighscores();
 });
 
-// ----- #highscoresViewContainer -----
+// ----- Highscore Records View - #highscoresViewContainer -----
 
 document.getElementById("btnBack").addEventListener("click", function (event) {
     //prevent the page from reloading.
@@ -240,7 +245,7 @@ document.getElementById("btnClear").addEventListener("click", function () {
     renderhighscores();
 });
 
-// ----- #quizSettingViewContainer -----
+// ----- Quiz Setting View - #quizSettingViewContainer -----
 document.getElementById("btnCloseSettings").addEventListener("click", function () {
     //prevent the page from reloading.
     event.preventDefault();
