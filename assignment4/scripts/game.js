@@ -2,7 +2,7 @@
 class Game {
 
     constructor() {
-        this.reset(this._config);
+        this.reset();
         this._board = {
             question: "quizQuestion",
             answers: "answerChoices",
@@ -132,6 +132,7 @@ class Game {
             //if answer is correct 
             this._totalScore += this._config.awardForCorrectAnswer + this._questionTimeRemaining;
         } else if (isCorrect === false) {
+            // wrong answer
             this._totalScore -= this._config.penaltyForIncorrectAnswer;
         }
     }
