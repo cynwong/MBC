@@ -22,6 +22,10 @@ class Game {
         this.sessionTimeRemaining = time;
     }
 
+    get result() {
+        return this._totalScore;
+    }
+
     // --- Set up ---
     reset() {
 
@@ -49,7 +53,7 @@ class Game {
             name = this._config.defaultSound;
         }
         sound = this._config.sounds.filter(sound => sound.name === name)[0];
-        this._buzz = new Audio(sound.url); 
+        this._buzz = new Audio(sound.url);
     }
 
     //
@@ -58,6 +62,7 @@ class Game {
     }
     // game activities
     start() {
+        this.reset();
         this.next();
         this.updateTime();
         this.sessionTimer = setInterval(() => {
@@ -153,11 +158,12 @@ class Game {
         clearInterval(this.sessionTimer);
         // calcuate final score in case there are some unanswered questions. 
         this.calcutateFinalScore();
-        //return the result. //TODO 
-        return this._totalScore;
+
+        //display the result 
+        renderResult(this._totalScore);
     }
 
-    buzz(){
+    buzz() {
         this._buzz.play();
     }
 }
