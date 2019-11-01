@@ -11,7 +11,16 @@ const quizConfig = {
     askForInitials: "Initials are required",
 
     //sound
-    buzzSoundURL : "./sound/buzzSound.mp3",
+    defaultSound: "Buzz Sound",
+    sounds: [ {
+            name: "Buzz Sound",
+            url: "./sound/buzzSound.mp3",
+        },
+        {
+            name: "Buzz Fade Out",
+            url: "./sound/buzz_fade_out.mp3/"
+        },
+    ],
 
     //localStorage
     localStorageKey : "highscores",

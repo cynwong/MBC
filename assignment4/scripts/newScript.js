@@ -80,8 +80,7 @@ let quiz = {
         this.sessionTimeRemaining = this.config.questionTimeLimit * this.maxQuestionsPerSession;
         this.questionTimeRemaining = this.config.questionTimeLimit;
 
-        this.buzzSound = new Audio(this.config.buzzSoundURL);
-
+        this.setSoundSystem();
         this.loadHighscores();
     },
 
@@ -104,8 +103,18 @@ let quiz = {
     },
 
     // --- save Data Functions ---
+    setSoundSystem: function ( name= "" ) {
+        let url, sound;
+        if( !name || this.config.sounds.some( sound => sound.name !== name)) {
+            //if no name is given or name is not in the list, use default
+            name = this.config.defaultSound;
+        }
+        sound = this.config.sounds.filter(sound => sound.name === name)[0];
+        this.buzzSound = new Audio(sound.url);
+    },
+
     setQuestionPerSession: function(number){
-        this.questionsPerSession = number
+        this.questionsPerSession = number;
     },
 
     // --- Highscores / localStorage Functions ---
