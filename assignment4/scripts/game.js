@@ -1,41 +1,50 @@
 
 class Game {
 
-    constructor( config ) {
-        this._config = config;
+    constructor() {
         this.reset(this._config);
+        this._board = {
+            question: "quizQuestion",
+            answers: "answerChoices",
+            time: "time",
+        }
     }
 
     // --- set/get properties ---
-    get sessionTimeRemaining () {
-        if ( this._sessionTimeRemaining < 0 ) {
+    get sessionTimeRemaining() {
+        if (this._sessionTimeRemaining < 0) {
             this.sessionTimeRemaining(0);
         }
         return this._sessionTimeRemaining;
     }
 
-    set sessionTimeRemaining ( time ) {
+    set sessionTimeRemaining(time) {
         this.sessionTimeRemaining = time;
     }
 
     // --- Set up ---
-    reset () {
-        this._maxQuestionsPerSession = this._config.maxQuestionsPerSession;
+    reset() {
+
+        this._config = quizConfig;
+
+        this._quiz = new Quiz();
+
         this._questionCount = 0;
         this._totalScore = 0;
 
         this._sessionTimer = null;
         this._questionTimeRemaining = this._config.questionTimeLimit;
-        this._sessionTimeRemaining = this._questionTimeRemaining * this._maxQuestionsPerSession;
+        this._sessionTimeRemaining = this._questionTimeRemaining * this._config.maxQuestionsPerSession;
+
 
         this.setSoundSystem();
     }
 
     // set up Buzz sound 
-    setSoundSystem ( name = "" ) {
+    setSoundSystem(name = "") {
         let sound;
 
-        if( !name || this._config.sounds.some( sound => sound.name !== name)) {
+        if (!name || this._config.sounds.some(sound => sound.name !== name)) {
             //if no name is given or name is not in the list, use default
             name = this._config.defaultSound;
         }
@@ -43,7 +52,105 @@ class Game {
         // this._buzzSound = new Audio(sound.url); //TODO not working with commandline to test it with browser
     }
 
-    
+    //
+    checkIfMaxQuestion() {
+        return this._questionCount === this._config.maxQuestionsPerSession;
+    }
+    // game activities
+    start() {
+        console.log("start")
+        this.next();
+        this.updateTime();
+        this.sessionTimer = setInterval(() => {
+            if (this.sessionTimeRemaining === 0) {
+                //session time has run out, end this quiz
+                this.end();
+                return false;
+            }
+            if (this._questionTimeRemaining === 0) {
+                // time up to answer a question
+                // unanswer question is counted as incorrect 
+                // so calculate the score
+
+                // so change to next one
+            }
+        });
+    }
+
+    renderQuiz(quiz) {
+        let answersContainer = document.getElementById(this._board.answers);
+        let choiceElement;
+
+        //display question
+        document.getElementById(this._board.question).textContent = quiz.title;
+
+        // display choices 
+        // first clean up the container in case there are something. 
+        answersContainer.innerHTML = "";
+
+        quiz.choices.forEach(choice => {
+            choiceElement = document.createElement("button");
+            choiceElement.textContent = choice;
+            choiceElement.classList.add("choice");
+            answersContainer.appendChild(choiceElement);
+        });
+    }
+
+    updateTime() {
+        document.getElementById(this._board.time).textContent = this.sessionTimeRemaining;
+    }
+
+    next() {
+        // check if user completed max number of questions
+        if (this.checkIfMaxQuestion()) {
+            //if yes, end this game
+            this.end();
+            return false;
+        }
+        // reset question time limit
+        this._questionTimeRemaining = this._config.questionTimeLimit;
+        // increase the question count 
+        this._questionCount++;
+        this.renderQuiz(this._quiz.question);
+    }
+
+    calcutateFinalScore() {
+        if ( this._questionCount < this._config.maxQuestionsPerSession) {
+            // there are some unanswer questions
+            // any unanswer question is counted as incorrect
+            this._totalScore -= ( this._config.maxQuestionsPerSession - this._questionCount) * this._config.penaltyForIncorrectAnswer;
+        }
+
+        if ( this._totalScore < 0 ) {
+            //force total score to 0 so that we don't have negative scores
+            this._totalScore = 0; 
+        }
+    }
+
+    calculateScore(isCorrect) {
+        if (isCorrect === true) {
+            //if answer is correct 
+            this._totalScore += this._config.awardForCorrectAnswer + this._questionTimeRemaining;
+        } else if (isCorrect === false) {
+            this._totalScore -= this._config.penaltyForIncorrectAnswer;
+        }
+    }
+
+    markAnswer(title, userAnswer) {
+        let question = this._quiz.getThisQuestion(title.trim());
+        let isCorrect = question.answer.trim() === userAnswer.trim() ? true : false;
+        this.calculateScore(isCorrect);
+        return isCorrect;
+    }
+
+    end() {
+        //clear timer
+        clearInterval(this.sessionTimer);
+        // calcuate final score in case there are some unanswered questions. 
+        this.calcutateFinalScore();
+        //return the result. //TODO 
+        return this._totalScore;
+    }
 }
 
 myQuiz = new Game(quizConfig);
