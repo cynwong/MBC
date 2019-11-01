@@ -49,7 +49,7 @@ class Game {
             name = this._config.defaultSound;
         }
         sound = this._config.sounds.filter(sound => sound.name === name)[0];
-        // this._buzzSound = new Audio(sound.url); //TODO not working with commandline to test it with browser
+        this._buzz = new Audio(sound.url); 
     }
 
     //
@@ -58,7 +58,6 @@ class Game {
     }
     // game activities
     start() {
-        console.log("start")
         this.next();
         this.updateTime();
         this.sessionTimer = setInterval(() => {
@@ -83,8 +82,8 @@ class Game {
     }
 
     renderQuiz(quiz) {
-        let answersContainer = document.getElementById(this._board.answers);
         let choiceElement;
+        let answersContainer = document.getElementById(this._board.answers);
 
         //display question
         document.getElementById(this._board.question).textContent = quiz.title;
@@ -120,15 +119,15 @@ class Game {
     }
 
     calcutateFinalScore() {
-        if ( this._questionCount < this._config.maxQuestionsPerSession) {
+        if (this._questionCount < this._config.maxQuestionsPerSession) {
             // there are some unanswer questions
             // any unanswer question is counted as incorrect
-            this._totalScore -= ( this._config.maxQuestionsPerSession - this._questionCount) * this._config.penaltyForIncorrectAnswer;
+            this._totalScore -= (this._config.maxQuestionsPerSession - this._questionCount) * this._config.penaltyForIncorrectAnswer;
         }
 
-        if ( this._totalScore < 0 ) {
+        if (this._totalScore < 0) {
             //force total score to 0 so that we don't have negative scores
-            this._totalScore = 0; 
+            this._totalScore = 0;
         }
     }
 
@@ -156,6 +155,10 @@ class Game {
         this.calcutateFinalScore();
         //return the result. //TODO 
         return this._totalScore;
+    }
+
+    buzz(){
+        this._buzz.play();
     }
 }
 
