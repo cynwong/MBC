@@ -219,6 +219,10 @@ header div {
     margin-top: 3rem;
 }
 
+.setting {
+    min-height: 10rem;
+}
+
 .settings > div {
     display: block;
     margin: 1rem auto;
