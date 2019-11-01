@@ -27,8 +27,18 @@ class Highscores {
         }
     }
 
+    saveScore ( user, score ) {
+        if( user ) {
+            //only save if there is a high score. 
+            this.highscores = {
+                initials : user,
+                score : score,
+            };
+        }
+    }
+
     save () {
-        localStorage.setItem ( this._storageKey, this._highscores );
+        localStorage.setItem ( this._storageKey, JSON.stringify(this._highscores));
     }
     clear () {
         this._highscores = [];
