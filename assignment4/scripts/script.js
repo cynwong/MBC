@@ -59,24 +59,23 @@ function closeOthers (exceptions) {
     });
 }
 
+// ----- Renderers  -----
+
 //render highscore view
 function renderhighscores () {
-    let highscores = new Highscores(quizConfig.localStorageKey);
     // quiz data is loaded when page is being renderd. So assume we have the data now. 
     let listElement = document.getElementById("highscoreList");
     let li;
     //clean the displayed list
     listElement.innerHTML = "";
     //populate the list
-    highscores.highscores.forEach(function (highscore) {
+    highscoreRecord.highscores.forEach(function (highscore) {
         li = document.createElement("li");
         li.textContent = highscore.userInitials + "  -  " + highscore.score;
         listElement.appendChild(li);
     });
     closeOthers([HIGHSCORE_VIEW]);
 };
-
-// ----- Renderers  -----
 
 
 // -----------------------------
@@ -111,7 +110,65 @@ document.getElementById("quizSettings").addEventListener( "click", function( eve
     closeOthers([HEADER, QUIZ_SETTING_VIEW]);
 });
 
+// -----  #landingViewContainer -----
+document.getElementById("btnStart").addEventListener("click", function (event) {
+    //prevent the page from reloading.
+    event.preventDefault();
+
+    //render quiz page
+    myQuiz.start();
+    //switch to quiz view
+    closeOthers([QUIZ_HEADER, QUIZ_VIEW]);
+});
+
+
+
+// ----- #highscoresViewContainer -----
+
+document.getElementById("btnBack").addEventListener("click", function (event) {
+    //prevent the page from reloading.
+    event.preventDefault();
+    
+    //hide highscores Page and show header and landing page. 
+    closeOthers([HEADER, LANDING_VIEW]);
+});
+
+document.getElementById("btnClear").addEventListener("click", function () {
+    //prevent the page from reloading.
+    event.preventDefault();
+
+    //TODO test this
+    
+    //remove all saved highscores
+    highscoreRecord.clear();
+
+    //re-render the page
+    renderhighscores();
+});
+
+// ----- #quizSettingViewContainer -----
+document.getElementById("btnCloseSettings").addEventListener( "click", function () {
+    //prevent the page from reloading.
+    event.preventDefault();
+    
+    // go back to landing page
+    closeOthers([HEADER, LANDING_VIEW]);
+});
+
+document.getElementById("btnSaveSetttings").addEventListener( "click", function () {
+    //prevent the page from reloading.
+    event.preventDefault();
+    
+    //DO SOME ACTIONs TODO
+
+    // go back to landing page
+    closeOthers([HEADER, LANDING_VIEW]);
+});
+
+
+
 // -----------------------------------
 //   Action when the page is loaded 
 // -----------------------------------
-
+let highscoreRecord = new Highscores(quizConfig.localStorageKey);
+let myQuiz = new Game();
