@@ -14,7 +14,7 @@ published at [project site](https://cynwong.github.io/assignments/assignment4/in
 
 ## Instructions
 
-* click "Start Quiz" to play Quiz.
+* Click "Start Quiz" to play Quiz.
 * Click on the chosen answer for each question. Remember to complete the answer within the time limit. There will be a penalty for wrong choices. Any unanswered question will also be counted as incorrect.
 * At the end of the quiz, the result can be saved by providing your initials.
 * To view highscores link at the upper left corner of the screen to view the previous highscores.
@@ -35,7 +35,7 @@ The player can choose from the following three modes:
 
 The player can choose to mute or play the sound when they choose the incorrect answer. Also, they can choose which sound they prefer to play by clicking on the dropdown next to the buzz sound option. 
 
-## Credit
+## Credits
 
 * Questions for this quiz code app are from
 [W3School](https://www.w3schools.com/quiztest/default.asp).
