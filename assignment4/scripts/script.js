@@ -111,6 +111,12 @@ function renderhighscores() {
     closeOthers([HIGHSCORE_VIEW]);
 };
 
+//transfer the chosen status from previous chosen to new one. 
+function transferChosen (from, to){
+    demote(from);
+    promote(to);
+}
+
 // set the button to chosen status
 function promote(element) {
     element.setAttribute("disabled", "");
@@ -210,8 +216,10 @@ document.getElementById("quizSettings").addEventListener("click", function (even
     //prevent the page from reloading.
     event.preventDefault();
 
+    //construct quiz setting view
     renderQuizSettings();
 
+    // now open quiz setting view. 
     closeOthers([HEADER, QUIZ_SETTING_VIEW]);
 });
 
@@ -222,6 +230,7 @@ document.getElementById("btnStart").addEventListener("click", function (event) {
 
     //render quiz page
     currentGame.start();
+
     //switch to quiz view
     closeOthers([QUIZ_HEADER, QUIZ_VIEW]);
 });
@@ -299,16 +308,9 @@ document.getElementById("quizModeSettings").addEventListener("click", function (
     currentGame.changeSpeed = mode;
 
     //first remove chosen status from target's sibling
-    demote(this.querySelector(".chosen"));
-
     //Now add chosen status to the target
-    promote(event.target);
+    transferChosen(document.getElementById("quizModeSettings").querySelector(".chosen"), event.target);
 });
-
-function transferChosen (from, to){
-    demote(from);
-    promote(to);
-}
 
 document.getElementById("soundSettings").addEventListener("click", function () {
     //prevent the page from reloading.
@@ -332,6 +334,8 @@ document.getElementById("btnCloseSettings").addEventListener("click", function (
     // go back to landing page
     closeOthers([HEADER, LANDING_VIEW]);
 });
+
+
 
 
 
