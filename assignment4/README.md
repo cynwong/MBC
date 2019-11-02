@@ -35,7 +35,7 @@ The player can choose from the following three modes:
 
 The player can choose to mute or play the sound when they choose the incorrect answer. Also, they can choose which sound they prefer to play by clicking on the dropdown next to the buzz sound option. 
 
-## Credit
+## Credits
 
 * Questions for this quiz code app are from
 [W3School](https://www.w3schools.com/quiztest/default.asp).
