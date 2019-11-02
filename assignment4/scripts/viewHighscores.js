@@ -17,7 +17,7 @@ function renderHighscoresView() {
     let records = highscoreRecord.getAllSortedHighScores();
 
     //render each list in relevant section. 
-    renderhighscores(records.slow, document.querySelector(".highscoreList.slow"));
+    renderhighscores(records.relax, document.querySelector(".highscoreList.relax"));
     renderhighscores(records.normal, document.querySelector(".highscoreList.normal"));
     renderhighscores(records.fast, document.querySelector(".highscoreList.fast"));
 

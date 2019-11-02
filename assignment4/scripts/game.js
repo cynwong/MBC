@@ -81,7 +81,7 @@ class Game {
 
     set changeSpeed(mode) {
         mode = mode.toLowerCase();
-        if (mode === "slow" || mode === "normal" || mode === "fast") {
+        if (mode === "relax" || mode === "normal" || mode === "fast") {
             this._config.currentMode = mode;
             this._config.questionTimeLimit = this._config.modes[mode].timeLimit;
             this._config.penaltyForIncorrectAnswer = this._config.modes[mode].penaltyPoints;

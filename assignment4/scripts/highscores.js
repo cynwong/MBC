@@ -47,7 +47,7 @@ class Highscores {
     }
     getAllSortedHighScores() {
         return {
-            slow: this.getSortedHighscoreByMode("slow"),
+            relax: this.getSortedHighscoreByMode("relax"),
             normal: this.getSortedHighscoreByMode("normal"),
             fast: this.getSortedHighscoreByMode("fast"),
         }

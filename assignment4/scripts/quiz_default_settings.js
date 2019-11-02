@@ -5,7 +5,7 @@ const quizConfig = {
 
     currentMode: "normal",
     modes : {
-        slow : {
+        relax : {
             timeLimit : 25,
             awardPoints: 5, 
             penaltyPoints: 15,
