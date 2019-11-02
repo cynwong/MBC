@@ -125,20 +125,27 @@ function demote(element) {
 
 // construct Quiz Setting View for display
 function renderQuizSettings() {
+    
+    let a;
+    let soundFilesContainer = document.getElementById("soundFileSettings");
+    
     // set chosen status according to currentGame settings
     promote(document.getElementById("quizModeSettings").querySelector(`[data-info="${currentGame.activeSpeedMode}"]`));
     promote(document.getElementById("soundSettings").querySelector(`[data-info="${currentGame.isSoundOn}"]`));
-    let a;
+    
+    //make sure sound file container is empty before populating the sound file list.
+    soundFilesContainer.innerHTML = "";
     for (let sound of currentGame.soundNames) {
         a = document.createElement("a");
+        if(currentGame.chosenSound === sound){
+            //if this sound is chosen,
+            a.classList.add("chosen");
+        }
         a.classList.add("dropdown-item");
         a.setAttribute("href", "#");
         a.textContent = sound;
-        document.getElementById("soundFileSettings").appendChild(a);
+        soundFilesContainer.appendChild(a);
     }
-    //TODO add chosen class to soundnames and event listener. 
-
-
 }
 
 // ----- Others ----- 
@@ -243,9 +250,6 @@ document.querySelector(".buttonNext").addEventListener("click", function (event)
 
     //go to next question
     currentGame.next();
-
-    //hide the previous feedback
-    hide(FEEDBACK_VIEW);
 });
 
 // ----- Result View - #resultViewContainer -----
@@ -277,8 +281,6 @@ document.getElementById("btnClear").addEventListener("click", function () {
     //prevent the page from reloading.
     event.preventDefault();
 
-    //TODO test this
-
     //remove all saved highscores
     highscoreRecord.clear();
 
@@ -292,9 +294,9 @@ document.getElementById("quizModeSettings").addEventListener("click", function (
     //prevent the page from reloading.
     event.preventDefault();
 
-    let mode = event.target.textContent;
+    let mode = event.target.getAttribute("data-info");
     //save the change
-    currentGame.changeSpeed(mode);
+    currentGame.changeSpeed = mode;
 
     //first remove chosen status from target's sibling
     demote(this.querySelector(".chosen"));
@@ -303,13 +305,23 @@ document.getElementById("quizModeSettings").addEventListener("click", function (
     promote(event.target);
 });
 
+function transferChosen (from, to){
+    demote(from);
+    promote(to);
+}
+
 document.getElementById("soundSettings").addEventListener("click", function () {
     //prevent the page from reloading.
     event.preventDefault();
-
-    if (event.target.classList.contains("dropdown-toggle") === true) {
-        //if dropdown 
-
+    if (event.target.matches("a")) {
+        //if dropdown item
+        currentGame.changeSound = event.target.textContent;
+        transferChosen(document.getElementById("soundSettings").querySelector("a.chosen"),event.target);
+    }else if(event.target.matches("button") && !event.target.classList.contains("dropdown-toggle")){
+        isOn = event.target.getAttribute("data-info") === "true" ? true : false;
+        currentGame.toggleSound =isOn;
+        transferChosen(document.getElementById("soundSettings").querySelector("button.chosen"),event.target);
+        
     }
 });
 
@@ -320,6 +332,8 @@ document.getElementById("btnCloseSettings").addEventListener("click", function (
     // go back to landing page
     closeOthers([HEADER, LANDING_VIEW]);
 });
+
+
 
 // -----------------------------------
 //   Action when the page is loaded 

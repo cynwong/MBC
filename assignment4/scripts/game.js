@@ -62,36 +62,44 @@ class Game {
     }
 
     // config
+    get activeSpeedMode() {
+        return Object.keys(this._config.modes).find(key => this._config.modes[key].timeLimit === this._config.questionTimeLimit);
+    }
     get soundNames() {
         return this._config.sounds.map(sound => sound.name);
-    }
-    get activeSpeedMode() {
-        return Object.keys(this._config.modes).find(key => this._config.modes[key] === this._config.questionTimeLimit);
     }
     get isSoundOn() {
         return this._config.isSoundOn;
     }
+    get chosenSound() {
+        return this._config.activeSound;
+    }
 
-    changeSpeed(mode) {
+    set changeSpeed(mode) {
         mode = mode.toLowerCase();
         if (mode === "slow" || mode === "normal" || mode === "fast") {
-            this._config.questionTimeLimit = this._config.modes[mode];
+            this._config.questionTimeLimit = this._config.modes[mode].timeLimit;
+            this._config.penaltyForIncorrectAnswer = this._config.modes[mode].penaltyPoints;
+            this._config.awardForCorrectAnswer = this._config.modes[mode].awardPoints;
             this.saveConfig();
         }
     }
 
 
 
-    changeSound(name) {
-        if (this.soundNames.includes[name]) {
+    set changeSound(name) {
+        let sounds = this.soundNames;
+        if (Object.values(this.soundNames).indexOf(name) !== -1) {
+            console.log("has file")
             //if quiz has sound file
             //change the activesound to this name
             this._config.activeSound = name;
             this.saveConfig();
         }
     }
-    toggleSound(isOn) {
+    set toggleSound(isOn) {
         if (typeof (isOn) === "boolean" && this._config.isSoundOn !== isOn) {
+            console.log("changing sound on off")
             this._config.isSoundOn = isOn;
             this.saveConfig();
         }
@@ -133,6 +141,9 @@ class Game {
     renderQuiz(quiz) {
         let choiceElement;
         let answersContainer = document.getElementById(this._board.answers);
+
+        //hide the feedback section for now. 
+        hide(FEEDBACK_VIEW);
 
         //display question
         document.getElementById(this._board.question).textContent = quiz.title;

@@ -1,4 +1,3 @@
-/* TODO translate to  */
 
 /*  Defaults */
 :root {
@@ -24,6 +23,7 @@
 
 body {
     background-color: var(--color-light-grey);
+    color: var(--color-dark-purple);
 }
 
 /* Header section */
@@ -118,10 +118,6 @@ header div {
 
 #quizViewContainer {
     padding: 0;
-}
-
-.right {
-    text-align: right;
 }
 
 #quizQuestion {
@@ -276,11 +272,41 @@ header div {
 }
 
 
-
-
 .highscoreFooter {
     margin-top: 2rem;
 }
+
+#soundFileSettings{
+    background-color: var(--color-pale-pink);
+    color: var(--color-indigo);
+    text-align: center;
+
+}
+
+.dropdown-item.chosen{
+    font-weight: bold;
+    /* background-color: var(--color-indigo); */
+    color:var(--color-indigo);
+    text-decoration: underline overline double var(--color-indigo);
+}
+
+.dropdown-item{
+    background-color: var(--color-pale-pink);
+    color: var(--color-indigo);
+}
+
+
+.dropdown-item:hover {
+    outline            : 1px solid transparent;
+    color: var(--color-indigo);
+    background-color: var(--color-white);
+    border-radius      : 5px;
+    font-weight        : bold;
+    text-decoration    : none;
+}
+
+
+
 
 /* Medium devices (tablets, less than 992px) */
 @media (max-width: 991.98px) {

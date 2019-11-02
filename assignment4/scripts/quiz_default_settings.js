@@ -3,9 +3,21 @@ const quizConfig = {
     maxQuestionsPerSession : 5,
     questionTimeLimit : 15,  //seconds
     modes : {
-        slow : 25,
-        normal: 15,
-        fast: 5, 
+        slow : {
+            timeLimit : 25,
+            awardPoints: 5, 
+            penaltyPoints: 15,
+        },
+        normal: {
+            timeLimit: 15,
+            awardPoints: 15, 
+            penaltyPoints: 15,
+        },
+        fast: {
+            timeLimit: 5,
+            awardPoints: 25,
+            penaltyPoints: 15
+        }, 
     },
 
     //marks
@@ -27,7 +39,7 @@ const quizConfig = {
         },
         {
             name: "Buzz Fade Out",
-            url: "./sound/buzz_fade_out.mp3/"
+            url: "./sound/buzz_fade_out.mp3"
         },
     ],
 
