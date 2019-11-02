@@ -51,14 +51,12 @@ class Game {
         this._questionTimeRemaining = this._config.questionTimeLimit;
         this._sessionTimeRemaining = this._questionTimeRemaining * this._config.maxQuestionsPerSession;
 
-        if (this._config.isSoundOn) { this.setSoundSystem(); } //check if user turn on the quiz sound
-
-    }
-
-    // set up Buzz sound 
-    setSoundSystem() {
+        //set up sound system
         let sound = this._config.sounds.filter(sound => sound.name === this._config.activeSound)[0];
         this._buzz = new Audio(sound.url);
+        this._buzz.muted = !this._config.isSoundOn;
+    
+
     }
 
     // config
