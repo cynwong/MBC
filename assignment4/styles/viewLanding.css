@@ -1,0 +1,5 @@
+#landingViewContainer {
+    background-color: var(--color-light-grey);
+    text-align      : center;
+    padding         : 2rem;
+}

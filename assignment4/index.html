@@ -9,7 +9,12 @@
     <!-- StyleSheets -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="./styles/styles.css">
+    <link rel="stylesheet" href="./styles/common.css">
+    <link rel="stylesheet" href="./styles/viewLanding.css">
+    <link rel="stylesheet" href="./styles/viewQuiz.css">
+    <link rel="stylesheet" href="./styles/viewResult.css">
+    <link rel="stylesheet" href="./styles/viewHighscores.css">
+    <link rel="stylesheet" href="./styles/viewSettings.css">
 
     <title>Code Quiz</title>
 </head>
@@ -54,6 +59,7 @@
 
     <section id="highscoresViewContainer" class="jumbotron sectionContainer hidden">
         <h3>Highscores</h3>
+
         <div class="accordion" id="highscoreList">
             <div class="card">
                 <div class="card-header" id="headingOne">
@@ -106,8 +112,7 @@
                 </div>
             </div>
         </div>
-
-        <div class="footer">
+        <div class="hsButtonContainer">
             <a class="button" id="btnBack" href="#" role="button">Go Back</a>
             <a class="button" id="btnClear" href="#" role="button">Clear Highscores</a>
         </div>

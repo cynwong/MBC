@@ -1,0 +1,92 @@
+#quizViewContainer {
+    padding: 0;
+}
+
+#quizQuestion {
+    background-color: var(--color-dark-purple);
+    color           : var(--color-white);
+    margin          : 0;
+    padding         : 1.5rem;
+}
+
+#answerChoices {
+    counter-reset: count;
+}
+
+.choice::before {
+    counter-increment: count;
+    content          : counter(count) ".  ";
+}
+
+.choice {
+    display         : block;
+    cursor          : pointer;
+    border          : 0;
+    background-color: hsl(296, 20%, 94%);
+    color           : var(--color-dark-purple);
+    width           : 100%;
+    padding         : 1rem;
+    padding-left    : 10%;
+    text-align      : left;
+    border-radius   : 0.3rem;
+    transition      : background 1s;
+}
+
+.choice:active {
+    background: var(--color-pale-pink-ripple),
+}
+
+.choice:focus {
+    outline: none;
+}
+
+.choice:hover {
+    border: 2px solid var(--color-dark-purple);
+}
+
+.choice.disabled {
+    cursor: default;
+}
+
+.choice.disabled:hover {
+    border: none;
+}
+
+.choice.disabled.chosen {
+    border          : 2px solid var(--color-dark-purple);
+    background-color: var(--color-pale-pink);
+}
+
+
+.footer {
+    text-align: right;
+    color     : var(--color-grey);
+    margin-top: 3rem;
+    border-top: 2px solid var(--color-gray);
+    min-height: 80px;
+    width     : 100%;
+    position  : relative;
+}
+.separator {
+    height          : 2px;
+    width           : 100%;
+    background-color: hsla(0, 0%, 76%, 1);
+}
+
+#feedback {
+    margin-top  : 1.5rem;
+    margin-left : 2rem;
+    display     : inline-block;
+    margin-right: 21rem;
+}
+
+.buttonNext {
+    background-color: var(--color-dark-purple);
+    transition      : background 1s, color 1s;
+}
+
+.buttonNext:active {
+    background-color: var(--color-dark-purple-ripple);
+    color           : var(--color-dark-purple);
+    transition      : background 0s;
+}

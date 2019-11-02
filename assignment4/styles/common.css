@@ -1,0 +1,151 @@
+
+/*  Defaults */
+:root {
+    /* site default colors */
+    /* grey scales */
+    --color-white     : hsl(0, 17%, 94%);
+    --color-light-grey: hsl(0, 2%, 90%);
+    --color-grey      : hsl(0deg, 0%, 55%);
+    --color-black     : hsl(0deg, 0%, 13%);
+
+    /* purple */
+    --color-pale-pink         : hsl(296deg, 49%, 81%);
+    --color-pale-pink-ripple  : hsla(296deg, 49%, 81%, 0.5);
+    --color-indigo            : hsl(266deg, 97%, 35%);
+    --color-indigo-ripple     : hsl(266deg, 97%, 35%, 0.33);
+    --color-dark-purple       : hsl(266deg, 93%, 15%);
+    --color-dark-purple-ripple: hsl(266deg, 93%, 15%, 0.33);
+
+    /* red */
+    --color-alert: hsl(0deg, 100%, 47%);
+    font-size    : 16px;
+}
+
+body {
+    background-color: var(--color-light-grey);
+    color: var(--color-dark-purple);
+}
+
+/* Header section */
+header {
+    display   : block;
+    margin-top: 0.5rem;
+    text-align: right;
+}
+
+header div {
+    display: inline-block;
+    margin : 0 8px;
+    position: relative;
+}
+
+.link{
+    color  : var(--color-indigo);
+    padding: 5px;
+
+}
+
+.link::after {
+    position        : absolute;
+    top             : 1.7rem;
+    left            : 0;
+    width: 100%;
+    height          : 3px;
+    background-color: var(--color-indigo);
+    content         : '';
+    opacity         : 0;
+    transition      : transform 0.3s, opacity 0.3s;
+    transform-origin: 100% 0;
+    transform       : rotate(0deg) translateX(50%);
+    transform       : translateY(-10px);
+    box-sizing      : border-box;
+}
+
+.link:hover {
+    outline            : 1px solid transparent;
+    color: var(--color-indigo);
+    border-radius      : 5px;
+    font-weight        : bold;
+    text-decoration    : none;
+}
+
+.link:hover::after {
+    opacity  : 1;
+    transform: translateY(0px);
+}
+
+/* Main Contents */
+.sectionContainer {
+    margin          : 4rem auto 0.5rem;
+    width           : 70%;
+    background-color: var(--color-white);
+    display         : block;
+    padding         : 1rem 1.5rem;
+}
+
+.button {
+    background-color: var(--color-indigo);
+    color           : var(--color-light-grey);
+    display         : inline-block;
+    text-decoration : none;
+    margin          : 1rem;
+    padding         : 0.8rem 1.5rem;
+    border-radius   : 0.3rem;
+    box-shadow      : 0 0 6px var(--color-dark-purple);
+    transition      : background 1s, color 1s;
+}
+
+.button:focus {
+    outline: none;
+}
+
+.button:active {
+    background     : var(--color-indigo-ripple);
+    color          : var(--color-dark-grey);
+    outline        : 1px solid transparent;
+    transform      : rotateX(38deg);
+    transform-style: preserve-3d;
+    transition     : background 0s, color 0s;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Medium devices (tablets, less than 992px) */
+@media (max-width: 991.98px) {
+    .sectionContainer {
+        width: 70%;
+    }
+}
+
+/* Small devices (landscape phones, less than 768px) */
+@media (max-width: 768px) {
+    :root {
+        font-size: 14px;
+    }
+
+    .sectionContainer {
+        width: 80%;
+    }
+}
+
+/* Extra small devices (portrait phones, less than 576px) */
+@media (max-width: 576px) {
+    :root {
+        font-size: 12px;
+    }
+
+    .sectionContainer {
+        width: 90%;
+    }
+
+    .button {
+        margin-left : auto;
+        margin-right: auto;
+    }
+
+    #feedback {
+        margin-right: 169px;
+    }
+}

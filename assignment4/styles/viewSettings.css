@@ -1,0 +1,74 @@
+.setting {
+    min-height: 10rem;
+}
+
+.settings > div {
+    display: block;
+    margin: 1rem auto;
+}
+.label {
+    padding: 0.375rem 0.75rem; 
+    display:inline-block;
+}
+
+.btn.changeMode{
+    background: var(--color-dark-purple);
+    color: var(--color-white);
+    transition: background 1s;
+    
+}
+
+.btn.changeMode.left{
+    border-bottom-left-radius: 8px;
+    border-top-left-radius: 8px;
+}
+.btn.changeMode.right{
+    border-bottom-right-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.changeMode:hover:enabled{
+    background-color: var(--color-indigo);
+    cursor:pointer;
+    font-weight: 600;
+}
+
+.changeMode:active:enabled{
+    transition: background 0s;
+    background-color: var(--color-indigo-ripple);
+}
+
+.changeMode.chosen{
+    z-index: 2;
+    background-color: var(--color-indigo)
+
+}
+
+#soundFileSettings{
+    background-color: var(--color-pale-pink);
+    color: var(--color-indigo);
+    text-align: center;
+
+}
+
+.dropdown-item.chosen{
+    font-weight: bold;
+    /* background-color: var(--color-indigo); */
+    color:var(--color-indigo);
+    text-decoration: underline overline double var(--color-indigo);
+}
+
+.dropdown-item{
+    background-color: var(--color-pale-pink);
+    color: var(--color-indigo);
+}
+
+
+.dropdown-item:hover {
+    outline            : 1px solid transparent;
+    color: var(--color-indigo);
+    background-color: var(--color-white);
+    border-radius      : 5px;
+    font-weight        : bold;
+    text-decoration    : none;
+}

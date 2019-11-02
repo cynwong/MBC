@@ -1,0 +1,4 @@
+.alert {
+    background-color: var(--color-alert);
+    color           : var(--color-white);
+}
