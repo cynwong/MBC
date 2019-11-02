@@ -166,7 +166,7 @@ function saveResult() {
         return false;
     }
     //save the score
-    highscoreRecord.saveScore(user, currentGame.result);
+    highscoreRecord.saveScore(user, currentGame.result, currentGame.gameMode, currentGame.NoOfQuestions);
     return true;
 }
 

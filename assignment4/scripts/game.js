@@ -62,6 +62,12 @@ class Game {
     }
 
     // config
+    get gameMode(){
+        return this._config.currentMode;
+    }
+    get NoOfQuestions(){
+        return this._config.maxQuestionsPerSession;
+    }
     get activeSpeedMode() {
         return Object.keys(this._config.modes).find(key => this._config.modes[key].timeLimit === this._config.questionTimeLimit);
     }
@@ -78,14 +84,13 @@ class Game {
     set changeSpeed(mode) {
         mode = mode.toLowerCase();
         if (mode === "slow" || mode === "normal" || mode === "fast") {
+            this._config.mode = mode; 
             this._config.questionTimeLimit = this._config.modes[mode].timeLimit;
             this._config.penaltyForIncorrectAnswer = this._config.modes[mode].penaltyPoints;
             this._config.awardForCorrectAnswer = this._config.modes[mode].awardPoints;
             this.saveConfig();
         }
     }
-
-
 
     set changeSound(name) {
         let sounds = this.soundNames;

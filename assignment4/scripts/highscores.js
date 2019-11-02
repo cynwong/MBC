@@ -18,6 +18,7 @@ class Highscores {
             this._highscores.push(highscore);
             this.save();
         }
+        console.log(this._highscores);
     }
 
     load () {
@@ -27,13 +28,16 @@ class Highscores {
         }
     }
 
-    saveScore ( user, score ) {
+    saveScore ( user, score, mode, noOfQuestions) {
         if( user ) {
             //only save if there is a high score. 
             this.highscores = {
                 initials : user,
                 score : score,
+                gameMode : mode, 
+                noOfQuestions: noOfQuestions,
             };
+            console.log('save')
         }
     }
 

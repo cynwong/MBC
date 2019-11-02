@@ -2,6 +2,8 @@ const quizConfig = {
     //quiz game settings
     maxQuestionsPerSession : 5,
     questionTimeLimit : 15,  //seconds
+
+    currentMode: "normal",
     modes : {
         slow : {
             timeLimit : 25,
