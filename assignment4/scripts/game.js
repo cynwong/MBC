@@ -62,10 +62,10 @@ class Game {
     }
 
     // config
-    get gameMode(){
+    get gameMode() {
         return this._config.currentMode;
     }
-    get NoOfQuestions(){
+    get NoOfQuestions() {
         return this._config.maxQuestionsPerSession;
     }
     get activeSpeedMode() {
@@ -84,7 +84,7 @@ class Game {
     set changeSpeed(mode) {
         mode = mode.toLowerCase();
         if (mode === "slow" || mode === "normal" || mode === "fast") {
-            this._config.mode = mode; 
+            this._config.currentMode = mode;
             this._config.questionTimeLimit = this._config.modes[mode].timeLimit;
             this._config.penaltyForIncorrectAnswer = this._config.modes[mode].penaltyPoints;
             this._config.awardForCorrectAnswer = this._config.modes[mode].awardPoints;
@@ -95,7 +95,6 @@ class Game {
     set changeSound(name) {
         let sounds = this.soundNames;
         if (Object.values(this.soundNames).indexOf(name) !== -1) {
-            console.log("has file")
             //if quiz has sound file
             //change the activesound to this name
             this._config.activeSound = name;
@@ -104,7 +103,6 @@ class Game {
     }
     set toggleSound(isOn) {
         if (typeof (isOn) === "boolean" && this._config.isSoundOn !== isOn) {
-            console.log("changing sound on off")
             this._config.isSoundOn = isOn;
             this.saveConfig();
         }

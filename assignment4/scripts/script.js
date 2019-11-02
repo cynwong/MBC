@@ -96,23 +96,35 @@ function renderResult(score) {
 }
 
 //render highscore view
-function renderhighscores() {
-    // quiz data is loaded when page is being renderd. So assume we have the data now. 
-    let listElement = document.getElementById("highscoreList");
+function renderHighscoresView() {
+    let records = highscoreRecord.getAllSortedHighScores();
+
+    //render each list in relevant section. 
+    renderhighscores(records.slow, document.querySelector(".highscoreList.slow"));
+    renderhighscores(records.normal, document.querySelector(".highscoreList.normal"));
+    renderhighscores(records.fast, document.querySelector(".highscoreList.fast"));
+
+    //expand the current mode to show the result. i.e. to add class to div with data-parent property
+
+    $(`.highscoreList.${currentGame.gameMode}`).parent().parent().collapse("show");
+
+    closeOthers([HEADER, HIGHSCORE_VIEW]);
+}
+function renderhighscores(records, listElement) {
     let li;
     //clean the displayed list
     listElement.innerHTML = "";
     //populate the list
-    highscoreRecord.highscores.forEach(function (highscore) {
+    records.forEach(function (highscore) {
         li = document.createElement("li");
         li.textContent = highscore.initials + "  -  " + highscore.score;
         listElement.appendChild(li);
     });
-    closeOthers([HIGHSCORE_VIEW]);
+
 };
 
 //transfer the chosen status from previous chosen to new one. 
-function transferChosen (from, to){
+function transferChosen(from, to) {
     demote(from);
     promote(to);
 }
@@ -131,19 +143,19 @@ function demote(element) {
 
 // construct Quiz Setting View for display
 function renderQuizSettings() {
-    
+
     let a;
     let soundFilesContainer = document.getElementById("soundFileSettings");
-    
+
     // set chosen status according to currentGame settings
     promote(document.getElementById("quizModeSettings").querySelector(`[data-info="${currentGame.activeSpeedMode}"]`));
     promote(document.getElementById("soundSettings").querySelector(`[data-info="${currentGame.isSoundOn}"]`));
-    
+
     //make sure sound file container is empty before populating the sound file list.
     soundFilesContainer.innerHTML = "";
     for (let sound of currentGame.soundNames) {
         a = document.createElement("a");
-        if(currentGame.chosenSound === sound){
+        if (currentGame.chosenSound === sound) {
             //if this sound is chosen,
             a.classList.add("chosen");
         }
@@ -205,7 +217,7 @@ document.getElementById("highscores").addEventListener("click", function (event)
     event.preventDefault();
 
     //construct the highscores Page
-    renderhighscores();
+    renderHighscoresView();
 
     //hide header and landingPageContainer and
     //show highScorepage
@@ -273,7 +285,7 @@ document.getElementById("btnSubmit").addEventListener("click", function (event) 
     }
 
     //go to highscore view
-    renderhighscores();
+    renderHighscoresView(currentGame.mode);
 });
 
 // ----- Highscore Records View - #highscoresViewContainer -----
@@ -294,7 +306,7 @@ document.getElementById("btnClear").addEventListener("click", function () {
     highscoreRecord.clear();
 
     //re-render the page
-    renderhighscores();
+    renderHighscoresView();
 });
 
 // ----- Quiz Setting View - #quizSettingViewContainer -----
@@ -318,12 +330,12 @@ document.getElementById("soundSettings").addEventListener("click", function () {
     if (event.target.matches("a")) {
         //if dropdown item
         currentGame.changeSound = event.target.textContent;
-        transferChosen(document.getElementById("soundSettings").querySelector("a.chosen"),event.target);
-    }else if(event.target.matches("button") && !event.target.classList.contains("dropdown-toggle")){
+        transferChosen(document.getElementById("soundSettings").querySelector("a.chosen"), event.target);
+    } else if (event.target.matches("button") && !event.target.classList.contains("dropdown-toggle")) {
         isOn = event.target.getAttribute("data-info") === "true" ? true : false;
-        currentGame.toggleSound =isOn;
-        transferChosen(document.getElementById("soundSettings").querySelector("button.chosen"),event.target);
-        
+        currentGame.toggleSound = isOn;
+        transferChosen(document.getElementById("soundSettings").querySelector("button.chosen"), event.target);
+
     }
 });
 

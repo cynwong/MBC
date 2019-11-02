@@ -54,9 +54,59 @@
 
     <section id="highscoresViewContainer" class="jumbotron sectionContainer hidden">
         <h3>Highscores</h3>
-        <ol id="highscoreList">
+        <div class="accordion" id="highscoreList">
+            <div class="card">
+                <div class="card-header" id="headingOne">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link btnCollapse" type="button" data-toggle="collapse" data-target="#collapseOne">
+                            Fast Mode
+                        </button>
+                    </h2>
+                </div>
 
-        </ol>
+                <div id="collapseOne" class="collapse" data-parent="#highscoreList">
+                    <div class="card-body">
+                        <ol class="highscoreList fast">
+
+                        </ol>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header" id="headingTwo">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link btnCollapse" type="button" data-toggle="collapse"
+                            data-target="#collapseTwo">
+                            Normal Mode
+                        </button>
+                    </h2>
+                </div>
+                <div id="collapseTwo" class="collapse" data-parent="#highscoreList">
+                    <div class="card-body">
+                        <ol class="highscoreList normal">
+
+                        </ol>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header" id="headingThree">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link btnCollapse" type="button" data-toggle="collapse" data-target="#collapseThree">
+                            Slow Mode
+                        </button>
+                    </h2>
+                </div>
+                <div id="collapseThree" class="collapse" data-parent="#highscoreList">
+                    <div class="card-body">
+                        <ol class="highscoreList slow">
+
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="footer">
             <a class="button" id="btnBack" href="#" role="button">Go Back</a>
             <a class="button" id="btnClear" href="#" role="button">Clear Highscores</a>
@@ -80,7 +130,8 @@
                     <button type="button" data-info="false" class="btn changeMode left">Mute</button>
                     <button type="button" data-info="true" class="btn changeMode">On</button>
                     <div class="dropdown dropdownSoundFiles">
-                        <button class="btn changeMode right dropdown-toggle" type="button" data-toggle="dropdown"></button>
+                        <button class="btn changeMode right dropdown-toggle" type="button"
+                            data-toggle="dropdown"></button>
                         <div class="dropdown-menu" id="soundFileSettings">
                             <!-- <a class="dropdown-item" href="#"></a> -->
                         </div>

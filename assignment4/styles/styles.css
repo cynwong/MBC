@@ -305,6 +305,12 @@ header div {
     text-decoration    : none;
 }
 
+.btnCollapse{
+    color: var(--color-indigo);
+}
+.btnCollapse:hover{
+    color: var(--color-indigo);
+}
 
 
 
