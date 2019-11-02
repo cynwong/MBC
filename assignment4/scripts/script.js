@@ -111,23 +111,25 @@ function renderhighscores() {
     closeOthers([HIGHSCORE_VIEW]);
 };
 
-
-function promote (element) {
+// set the button to chosen status
+function promote(element) {
     element.setAttribute("disabled", "");
     element.classList.add("chosen");
 }
 
-function demote (element) {
+// remove button's chosen status
+function demote(element) {
     element.removeAttribute("disabled");
     element.classList.remove("chosen");
 }
 
+// construct Quiz Setting View for display
 function renderQuizSettings() {
-    // set chosen status according to myQuiz settings
-    promote(document.getElementById("quizModeSettings").querySelector(`[data-info="${myQuiz.activeSpeedMode}"]`));
-    promote(document.getElementById("soundSettings").querySelector(`[data-info="${myQuiz.isSoundOn}"]`));
+    // set chosen status according to currentGame settings
+    promote(document.getElementById("quizModeSettings").querySelector(`[data-info="${currentGame.activeSpeedMode}"]`));
+    promote(document.getElementById("soundSettings").querySelector(`[data-info="${currentGame.isSoundOn}"]`));
     let a;
-    for(let sound of myQuiz.soundNames){
+    for (let sound of currentGame.soundNames) {
         a = document.createElement("a");
         a.classList.add("dropdown-item");
         a.setAttribute("href", "#");
@@ -151,7 +153,7 @@ function saveResult() {
         return false;
     }
     //save the score
-    highscoreRecord.saveScore(user, myQuiz.result);
+    highscoreRecord.saveScore(user, currentGame.result);
     return true;
 }
 
@@ -169,13 +171,13 @@ function markUserAnswer(answer) {
         alertUser("Error: Question text missing. Cannot validate the answer. ", document.getElementById(QUIZ_VIEW));
         return false;
     }
-    let isCorrect = myQuiz.markAnswer(question, answer);
+    let isCorrect = currentGame.markAnswer(question, answer);
     if (isCorrect === true) {
         //if correct,
         document.getElementById("feedback").textContent = quizConfig.feedbackForCorrectAnswer;
     } else {
         //wrong answer, so increase the wrong answer count
-        myQuiz.buzz();
+        currentGame.buzz();
         document.getElementById("feedback").textContent = quizConfig.feedbackForIncorrectAnswer;
     }
 }
@@ -212,7 +214,7 @@ document.getElementById("btnStart").addEventListener("click", function (event) {
     event.preventDefault();
 
     //render quiz page
-    myQuiz.start();
+    currentGame.start();
     //switch to quiz view
     closeOthers([QUIZ_HEADER, QUIZ_VIEW]);
 });
@@ -233,6 +235,17 @@ document.getElementById("answerChoices").addEventListener("click", function (eve
     //display feedback to user
     show(FEEDBACK_VIEW);
 
+});
+
+document.querySelector(".buttonNext").addEventListener("click", function (event) {
+    //prevent the page from reloading.
+    event.preventDefault();
+
+    //go to next question
+    currentGame.next();
+
+    //hide the previous feedback
+    hide(FEEDBACK_VIEW);
 });
 
 // ----- Result View - #resultViewContainer -----
@@ -281,17 +294,13 @@ document.getElementById("quizModeSettings").addEventListener("click", function (
 
     let mode = event.target.textContent;
     //save the change
-    myQuiz.changeSpeed(mode);
+    currentGame.changeSpeed(mode);
 
     //first remove chosen status from target's sibling
     demote(this.querySelector(".chosen"));
-    // prevChosenElement.removeAttribute("disabled");
-    // prevChosenElement.classList.remove("chosen");
 
     //Now add chosen status to the target
     promote(event.target);
-    // event.target.classList.add("chosen");
-    // event.target.setAttribute("disabled", "");
 });
 
 document.getElementById("soundSettings").addEventListener("click", function () {
@@ -299,7 +308,8 @@ document.getElementById("soundSettings").addEventListener("click", function () {
     event.preventDefault();
 
     if (event.target.classList.contains("dropdown-toggle") === true) {
-        //if down
+        //if dropdown 
+
     }
 });
 
@@ -315,4 +325,4 @@ document.getElementById("btnCloseSettings").addEventListener("click", function (
 //   Action when the page is loaded 
 // -----------------------------------
 let highscoreRecord = new Highscores(quizConfig.localStorageKey);
-let myQuiz = new Game();
+let currentGame = new Game();
