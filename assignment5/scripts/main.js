@@ -3,17 +3,14 @@
 $(document).ready(function(){
 
     
-    //display date in p#currentDay 
-    function displayDate(date){
-        $("#currentDay").html(date);
-    }
     
-    //get date
-    function displayToday(){
-        displayDate(moment().format('dddd, MMMM Do'))
-    }
 
 
     //init
-    displayToday();
+    currentCalendar = new Calendar();
+    console.log(currentCalendar.today)
+    calRenderer = new dayCalendarRenderer(currentCalendar.today);
+    calRenderer.init();
+    
+
 });
