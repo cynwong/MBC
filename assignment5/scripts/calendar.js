@@ -36,6 +36,15 @@ class Calendar {
     get tomorrow() {
         return this._moment.add(1, "days");
     }
+
+    //get time
+
+    //get Current hour
+    //return current hour in 24hr format
+    get currentHour(){
+            //returning in the format 01 - 24 
+            return this._moment.format(`HH`); 
+    }
 }
 
 
