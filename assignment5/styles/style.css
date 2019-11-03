@@ -69,3 +69,14 @@ textarea{
   font-size: 20px;
   transition: all .3s ease-in-out;
 }
+
+
+
+/* Small devices (landscape phones, less than 768px) */
+@media (max-width: 767.98px) { ... }
+
+ /* Extra small devices (portrait phones, less than 576px) */
+@media (max-width: 575.98px) { 
+  
+
+}

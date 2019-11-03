@@ -20,25 +20,48 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
     integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
   <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet" />
-  
-  <link rel="stylesheet" href="style.css" />
+
+  <link rel="stylesheet" href="./styles/style.css" />
+  <link rel="stylesheet" href="./styles/common.css">
+  <link rel="stylesheet" href="./styles/header.css">
+  <link rel="stylesheet" href="./styles/container.css">
+  <link rel="stylesheet" href="./styles/footer.css">
 
   <title>Work Day Scheduler</title>
 </head>
 
 <body>
-  <header class="jumbotron">
-    <h1 class="display-3">Work Day Scheduler</h1>
-    <p class="lead">A simple calendar app for scheduling your work day</p>
-    <p id="currentDay" class="lead"></p>
+  <div class="blackbar"></div>
+  <header class="jumbotron jumbotron-fluid">
+    <h1 class="display-sm-3">Work Day Scheduler</h1>
+    <div class="d-flex flex-row justify-content-sm-around align-items-middle header-content">
+      <button class="previous">
+        <span class="fa fa-arrow-left"></span>
+      </button>
+
+      <div>
+        <p class="lead-sm">A simple calendar app for scheduling your work day</p>
+        <p id="currentDay" class="lead-sm"></p>
+      </div>
+
+      <button class="next">
+        <span class="fa fa-arrow-right"></span>
+      </button>
+
+    </div>
+
   </header>
   <div class="container">
     <!-- Timeblocks go here -->
   </div>
 
+  <div class="footer">
+    <div class="blackbar"></div>
+  </div>
+
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-  <script src="./main.js"></script>
+  <script src="./scripts/main.js"></script>
 </body>
 
 </html>
