@@ -4,7 +4,7 @@ class dayCalendarRenderer {
     constructor(date, time) {
         //DOM ELements
         this._currentDay = $("#currentDay");
-        this._container = $(".container");
+        this._container = $(".container-fluid");
 
         //renderer defaults
         this._date = date;
@@ -22,19 +22,19 @@ class dayCalendarRenderer {
     }
 
     get is12hTimeFormat() {
-        return this._timeFormat.localeCompare("12h");
+        return this._timeFormat.localeCompare("12h") === 0;
     }
     //display date in p#currentDay 
     displayDate(date) {
         this._currentDay.html(date.format("dddd, MMMM Do"));
     }
 
-    checkTime(time){
-        if(time < this._currentTime){
+    checkTime(time) {
+        if (time < this._currentTime) {
             return "past";
-        } else if (time === this._currentTime){
+        } else if (time === this._currentTime) {
             return "present";
-        }else if( time > this._currentTime){
+        } else if (time > this._currentTime) {
             //past 
             return "future";
         }
@@ -42,9 +42,9 @@ class dayCalendarRenderer {
 
     getDayHourDisplay(hour) {
 
-        
+
         let row = $("<div />", { "class": "row" });
-        
+
 
         // description column
         let currentStyle = "";
@@ -53,29 +53,27 @@ class dayCalendarRenderer {
         });
         //Past/Present/Future classes. 
         colDescription.addClass(this.checkTime(hour));
+        colDescription.append($("<textarea>"));
 
         //hour column
         let colTime = $("<div />", {
             "class": "col-2 col-sm-1 hour",
         });
-        
+
         //check if we need fix and how to display the time. 
         let suffix = this.is12hTimeFormat ? this._suffixAM : "";
-        if (hour > 12 && this.is12hTimeFormat) {
-            //afternoon
-            hour -= 12;
-        } else if (hour === 12) {
-            
-            //at midday, time suffix changed. 
+        if (hour >= 12 && this.is12hTimeFormat) {
+            //afternoon, time suffix needs to be changed. 
+            if (hour > 12) { hour -= 12; }
             suffix = this.is12hTimeFormat ? this._suffixPM : "";
         }
-        colTime.html(hour+suffix); //set the content
-        
-        
+        colTime.html(hour + suffix); //set the content
+
+
 
         //save button
         let colSaveBtn = $("<div />", {
-            "class": "col saveBtn",
+            "class": "col-2 col-sm-1 saveBtn",
             "html": '<span class="fa fa-save"></span>',
         });
 
@@ -84,11 +82,11 @@ class dayCalendarRenderer {
         //hour column
         return row;
     }
-    
+
     renderDayView() {
         let hourContainer;
         for (let i = this._startHour; i <= this._endHour; i++) {
-            this._container.append( this.getDayHourDisplay(i));
+            this._container.append(this.getDayHourDisplay(i));
         }//TODO this is not rendering Check if this is being called. 
     }
 
