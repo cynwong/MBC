@@ -1,51 +1,73 @@
 
 class dayCalendarRenderer {
 
-    constructor(date, time) {
+    constructor(calendar) {
         //DOM ELements
         this._currentDay = $("#currentDay");
         this._container = $(".container-fluid");
 
         //renderer defaults
-        this._date = date;
-        this._currentTime = time;
+        this._calendar = calendar;
+        //TODO do we need these vars? 
+        this._date = calendar.thisDay;
+        this._currentTime = parseInt(calendar.currentHour);
+
+        //calendar data. 
         this._startHour = 9;
         this._endHour = 17;
-        this._suffixAM = "AM";
-        this._suffixPM = "PM";
         this._timeFormat = "12h"; //24h or 12h time format. 
+
+        //default strings
+        this._SUFFIX_AM = "AM";
+        this._SUFFIX_PM = "PM";
+        this._CLASSNAME_PAST = "past";
+        this._CLASSNAME_PRESENT = "present";
+        this._CLASSNAME_FUTURE = "future";
+
+        this.resetDisplay();
     }
 
-    init() {
-        this.displayDate(this._date);
+    resetDisplay() {
+        this.displayDate(this.date);
         this.renderDayView();
     }
 
+    get date () {
+        return this._date;
+    }
     get is12hTimeFormat() {
         return this._timeFormat.localeCompare("12h") === 0;
     }
     //display date in p#currentDay 
-    displayDate(date) {
-        this._currentDay.html(date.format("dddd, MMMM Do"));
+    displayDate() {
+        this._currentDay.html(this.date.format("dddd, MMMM Do"));
     }
 
     checkTime(time) {
-        if (time < this._currentTime) {
-            return "past";
-        } else if (time === this._currentTime) {
-            return "present";
-        } else if (time > this._currentTime) {
-            //past 
-            return "future";
+        let calendarDate = this.date.format("L");
+        let currentDate = moment().format("L");
+
+        if(calendarDate.localeCompare(currentDate) === -1){
+            //if calender current's day is in the past a.k.a older date
+            // e.g a day before or a month before
+            return this._CLASSNAME_PAST;
+        } else if (calendarDate.localeCompare(currentDate) === 1){
+            // if current day is in the future. aka later date
+            return this._CLASSNAME_FUTURE;
+        } else if(calendarDate.localeCompare(currentDate) === 0){
+            // if same day,  check the time 
+            if (time < this._currentTime) {
+                return this._CLASSNAME_PAST;
+            } else if (time === this._currentTime) {
+                return this._CLASSNAME_PRESENT;
+            } else if (time > this._currentTime) {
+                return this._CLASSNAME_FUTURE;
+            }
         }
     }
 
     getDayHourDisplay(hour) {
-
-
         let row = $("<div />", { "class": "row" });
-
-
         // description column
         let currentStyle = "";
         let colDescription = $("<div />", {
@@ -61,11 +83,11 @@ class dayCalendarRenderer {
         });
 
         //check if we need fix and how to display the time. 
-        let suffix = this.is12hTimeFormat ? this._suffixAM : "";
+        let suffix = this.is12hTimeFormat ? this._SUFFIX_AM : "";
         if (hour >= 12 && this.is12hTimeFormat) {
             //afternoon, time suffix needs to be changed. 
             if (hour > 12) { hour -= 12; }
-            suffix = this.is12hTimeFormat ? this._suffixPM : "";
+            suffix = this.is12hTimeFormat ? this._SUFFIX_PM : "";
         }
         colTime.html(hour + suffix); //set the content
 
