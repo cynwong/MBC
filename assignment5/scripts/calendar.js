@@ -3,6 +3,7 @@ class Calendar {
 
     constructor(date){
         this.resetCalendarMoment(date);
+        this._LOCAL_STORAGE_KEY = "events";
     }
 
     set date(date){
@@ -25,15 +26,15 @@ class Calendar {
     }
 
     //get date
-    get today(){
+    get thisDay(){
         return this._moment;
     }
 
-    get yesterday() {
+    get previousDay() {
         return this._moment.subtract(1, "days");
     }
 
-    get tomorrow() {
+    get nextDay() {
         return this._moment.add(1, "days");
     }
 
@@ -44,6 +45,37 @@ class Calendar {
     get currentHour(){
             //returning in the format 01 - 24 
             return this._moment.format(`HH`); 
+    }
+    get events () {
+        return this._events; 
+    }
+
+    /**
+     *  localStorage events format
+     *      events = {
+     *              "2019-11-01" : {
+                        time : 09,
+                        description : "My event description"
+     *          }
+     */
+    load(){
+        if(localStorage[this._LOCAL_STORAGE_KEY]){
+            //if we have data
+            this._events = JSON.parse(localStorage[this._LOCAL_STORAGE_KEY]);
+            //now get this day's events
+            this._events = this._events[this._moment().calendar()];
+        } else {
+            this._events = {};
+        }
+    }
+    save(){
+        localStorage.setItem(this._LOCAL_STORAGE_KEY, JSON.stringify(this._events));
+    }
+
+    saveEvent(event){
+        
+
+        this.save();
     }
 }
 
