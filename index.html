@@ -26,20 +26,22 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <!-- Common CSS -->
-    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="./resources/styles/styles.css">
 </head>
 
 <body>
     <!-- Header Bar -->
     <header class="container-fluid header" role="navigation">
-            <div class="site-title-container">
-                <span id="site-title" class="h1">Cynthia's homework repository</span>
-            </div>
+        <div class="site-title-container">
+            <span id="site-title" class="h1">Cynthia's homework repository</span>
+        </div>
     </header>
     <!-- main content -->
     <main class="main-container p-sm-5">
         <div class="container border p-sm-4 pb-4">
             <!-- content title container -->
+
+            
             <div class="row">
                 <div class="col-12 p-4 m-0">
                     <span id="title" class="h1">Homework projects</span>
@@ -47,39 +49,8 @@
                 <div class="col hr mx-3 mb-4"></div>
             </div>
             <!-- content container -->
-            <div class="row justify-content-center justify-content-sm-start">
-                <div class="col-md-3">
-                    <a href="assignment1/index.html">
-                        <figure class='position-relative rounded img-container m-3' title="Homework 1">
-                            <img class="img-fluid rounded" src="resources/pages/assignment-1.png" alt="Homework 1">
-                            <figcaption class="img-label">Homework 1</figcaption>
-                        </figure>
-                    </a>
-                </div>
-                <div class="col-md-3">
-                    <a href="assignment2/index.html">
-                        <figure class='position-relative rounded img-container m-3' title="Homework 2">
-                            <img class="img-fluid rounded" src="resources/pages/assignment-2.png" alt="Homework 2">
-                            <figcaption class="img-label">Homework 2</figcaption>
-                        </figure>
-                    </a>
-                </div>
-                <div class="col-md-3">
-                    <a href="assignment3/index.html">
-                        <figure class='position-relative rounded img-container m-3' title="Homework 3">
-                            <img class="img-fluid rounded" src="resources/pages/assignment-3.png" alt="Homework 3">
-                            <figcaption class="img-label">Homework 3</figcaption>
-                        </figure>
-                    </a>
-                </div>
-                <div class="col-md-3">
-                    <a href="assignment4/index.html">
-                        <figure class='position-relative rounded img-container m-3' title="Homework 4">
-                            <img class="img-fluid rounded" src="resources/pages/assignment-4.png" alt="Homework 4">
-                            <figcaption class="img-label">Homework 4</figcaption>
-                        </figure>
-                    </a>
-                </div>
+            <div id="contentContainer" class="row justify-content-center justify-content-sm-start">
+                <!-- Content goes here -->
                 
             </div>
         </div>
@@ -91,6 +62,20 @@
             <small>Copyright &copy;</small>
         </div>
     </footer>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+    <script src="./resources/scripts/data.js"></script>
+    <script src="./resources/scripts/render.js"></script>
+    <script src="./resources/scripts/main.js"></script>
 
 </body>
 

@@ -134,6 +134,22 @@ body{
     background-color: var(--color-primary-4);
 }
 
+.img-container{
+    /* margin-left: auto;
+    margin-right: auto; */
+    width:100%;
+    min-width: 200px;
+    min-height: 150px;
+    border: 1px solid var(--color-primary-3);
+    border-radius: 5px;
+    box-shadow: 0px 0px 2px var(--color-gray-7);
+}
+
+.img-container:hover, .img-container:focus{
+    transform: scale(1.2);
+    z-index: 4; /* zoomed must always on top of others */
+}
+
 .img-label{
     text-align: center;
     background-color: var(--color-secondary-3);
@@ -143,18 +159,6 @@ body{
     right: 0;
     left: 0;
     padding: 8px;
-}
-
-.img-container{
-    width:fit-content;
-    border: 1px solid var(--color-primary-3);
-    border-radius: 5px;
-    box-shadow: 0px 0px 2px var(--color-gray-7);
-}
-
-.img-container:hover, .img-container:focus{
-    transform: scale(1.2);
-    z-index: 4; /* zoomed must always on top of others */
 }
 
 footer{

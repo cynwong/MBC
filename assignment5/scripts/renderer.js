@@ -7,8 +7,7 @@ class dayCalendarRenderer {
         this._container = $(".container-fluid");
 
         //renderer defaults
-        this._calendar = calendar;
-        //TODO do we need these vars? 
+        this._calendar = calendar; //do i need this? TODO
         this._date = calendar.thisDay;
         this._currentTime = parseInt(calendar.currentHour);
 
@@ -111,7 +110,5 @@ class dayCalendarRenderer {
             this._container.append(this.getDayHourDisplay(i));
         }//TODO this is not rendering Check if this is being called. 
     }
-
-
 };
 
