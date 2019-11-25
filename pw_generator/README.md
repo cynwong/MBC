@@ -1,12 +1,12 @@
-Unit 03 JavaScript Homework: Password Generator
+Password Generator
 =============================
 
-Click [here](https://cynwong.github.io/assignments/assignment3/index.html) to view this application. 
+Click [here](https://cynwong.github.io/MBC/pw_generator/index.html) to view this application. 
 
 
 Description
 --------------
-A web application is created to <strong>generate a strong password based on user's preferances.</strong>. This application built using the following technologies: 
+A web application is created to __generate a strong password based on user's preferances__. This application built using the following technologies: 
 <ol style="margin-left:3rem">
     <li><abbr title="HyperText Markup Language">HTML</abbr></li>
     <li><abbr title="Cascading Style Sheets">CSS</abbr></li>
