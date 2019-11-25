@@ -1,15 +1,16 @@
-# Unit 05 Third-Party APIs Homework: Day Planner
+# Day Planner
 
+Visit deployed site [here](https://cynwong.github.io/MBC/day_planner/)
 
 ## Description
 
-
+Day Planner is a planner application where user can save a day's events to the day planner. This is a mini project, so its limitation is that it is limited to Present day only. This project is potential for later further development.
 
 ## User Story
 
-AS AN employee with a busy schedule
-I WANT to add important events to a daily planner
-SO THAT I can manage my time effectively.
+> AS AN employee with a busy schedule
+> I WANT to add important events to a daily planner
+> SO THAT I can manage my time effectively.
 
 ## Business Context
 
