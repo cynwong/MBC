@@ -1,6 +1,6 @@
-# Unit 04 Web APIs Homework: Code Quiz
+# Code Quiz
 
-published at [project site](https://cynwong.github.io/assignments/assignment4/index.html)
+published at [project site](https://cynwong.github.io/MBC/code_quiz/)
 
 ## USER STORY
 
