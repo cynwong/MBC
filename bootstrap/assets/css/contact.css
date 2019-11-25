@@ -1,0 +1,7 @@
+
+.btn-submit{
+    background-color:var(--color-teal);
+    color: whitesmoke;
+    padding: 0.4rem 2rem;
+    border-radius: 0;
+}

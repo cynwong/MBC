@@ -1,0 +1,135 @@
+/* Common styles */
+
+/* 
+=====================
+   Style Guide
+=====================
+* Colors (**Pro Tip:** Use the [Eye Dropper](https://chrome.google.com/webstore/detail/eye-dropper/hmdcmlfkchdmnmnmheododdhjedfccka) Chrome extension to find the colors that are used on webpages.)
+   * Teal color (used for headings and backgrounds): `#4aaaa5`
+   * Regular font color (used for paragraphs and all text besides the headings): `#777777`
+   * Main header background color: `#ffffff`
+   * Main header border color: `#cccccc`
+   * Footer background color: `#666666`
+   * Main content background color: `#ffffff`
+   * Main content border color: `#dddddd`
+
+* Fonts:
+   * For heading fonts use `font-family: 'Georgia', Times, 'Times New Roman', serif;`
+   * For all other fonts use `'Arial', 'Helvetica Neue', Helvetica, sans-serif;` 
+
+
+=================
+   Bootstrap's grid breakpoints
+=================
+
+$grid-breakpoints: (
+  xs: 0,
+  sm: 480px,
+  md: 768px,
+  lg: 1024px
+);
+$container-max-widths: (
+  sm: 420px,
+  md: 720px,
+  lg: 960px
+);
+
+*/
+
+
+
+html{
+   /* bootstrap default font-size: 14px; */
+   font-size: 16px;
+}
+
+body{
+   /* variables for the project */
+   --color-teal: #4aaaa5;
+   --color-text: #777777;
+   --color-header-bg: #ffffff;
+   --color-border:#cccccc;
+   --color-grey:#666666;
+   --color-main-bg: #ffffff;
+   --color-main-border: #dddddd;
+
+   margin:0;
+   padding:0;
+   font-family: 'Arial', 'Helvetica Neue', Helvetica, sans-serif;
+   color: var(--color-text);
+   
+}
+
+.header{
+   /* using bg-white for the header. */
+   border-bottom: 2px solid var(--color-border); 
+}
+
+
+.site-title-container{
+   background-color: var(--color-teal);
+   padding: 25px 5px;
+   min-width: fit-content; 
+}
+.site-title{
+   text-shadow: 0px 0px 4px hsl(0deg, 0%, 10%);
+    /* font-family: 'Spicy Rice','Mrs Sheppards','Knewave', cursive; */
+   font-family: "Aclonica", "Chivo", "Ariel", sans-serif;
+   font-size: 1.5rem;
+   color: white;
+}
+
+.nav .active{
+   font-weight: 900;
+   
+}
+.nav-link:hover, .nav-link:focus{
+   text-decoration: var(--color-teal);
+   font-weight: 800;
+   transform: scale(1.2);
+}
+.divider{
+   margin-top: .4rem;
+   display: block;
+   width: 1px;
+   height: 2rem;
+   background-color: #ccc;
+}
+
+.main-container{
+   background-image: url("../images/background-image/full-bloom.png");
+   /* for sticky footer */
+   min-height: calc(100vh - 150px);
+}
+.main-container .container{
+   background-color: var(--color-main-bg);
+   border-color: var(--color-main-border);
+   box-shadow: 0px 0px 8px var(--color-grey);
+}
+
+#title{
+   color:var(--color-teal);
+   font-size: 1.5rem;
+   font-weight: 900;
+}
+
+.hr{
+   display:block;
+   height: 2px; 
+   background-color: var(--color-border);
+}
+
+footer{
+   border-top: 8px solid var(--color-teal)
+}
+
+
+/* If xs, main content should use the whole screen. */
+/* @media (max-width: 575.98px) {
+   body{
+      padding: 0;
+   }
+   .main-container .container{
+      margin: 0;
+   }
+} */
