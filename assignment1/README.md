@@ -1,4 +1,4 @@
-Unit 01 HTML, CSS, and Git Homework: Portfolio
+Portfolio created by using HTML, CSS, and Git
 =================================
 
 @author: Cynthia W.
@@ -8,9 +8,7 @@ Unit 01 HTML, CSS, and Git Homework: Portfolio
 Description
 --------------
 
-Portfolio project is created as per guidelines/instructions given for Homework 1. This project only used HTML and CSS. 
-
-We are tasked to create a Portfolio website with three webpages. Each page must be similar to example image given. The three page mentioned here are namely: 
+Portfolio project is created with only using HTML and pure CSS. This is the template site with three pages. Each page must be similar to example image given. The three page mentioned here are namely:
 
     * About 
     * Contact 
@@ -29,8 +27,6 @@ Contact page showcase a HTML form which will later allow user to contact the sit
 <h4>-- Portfolio gallery - portfolio.html --</h4>
 Portfolio page created as a gallery. Hence, this pages only contains images and their labels.  This page is constructed with &lt;figure&gt;, containing &lt;img&gt; for photos,and &lt;figcaption&gt; as labels. CSS is mainly used to achive similar look to the example given, especially &lt;figcaption&gt; elments. This page has a little surprise since it is too boring with a list of photos. Try hovering on the images. CSS is so cool!
 
-<em>Note: The same words from the examples are used here so the label may not be descriptive nor matched with its labelled photo.</em>
+<em>Note: The random captions are used here so the label are not meant to be descriptive nor matched with its photo.</em>
 
-Credit :: Images here are from [Pixel](https://www.pexels.com). Pixel provides free licence photos for various uses. Hence, photo credits to the photographers. 
-
-    
+Credit :: Images here are from [Pixel](https://www.pexels.com). Pixel provides free licence photos for various uses. Hence, photo credits to the photographers.
